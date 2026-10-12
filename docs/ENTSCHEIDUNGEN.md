@@ -100,5 +100,5 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [x] Erster Upload nach `/kita-static` (2026-10-12).
-- [ ] **Live-Schaltung:** Domain-Ziel im KAS auf `/kita-static/` umstellen, danach Seite und Weiterleitungen der alten URLs testen.
+- [x] **Live-Schaltung** am 2026-10-12: Domain-Ziel auf `/kita-static/`, Seite und Weiterleitungen getestet (www → ohne www, HTTP → HTTPS, alte WordPress-URLs → neue Abschnitte).
 - [ ] Später (nach erfolgreichem Betrieb): WordPress in `/kita` sichern und entfernen.
