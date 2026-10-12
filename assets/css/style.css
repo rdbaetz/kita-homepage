@@ -248,17 +248,58 @@ p { margin: 0 0 1em; }
 }
 .hero-text { padding-bottom: clamp(16px, 3vw, 40px); }
 .hero-text p { font-size: 1.15rem; color: var(--ink-soft); max-width: 30em; }
+.hero-logo-wrap {
+  position: relative;
+  width: fit-content;
+  margin: clamp(40px, 6vw, 64px) 0 clamp(18px, 3vw, 30px) -6px;
+}
 .hero-logo {
+  display: block;
   width: clamp(220px, 28vw, 340px);
   height: auto;
-  margin: 0 0 clamp(18px, 3vw, 30px) -6px;
   animation: logo-auftritt 0.9s cubic-bezier(0.2, 0.8, 0.2, 1.1) both;
+}
+
+/* Luftballons, an die Spitze des "A" (86 % / 16 % des Logos) gebunden */
+.ballons {
+  position: absolute;
+  left: 86%;
+  top: 16%;
+  width: 38%;
+  transform: translate(-5%, -96%);   /* Ankerpunkt (8,125) im SVG auf die A-Spitze legen */
+  pointer-events: none;
+}
+.ballons svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform-origin: 5% 96%;
+  animation: ballons-auf 1s cubic-bezier(0.2, 0.9, 0.3, 1.25) 0.6s backwards;
+  transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.hero-logo-wrap:hover .ballons svg { transform: rotate(-7deg) scale(1.05); }
+.ballon {
+  transform-box: view-box;
+  transform-origin: 8px 125px;
+  animation: schaukeln 4.6s ease-in-out infinite alternate;
+}
+.ballon.b2 { animation-duration: 5.4s; animation-delay: -1.8s; }
+.ballon.b3 { animation-duration: 6.2s; animation-delay: -3.1s; }
+@keyframes schaukeln {
+  from { transform: rotate(-5deg); }
+  to { transform: rotate(4deg); }
+}
+@keyframes ballons-auf {
+  from { opacity: 0; transform: scale(0.2) rotate(15deg); }
+  to { opacity: 1; transform: none; }
 }
 @keyframes logo-auftritt {
   from { opacity: 0; transform: translateY(-14px) scale(0.92); }
   to { opacity: 1; transform: none; }
 }
 .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+.hero-text { padding-top: 0; }
 /* Slogan als "Treppe": jede Zeile etwas größer und weiter eingerückt – die Schrift wächst mit */
 .hero h1.slogan { font-size: 1rem; font-weight: 500; line-height: 1; }
 .slogan > span { display: block; }
