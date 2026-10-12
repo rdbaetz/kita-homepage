@@ -54,6 +54,8 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - Stattdessen: **Codex CLI** mit ChatGPT-Plus-Login; Bilder laufen über das Plus-Kontingent. Skript `tools/bilder_generieren.py` liest die Prompts aus `BILDER-PROMPTS.md`.
 - Das Skript wird **vom Nutzer selbst gestartet**, nicht von Claude Code (Claude darf keinen weiteren autonomen Agenten starten). Danach übernimmt Claude Code Prüfung, Optimierung und Einbau.
 
+- Originale liegen in `bilder-roh/` (nicht in Git), die Website nutzt aufbereitete WebP-Dateien (`tools/bilder_aufbereiten.py` entfernt das von ChatGPT mitgemalte Karomuster).
+
 ---
 
 ## Offene Punkte
@@ -62,6 +64,6 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [ ] **Träger** der Kita im Impressum ergänzen (TODO in `impressum.html`).
 - [ ] **Webhoster** in der Datenschutzerklärung nennen (TODO in `datenschutz.html`).
 - [ ] Klären, ob bei kirchlicher Trägerschaft das **KDG** statt der DSGVO gilt; ggf. Datenschutzbeauftragten nennen.
-- [ ] ChatGPT-Illustrationen erzeugen und in `assets/img/illustrations/` ablegen.
+- [x] ChatGPT-Illustrationen erzeugt (händisch), aufbereitet und eingebaut (2026-10-12).
 - [ ] Zahlen (Mitarbeiterinnen/Kinder/Gruppen) auf Aktualität prüfen.
 - [ ] Erster Upload: WordPress sichern, entfernen, `deploy.ps1` ausführen, Weiterleitungen testen.

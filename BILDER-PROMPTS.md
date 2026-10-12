@@ -5,9 +5,9 @@
 **Manuell** in der ChatGPT-App:
 
 1. In ChatGPT zuerst den **Stil-Block** einfügen, danach jeweils einen Bild-Prompt (alle Bilder im selben Chat erzeugen, damit der Stil einheitlich bleibt).
-2. Bild als **PNG mit transparentem Hintergrund** herunterladen.
-3. Unter dem angegebenen Dateinamen in `assets/img/illustrations/` speichern.
-4. Claude Code Bescheid sagen („Bilder liegen drin“) – ich optimiere sie (Größe/WebP) und prüfe die Einbindung.
+2. Bild als PNG herunterladen (ein mitgemaltes Karomuster statt echter Transparenz ist okay).
+3. Unter dem angegebenen Dateinamen in **`bilder-roh/`** speichern (Ordner ist nicht in Git).
+4. `python tools/bilder_aufbereiten.py` ausführen – oder Claude Code Bescheid sagen. Das Skript entfernt das Karomuster, verkleinert und speichert als WebP in `assets/img/illustrations/`.
 
 Solange ein Bild fehlt, zeigt die Seite automatisch eine schlichte Ersatzgrafik.
 

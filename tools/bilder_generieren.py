@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PROMPTS = ROOT / "BILDER-PROMPTS.md"
-ZIEL = ROOT / "assets" / "img" / "illustrations"
+ZIEL = ROOT / "bilder-roh"  # Originale; danach tools/bilder_aufbereiten.py
 
 
 def lade_prompts():
@@ -70,6 +70,7 @@ def main(args):
             print(f"✗ {name}.png wurde nicht erzeugt (Exit {r.returncode})")
         else:
             print(f"✓ {name}.png gespeichert")
+            subprocess.run([sys.executable, str(ROOT / "tools" / "bilder_aufbereiten.py"), name])
 
 
 if __name__ == "__main__":

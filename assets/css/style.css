@@ -335,7 +335,7 @@ p { margin: 0 0 1em; }
   overflow: hidden;
 }
 .program .circle svg { width: 52%; height: auto; }
-.program .circle img.ill { width: 88%; height: auto; }
+.program .circle img.ill { width: 76%; height: auto; }
 .program h3 { margin-bottom: 0.3em; }
 .program p { color: var(--muted); margin: 0 auto; max-width: 18em; font-size: 0.98rem; }
 .program .more {
@@ -463,8 +463,8 @@ dialog.info .close svg { width: 18px; height: 18px; }
   overflow: hidden;
 }
 .group .art {
-  width: 104px;
-  height: 104px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -472,7 +472,7 @@ dialog.info .close svg { width: 18px; height: 18px; }
   overflow: hidden;
 }
 .group .art svg { width: 56%; }
-.group .art img.ill { width: 92%; }
+.group .art img.ill { width: 84%; }
 .group h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.75rem; margin-bottom: 0.2em; }
 .group .age {
   display: inline-block;

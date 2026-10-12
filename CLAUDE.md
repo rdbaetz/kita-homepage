@@ -11,7 +11,10 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
 - `assets/js/main.js` – Menü, Dialoge, Scroll-Effekte, automatisches Ausgrauen vergangener Schließtage
 - `assets/img/team/NN.jpg` – Teamfotos (Reihenfolge = Reihenfolge im Team-Abschnitt)
-- `assets/img/illustrations/*.png` – generierte Illustrationen (Prompts in `BILDER-PROMPTS.md`)
+- `assets/img/illustrations/*.webp` – aufbereitete Illustrationen (Prompts in `BILDER-PROMPTS.md`)
+- `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)
+- `tools/bilder_generieren.py` – erzeugt Bilder per Codex CLI (ChatGPT-Plus) nach `bilder-roh/`
+- `tools/bilder_aufbereiten.py` – entfernt Karomuster, verkleinert, speichert WebP
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
@@ -28,8 +31,8 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 
 ## Illustrationen
 
-Muster: `<div class="art"> <img class="ill" src="…png" onerror="this.remove()"> <svg class="fallback">…</svg> </div>`.
-Existiert die PNG, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausgeblendet. Neue PNGs vor dem Einbinden auf max. ~1400 px Breite verkleinern (Python/Pillow ist vorhanden).
+Muster: `<div class="art"> <img class="ill" src="…webp" onerror="this.remove()"> <svg class="fallback">…</svg> </div>`.
+Existiert das Bild, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausgeblendet. Neue Bilder: PNG nach `bilder-roh/<name>.png`, dann `python tools/bilder_aufbereiten.py <name>`; im HTML immer die `.webp` referenzieren.
 
 ## Lokal ansehen & veröffentlichen
 
