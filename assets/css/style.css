@@ -840,9 +840,13 @@ dialog.info .close svg { width: 18px; height: 18px; }
 }
 .reveal.in { opacity: 1; transform: none; }
 
-/* Header wird beim Scrollen schmaler */
+/* Header wird beim Scrollen schmaler. Die 14px weniger Höhe gleicht margin-bottom aus,
+   damit der Inhalt darunter nicht springt – sonst wackelt der Header nahe ganz oben
+   zwischen beiden Zuständen hin und her. */
+.site-header { transition: box-shadow 0.2s ease, margin-bottom 0.3s ease; }
 .header-inner { transition: min-height 0.3s ease; }
 .brand img { transition: height 0.3s ease; }
+.site-header.scrolled { margin-bottom: 14px; }
 .site-header.scrolled .header-inner { min-height: 62px; }
 .site-header.scrolled .brand img { height: 42px; }
 
