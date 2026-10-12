@@ -18,15 +18,19 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `tools/hero_ebenen.py <name>` – zerlegt `bilder-roh/<name>.png` in Basis + animierte Ebenen (Sonnenstrahlen, Sonnengesicht) und gibt die %-Positionen für das CSS (`.hero-szene`) aus; Sonnen-Mittelpunkt je Bild in `BILDER` im Skript. Aktuell im Einsatz: `hero-3`
 - `tools/ebene_ausschneiden.py <name> <teil> <x> <y>` – schneidet einen frei stehenden Bildteil (Fläche unter Punkt x/y der `.webp`) als eigene Ebene aus, z. B. den flatternden Schmetterling `ueber-uns-2-falter.webp`; gibt die %-Position fürs CSS aus
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
+- `assets/fonts/` – Fraunces und Nunito als lokale `.woff2` (kein Google Fonts)
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
+- `entwurf-rundgang/` – Entwurf des Abschnitts „Rundgang“ (eigene `index.html`, `rundgang.css/.js`, Platzhalter-Fotos in `bilder/`); online unter `/entwurf-rundgang/`, per `robots.txt` und `noindex` gesperrt. Nach Abstimmung in die Startseite übernehmen und Ordner löschen
+- `docs/ENTSCHEIDUNGEN.md` – Entscheidungen und offene Punkte; `docs/rundgang-fotos-anleitung.png` – Foto-Anleitung für die Kita-Leitung
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
+- `robots.txt` – sperrt den Entwurfsordner für Suchmaschinen
 - `deploy.ps1` – verschlüsselter Upload per FTPS (Standard) oder SFTP (`PROTOKOLL` in `deploy.env`; Zugangsdaten nie committen)
 
 ## Häufige Änderungen
 
 - **Schließtage** (jährlich): Abschnitt ZEITEN, `<li data-ende="JJJJ-MM-TT">` – `data-ende` ist der letzte geschlossene Tag; vergangene Einträge werden automatisch ausgegraut. Überschrift „Schließtage JJJJ/JJJJ“ und Hinweis „Kindergartenbeginn“ mitpflegen.
-- **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto quadratisch 600×600 als `assets/img/team/vorname-nachname.jpg` (neuer Dateiname statt Überschreiben, wegen Browser-Cache). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
-- **Zahlen** (Mitarbeiter/Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`.
+- **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto quadratisch 600×600 als `assets/img/team/vorname-nachname.jpg` (neuer Dateiname statt Überschreiben, wegen Browser-Cache). Die Zahl „Mitarbeiterinnen“ zählt `main.js` automatisch aus den `.member`-Einträgen (`data-team-anzahl`) – nichts von Hand anpassen.
+- **Zahlen** (Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`. Die Mitarbeiterzahl dort ergibt sich automatisch (siehe Team).
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
 - **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).
@@ -40,7 +44,7 @@ Existiert das Bild, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausg
 ## Browser-Cache
 
 CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
-- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen drei** HTML-Dateien hochzählen.
+- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen** HTML-Dateien hochzählen: `index.html`, `impressum.html`, `datenschutz.html` und – solange es ihn gibt – `entwurf-rundgang/index.html`.
 - Geänderte Bilder unter **neuem Dateinamen** speichern statt die alte Datei zu überschreiben.
 
 ## Lokal ansehen & veröffentlichen
