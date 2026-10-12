@@ -51,6 +51,24 @@ Oben links eine große lachende, stilisierte Sonne mit rundem Gesicht und einzel
 Weiße Gänseblümchen im Gras. Der untere Rand läuft als weiche, wellige Wiese aus. Transparenter Hintergrund außerhalb der Szene.
 ```
 
+### Hero, Variante 3 – `hero-3.png` (aktuell im Einsatz)
+Format: Querformat ca. 6:5 (z. B. 1536×1280)
+
+Wie Variante 2, aber mit dem echten Kita-Haus und Garten (nach Fotos vom 12.10.2026). Im ersten Versuch wurde das Bild zu kräftig und comicartig – deshalb der Zusatz zur Weichheit am Ende. Ebenen: `python tools/hero_ebenen.py hero-3`.
+
+```
+Der große, grüne Garten eines Kindergartens im Frankenwald, von einem leicht erhöhten Standpunkt gesehen.
+Links im Hintergrund das Kita-Haus, leicht schräg von der Seite: ein langgestreckter, eingeschossiger Flachbau mit hellgelb-cremefarben verputzter Fassade und flach geneigtem, dunkelgrauem Walmdach mit grauer Dachrinne und niedrigem dunklem Schneefanggitter. Große Fenster mit dunkelgrauen Rahmen, auf deren Scheiben bunte Kinderbilder gemalt sind (Regenbogen, Herz, Luftballons – ohne Schrift), ein schmaler roter Wandabschnitt am Hausende, davor zwei bunte Drahtfiguren in Kindergestalt (rot und blau).
+Rechts im Mittelgrund ein hölzerner Spielturm wie eine kleine Ritterburg: Turm mit spitzem grauem Dach und kleinem roten Fähnchen, eine Kletterwand mit bunten Griffen und eine silberne Rutsche. Ein größeres Kind (ca. 6 Jahre) hilft einem ganz kleinen Kind (ca. 3 Jahre) an der Kletterwand hinauf, das Kleine strahlt stolz.
+Links im Vordergrund ein runder Sandplatz mit Holzrand, daneben ein Holzpferd und eine grüne Handschwengelpumpe. Im Sand bauen zwei Kinder (ca. 4 Jahre) zusammen eine Sandburg, eine freundliche Erzieherin (ca. 35 Jahre, Pastellkleidung, Haare zum Dutt) kniet am Rand und schaut ihnen lächelnd zu.
+In der Mitte vorne hockt ein Kind im Gras und betrachtet mit einer Lupe einen Marienkäfer auf einem Gänseblümchen.
+Ein geschwungener, hellgrauer Pflasterweg führt durch die Wiese. Am Wegrand ein Holz-Picknicktisch mit roten Beinen und ein paar bunt bemalte, schlanke Holzstangen. Ein großer Kastanienbaum mit rosa Blütenkerzen rahmt die Szene rechts, ein weißes Sonnensegel spannt sich über einen Teil des Spielplatzes.
+Niemand schaut den Betrachter direkt an. Ruhige, übersichtliche Komposition mit klaren Gruppen und Luft dazwischen, nicht überladen.
+Oben links eine große lachende, stilisierte Sonne mit rundem Gesicht und einzelnen, getrennt stehenden Strahlen. Die Sonne steht frei im Himmel und berührt weder Bäume, Wolken noch das Haus (deutlicher Abstand rundherum). Ein bis zwei weiche Wolken nur rechts oben.
+Weiße Gänseblümchen im Gras. Der untere Rand läuft als weiche, wellige Wiese aus. Transparenter Hintergrund außerhalb der Szene.
+Sehr weiche, blasse Aquarellfarben, keine Konturlinien, gedeckte Sättigung, viel Luft, alle Ränder weich auslaufend.
+```
+
 ## 2. Über uns – `ueber-uns.png`
 Format: Querformat ca. 6:5
 

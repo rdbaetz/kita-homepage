@@ -15,7 +15,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)
 - `tools/bilder_generieren.py` – erzeugt Bilder per Codex CLI (ChatGPT-Plus) nach `bilder-roh/`
 - `tools/bilder_aufbereiten.py` – entfernt Karomuster, verkleinert, speichert WebP
-- `tools/hero_ebenen.py <name>` – zerlegt `bilder-roh/<name>.png` in Basis + animierte Ebenen (Sonnenstrahlen, Sonnengesicht) und gibt die %-Positionen für das CSS (`.hero-szene`) aus; Sonnen-Mittelpunkt je Bild in `BILDER` im Skript. Aktuell im Einsatz: `hero-2`
+- `tools/hero_ebenen.py <name>` – zerlegt `bilder-roh/<name>.png` in Basis + animierte Ebenen (Sonnenstrahlen, Sonnengesicht) und gibt die %-Positionen für das CSS (`.hero-szene`) aus; Sonnen-Mittelpunkt je Bild in `BILDER` im Skript. Aktuell im Einsatz: `hero-3`
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching

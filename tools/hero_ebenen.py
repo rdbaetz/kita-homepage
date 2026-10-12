@@ -20,11 +20,13 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 ZIEL = ROOT / "assets" / "img" / "illustrations"
 
-# Je Bild: Mittelpunkt der Sonnenscheibe (px im Original), Radius Gesicht/Scheibe,
+# Je Bild: Mittelpunkt der Sonnenscheibe (px im Original), Radius Gesicht/Scheibe
+# (None = die zusammenhängende Fläche unter dem Mittelpunkt ist das Gesicht),
 # bis zu welchem Abstand Teile zur Sonne zählen, und ob ein Drache ausgeschnitten wird
 BILDER = {
     "hero":   dict(mitte=(315, 215), scheibe=116, aussen=215, drache=True),
     "hero-2": dict(mitte=(221, 180), scheibe=92, aussen=165, drache=False),
+    "hero-3": dict(mitte=(295, 174), scheibe=None, aussen=150, drache=False),
 }
 DRACHE_PIVOT = (1129, 327) # nur "hero": Schnittstelle der Schnur unter der 1. Schleife = Drehpunkt
 
@@ -60,15 +62,22 @@ def main(name="hero"):
 
     # --- Sonne: alle Teile, deren Schwerpunkt nah an der Sonnenmitte liegt (Bäume/Wolke liegen weiter weg)
     box = (max(0, cx - SONNE_AUSSEN - 20), 0, min(w, cx + SONNE_AUSSEN + 20), min(h, cy + SONNE_AUSSEN + 20))
-    sonne = []
+    sonne, scheibe = [], []
     for teil in komponenten(sichtbar, w, h, box):
         mx = sum(p[0] for p in teil) / len(teil)
         my = sum(p[1] for p in teil) / len(teil)
         beruehrt_rand = any(p[1] >= box[3] - 1 for p in teil)
         if not beruehrt_rand and ((mx - cx) ** 2 + (my - cy) ** 2) ** 0.5 < SONNE_AUSSEN:
             sonne.extend(teil)
-    gesicht = [p for p in sonne if (p[0] - cx) ** 2 + (p[1] - cy) ** 2 <= SONNE_SCHEIBE ** 2]
-    strahlen = [p for p in sonne if (p[0] - cx) ** 2 + (p[1] - cy) ** 2 > SONNE_SCHEIBE ** 2]
+            if (cx, cy) in teil:
+                scheibe = teil
+    if SONNE_SCHEIBE is None:
+        im_gesicht = set(scheibe)
+        gesicht = scheibe
+        strahlen = [p for p in sonne if p not in im_gesicht]
+    else:
+        gesicht = [p for p in sonne if (p[0] - cx) ** 2 + (p[1] - cy) ** 2 <= SONNE_SCHEIBE ** 2]
+        strahlen = [p for p in sonne if (p[0] - cx) ** 2 + (p[1] - cy) ** 2 > SONNE_SCHEIBE ** 2]
 
     # --- Drache: alles oberhalb der Schnittstelle (inkl. 1. Schleife) + Schwänze rechts,
     #     ohne Wolke links und ohne die Schleifen der unteren Schnur
