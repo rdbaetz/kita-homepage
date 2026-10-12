@@ -89,7 +89,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
 - [x] Träger ergänzt.
-- [ ] **Vertretungsberechtigte Person** der Kirchenstiftung im Impressum ergänzen (Platzhalter in `impressum.html`).
+- [x] Vertretungsberechtigte Person im Impressum: Jochen Kotschenreuther.
 - [ ] Prüfen, ob die Kirchenstiftung eine*n **betriebliche*n Datenschutzbeauftragte*n** benannt hat; ggf. in `datenschutz.html` ergänzen.
 - [ ] **Auftragsverarbeitungsvertrag** mit ALL-INKL abschließen/prüfen (KAS → Vertragsdaten).
 - [x] Webhoster ergänzt.
@@ -100,6 +100,5 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [x] Erster Upload nach `/kita-static` (2026-10-12).
-- [ ] Vor der Live-Schaltung: vertretungsberechtigte Person im Impressum ergänzen.
 - [ ] **Live-Schaltung:** Domain-Ziel im KAS auf `/kita-static/` umstellen, danach Seite und Weiterleitungen der alten URLs testen.
 - [ ] Später (nach erfolgreichem Betrieb): WordPress in `/kita` sichern und entfernen.
