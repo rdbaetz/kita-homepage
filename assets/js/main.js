@@ -76,6 +76,10 @@ document.querySelectorAll("[data-ende]").forEach((li) => {
   if (end < today) li.classList.add("past");
 });
 
+// Mitarbeiterzahl automatisch aus dem Team-Abschnitt
+const anzahl = document.querySelectorAll(".team-grid .member").length;
+document.querySelectorAll("[data-team-anzahl]").forEach((el) => anzahl && (el.textContent = anzahl));
+
 // Jahr im Footer
 document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 

@@ -58,13 +58,28 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Träger, Datenschutz, Gruppen
+
+- **Träger:** Katholische Kirchenstiftung St. Laurentius Neufang (im Impressum und in der Datenschutzerklärung).
+- **Datenschutzrecht:** Wegen kirchlicher Trägerschaft gilt das **KDG** statt der DSGVO. Aufsicht: Katholisches Datenschutzzentrum Bayern, Nürnberg.
+- **Webhoster:** ALL-INKL.COM (Neue Medien Münnich, Friedersdorf).
+- **Gruppenbesetzung:** Maßgeblich ist die Team-Zuordnung; die Gruppentexte wurden angepasst (Edelsteine: Kita-Leitung + Erzieherin + 3 päd. Zweitkräfte; Goldtaler: Erzieherin + 3 päd. Zweitkräfte; Perlen: Erzieherin/Krippenpädagogin + päd. Zweitkraft/Krippenpädagogin).
+- **Mitarbeiterzahl** wird automatisch aus der Anzahl der Personen im Team-Abschnitt berechnet.
+- **Reihenfolge der Gruppen** überall: Edelsteine, Goldtaler, Perlen.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
-- [ ] **Träger** der Kita im Impressum ergänzen (TODO in `impressum.html`).
-- [ ] **Webhoster** in der Datenschutzerklärung nennen (TODO in `datenschutz.html`).
-- [ ] Klären, ob bei kirchlicher Trägerschaft das **KDG** statt der DSGVO gilt; ggf. Datenschutzbeauftragten nennen.
-- [x] ChatGPT-Illustrationen erzeugt (händisch), aufbereitet und eingebaut (2026-10-12).
-- [ ] Zahlen (Mitarbeiterinnen/Kinder/Gruppen) auf Aktualität prüfen.
-- [ ] **Gruppenbesetzung** in den Gruppentexten passt nicht zur Team-Zuordnung: Edelsteine laut Text 4 Personen, laut Team 5; Goldtaler laut Text 3, laut Team 4 (inkl. S. Fröba).
+- [x] Träger ergänzt.
+- [ ] **Vertretungsberechtigte Person** der Kirchenstiftung im Impressum ergänzen (Platzhalter in `impressum.html`).
+- [ ] Prüfen, ob die Kirchenstiftung eine*n **betriebliche*n Datenschutzbeauftragte*n** benannt hat; ggf. in `datenschutz.html` ergänzen.
+- [ ] **Auftragsverarbeitungsvertrag** mit ALL-INKL abschließen/prüfen (KAS → Vertragsdaten).
+- [x] Webhoster ergänzt.
+- [x] KDG statt DSGVO umgesetzt.
+- [x] ChatGPT-Illustrationen erzeugt (händisch), aufbereitet und eingebaut.
+- [x] Mitarbeiterzahl aus Team übernommen (automatisch).
+- [ ] **Kinderzahl (45)** auf Aktualität prüfen.
+- [x] Gruppenbesetzung an Team-Zuordnung angepasst.
 - [ ] Erster Upload: WordPress sichern, entfernen, `deploy.ps1` ausführen, Weiterleitungen testen.
