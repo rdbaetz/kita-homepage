@@ -519,8 +519,8 @@ dialog.info .close svg { width: 18px; height: 18px; }
   object-fit: cover;
   object-position: center 25%;
   border-radius: 50%;
-  margin: 0 auto 12px;
-  border: 6px solid var(--white);
+  margin: -15px auto -3px; /* gleicht die Verkleinerung (scale 0.85) im Ruhezustand aus */
+  border: 5px solid var(--white);
   box-shadow: var(--shadow-sm);
 }
 .member strong { display: block; font-weight: 800; line-height: 1.3; }
@@ -855,16 +855,16 @@ h2.arrived::after {
 .group:hover .art img.ill { transform: scale(1.08) rotate(5deg); }
 .group.in { transition: opacity 0.7s ease, transform 0.25s ease, box-shadow 0.25s ease; }
 .group.in:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -16px rgba(46, 74, 52, 0.35); }
-/* Team-Fotos: weiches Vergrößern – nur transform animieren (GPU), kein Schatten-/Dreh-Übergang */
+/* Team-Fotos: Das Bild wird in Zoom-Größe gezeichnet und im Ruhezustand verkleinert.
+   Beim Hover wächst es auf 100 % – dort ist es gestochen scharf (kein Hochskalieren). */
 .member { position: relative; }
 .member img {
-  transform: translateZ(0) scale(1);
-  backface-visibility: hidden;
-  will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 200px;
+  transform: scale(0.85);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .member:hover { z-index: 2; }
-.member:hover img { transform: translateZ(0) scale(1.18); }
+.member:hover img { transform: scale(1); }
 .stats li.in { transition: opacity 0.7s ease, transform 0.25s ease; }
 .stats li.in:hover { transform: translateY(-4px) rotate(-1deg); }
 

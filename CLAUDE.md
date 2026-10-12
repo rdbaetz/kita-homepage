@@ -10,7 +10,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
 - `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (Fortschrittsbalken, gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Hervorhebung angesprungener Überschriften, Nach-oben-Knopf), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
-- `assets/img/team/NN.jpg` – Teamfotos (Reihenfolge = Reihenfolge im Team-Abschnitt)
+- `assets/img/team/vorname-nachname.jpg` – Teamfotos, quadratisch 600×600 (Originale in `bilder-roh/team/`)
 - `assets/img/illustrations/*.webp` – aufbereitete Illustrationen (Prompts in `BILDER-PROMPTS.md`)
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)
 - `tools/bilder_generieren.py` – erzeugt Bilder per Codex CLI (ChatGPT-Plus) nach `bilder-roh/`
@@ -23,7 +23,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 ## Häufige Änderungen
 
 - **Schließtage** (jährlich): Abschnitt ZEITEN, `<li data-ende="JJJJ-MM-TT">` – `data-ende` ist der letzte geschlossene Tag; vergangene Einträge werden automatisch ausgegraut. Überschrift „Schließtage JJJJ/JJJJ“ und Hinweis „Kindergartenbeginn“ mitpflegen.
-- **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto als `assets/img/team/NN.jpg` (Hochformat, Gesicht im oberen Drittel). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
+- **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto quadratisch 600×600 als `assets/img/team/vorname-nachname.jpg` (neuer Dateiname statt Überschreiben, wegen Browser-Cache). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
 - **Zahlen** (Mitarbeiter/Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`.
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
@@ -33,6 +33,12 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 
 Muster: `<div class="art"> <img class="ill" src="…webp" onerror="this.remove()"> <svg class="fallback">…</svg> </div>`.
 Existiert das Bild, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausgeblendet. Neue Bilder: PNG nach `bilder-roh/<name>.png`, dann `python tools/bilder_aufbereiten.py <name>`; im HTML immer die `.webp` referenzieren.
+
+## Browser-Cache
+
+CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
+- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen drei** HTML-Dateien hochzählen.
+- Geänderte Bilder unter **neuem Dateinamen** speichern statt die alte Datei zu überschreiben.
 
 ## Lokal ansehen & veröffentlichen
 
