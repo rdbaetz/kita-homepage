@@ -42,10 +42,12 @@ Write-Host "$($files.Count) Dateien -> $($proto)://$($cfg.FTP_HOST)$remoteDir/"
 if ($DryRun) { $rels | ForEach-Object { Write-Host "  [dry] $_" }; return }
 
 if ($proto -eq "ftps") {
-  # FTPS: TLS ist Pflicht (--ssl-reqd) – ohne Verschlüsselung bricht der Upload ab
+  # FTPS: TLS ist Pflicht (--ssl-reqd) – ohne Verschlüsselung bricht der Upload ab.
+  # --tls-max 1.2: Mit TLS 1.3 bricht die Datenverbindung zwischen Windows (Schannel) und dem
+  # ALL-INKL-Server ab (Fehler 426, Datei kommt mit 0 Byte an). TLS 1.2 ist weiterhin sicher.
   for ($i = 0; $i -lt $files.Count; $i++) {
     Write-Host "  $($rels[$i])"
-    & curl.exe --silent --show-error --ssl-reqd --ftp-create-dirs `
+    & curl.exe --silent --show-error --ssl-reqd --tls-max 1.2 --ftp-create-dirs `
       --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" -T $files[$i].FullName "ftp://$($cfg.FTP_HOST)$remoteDir/$($rels[$i])"
     if ($LASTEXITCODE -ne 0) { throw "Upload fehlgeschlagen: $($rels[$i])" }
   }

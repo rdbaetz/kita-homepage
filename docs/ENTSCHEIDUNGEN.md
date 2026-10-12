@@ -76,6 +76,15 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Erster Upload & Umschaltung ohne WordPress-Löschung
+
+- Neue Seite liegt bei ALL-INKL im eigenen Ordner **`/kita-static`** (`FTP_DIR` in `deploy.env`); WordPress bleibt unverändert in `/kita`.
+- **Live-Schaltung** erfolgt im KAS, indem das Domain-Ziel von `kita-neufang.de` von `/kita/` auf `/kita-static/` umgestellt wird. **Rückweg:** Pfad zurückstellen.
+- FTPS-Upload mit **`--tls-max 1.2`**, da TLS 1.3 zwischen Windows-Schannel und dem ALL-INKL-Server die Datenverbindung abbricht (Fehler 426, 0-Byte-Dateien).
+- Erster Upload am 2026-10-12: 34/34 Dateien, Größen geprüft.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
@@ -90,4 +99,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [ ] **Kinderzahl (45)** auf Aktualität prüfen.
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
-- [ ] Erster Upload: WordPress sichern, entfernen, `deploy.ps1` ausführen, Weiterleitungen testen.
+- [x] Erster Upload nach `/kita-static` (2026-10-12).
+- [ ] Vor der Live-Schaltung: vertretungsberechtigte Person im Impressum ergänzen.
+- [ ] **Live-Schaltung:** Domain-Ziel im KAS auf `/kita-static/` umstellen, danach Seite und Weiterleitungen der alten URLs testen.
+- [ ] Später (nach erfolgreichem Betrieb): WordPress in `/kita` sichern und entfernen.
