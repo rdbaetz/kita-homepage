@@ -45,6 +45,19 @@ Neben ihr sitzt ein weißes Häschen und schaut neugierig ins Buch. Ein gelber S
 Rechts ein runder Laubbaum, Gräser und weiße Blumen am Rand. Ruhige, geborgene Stimmung. Transparenter Hintergrund.
 ```
 
+### Über uns, Variante 2 – `ueber-uns-2.png`
+Format: Querformat ca. 6:5 (z. B. 1536×1280)
+
+Passend zum Text „Was uns wichtig ist“ (Respekt, Geborgenheit, Wertschätzung, Gemeinschaft, verlässliche Beziehung).
+
+```
+Eine freundliche Erzieherin (ca. 35 Jahre, Pastellkleidung) sitzt auf einer runden Wiesen-Insel unter einem großen, schützenden Laubbaum, dessen Krone sich wie ein Dach über die Gruppe wölbt.
+Ein kleines Kind (ca. 3 Jahre) kuschelt sich vertrauensvoll an ihre Seite, sie legt ihm sanft den Arm um die Schulter.
+Daneben sitzen drei weitere Kinder (ca. 4–6 Jahre, vielfältig) im Halbkreis auf der Wiese: zwei halten sich an den Händen, eines reicht einem anderen eine Blume.
+Alle schauen sich freundlich an, niemand schaut den Betrachter direkt an. Gräser und weiße Blumen am Rand, ein gelber Schmetterling.
+Ruhige, warme, geborgene Stimmung, viel Luft rundherum. Transparenter Hintergrund.
+```
+
 ## 3. Angebote (je quadratisch 1024×1024, Motiv mittig, viel Luft rundherum)
 
 ### `angebot-bildung.png`

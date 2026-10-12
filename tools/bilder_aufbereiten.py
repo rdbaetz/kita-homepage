@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ROH = ROOT / "bilder-roh"
 ZIEL = ROOT / "assets" / "img" / "illustrations"
 
-MAX_BREITE = {"hero": 1400, "ueber-uns": 1200}  # alle anderen: 520 px (Icons)
+MAX_BREITE = {"hero": 1400, "ueber-uns": 1200, "ueber-uns-2": 1200}  # alle anderen: 520 px (Icons)
 SAETTIGUNG_MAX = 14       # max. Unterschied zwischen R, G, B für "grau"
 HELL_MIN, HELL_MAX = 110, 215
 
