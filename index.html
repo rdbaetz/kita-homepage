@@ -15,7 +15,7 @@
   <link rel="preload" href="assets/img/logo-gross.webp" as="image">
   <link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-12q">
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-12s">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -140,7 +140,8 @@
 
 <!-- =====================================================
      ÜBER UNS
-     Illustration: assets/img/illustrations/ueber-uns-2.webp
+     Illustration: ueber-uns-2-basis.webp + flatternder Schmetterling (ueber-uns-2-falter.webp)
+     – erzeugt mit: python tools/ebene_ausschneiden.py ueber-uns-2 falter 948 530
      ===================================================== -->
 <section class="about section" id="ueber-uns">
   <div class="container about-grid">
@@ -158,7 +159,10 @@
       </ul>
     </div>
     <div class="about-art art reveal">
-      <img class="ill" src="assets/img/illustrations/ueber-uns-2.webp" alt="Eine Erzieherin sitzt mit vier Kindern unter einem großen Baum auf der Wiese; sie hält ein kleines Mädchen im Arm, ein Junge reicht einem Mädchen eine Blume, zwei Kinder halten sich an den Händen" width="1200" height="999" loading="lazy" onerror="this.remove()">
+      <div class="about-szene">
+        <img class="ill" src="assets/img/illustrations/ueber-uns-2-basis.webp" alt="Eine Erzieherin sitzt mit vier Kindern unter einem großen Baum auf der Wiese; sie hält ein kleines Mädchen im Arm, ein Junge reicht einem Mädchen eine Blume, zwei Kinder halten sich an den Händen" width="1200" height="999" loading="lazy" onerror="this.closest('.about-szene').remove()">
+        <img class="ebene falter" src="assets/img/illustrations/ueber-uns-2-falter.webp" alt="" aria-hidden="true" loading="lazy">
+      </div>
       <svg class="fallback" viewBox="0 0 560 440" role="img" aria-label="Illustration: Wiese mit Baum, Buch und Schmetterling">
         <ellipse cx="290" cy="360" rx="270" ry="70" fill="#c9dfb4"/>
         <rect x="402" y="140" width="8" height="200" rx="4" fill="#7a5b44"/>
@@ -619,6 +623,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=2026-10-12q" defer></script>
+<script src="assets/js/main.js?v=2026-10-12s" defer></script>
 </body>
 </html>

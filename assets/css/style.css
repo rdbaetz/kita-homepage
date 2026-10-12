@@ -101,13 +101,26 @@ p { margin: 0 0 1em; }
 }
 
 .eyebrow {
-  display: inline-block;
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green-500);
-  margin-bottom: 1rem;
+  color: var(--green-600);
+  margin-bottom: 0.8rem;
+}
+/* kurzer Strich davor, bei zentrierten Köpfen auch dahinter */
+.eyebrow::before,
+.center .eyebrow::after,
+.motto .eyebrow::after {
+  content: "";
+  width: 2em;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+  opacity: 0.6;
 }
 
 .section { padding-block: clamp(64px, 9vw, 110px); position: relative; }
@@ -939,6 +952,22 @@ h2.arrived::after {
 }
 
 .hero-art, .hero-text { will-change: transform; }
+
+/* Über uns: Schmetterling flattert (Position in % des Bilds 1200×999,
+   Werte aus `python tools/ebene_ausschneiden.py ueber-uns-2 falter 948 530`) */
+.about-szene { position: relative; }
+.about-szene .falter {
+  position: absolute;
+  left: 76.917%; top: 50.15%; width: 4.333%;
+  height: auto; pointer-events: none;
+  animation: falter-schlagen 0.45s ease-in-out infinite alternate, falter-gaukeln 6s ease-in-out infinite;
+}
+@keyframes falter-schlagen { to { scale: 0.7 1; } }
+@keyframes falter-gaukeln {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  30% { translate: -6px -8px; rotate: -6deg; }
+  65% { translate: 4px -3px; rotate: 4deg; }
+}
 
 /* Hover: Icons wippen, Fotos zoomen */
 .program .circle img.ill,
