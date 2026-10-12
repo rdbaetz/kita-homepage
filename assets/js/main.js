@@ -130,12 +130,6 @@ if ("IntersectionObserver" in window) {
 // ---------------------------------------------------------------
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Lesefortschritt oben im Header
-const bar = document.createElement("div");
-bar.className = "progress";
-bar.setAttribute("aria-hidden", "true");
-header?.appendChild(bar);
-
 // "Nach oben"-Knopf
 const topBtn = document.createElement("a");
 topBtn.href = "#start";
@@ -151,8 +145,6 @@ const heroText = document.querySelector(".hero-text");
 let ticking = false;
 function onScrollFrame() {
   const y = window.scrollY;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
   topBtn.classList.toggle("show", y > window.innerHeight * 0.8);
   if (!reduceMotion && y < window.innerHeight * 1.2) {
     if (heroArt) heroArt.style.transform = `translateY(${y * 0.12}px)`;

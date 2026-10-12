@@ -100,6 +100,13 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Kein Fortschrittsbalken
+
+- Der Lesefortschritt-Balken unter dem Header wurde entfernt: Er lenkte ab, und auf einer Seite, in der Eltern gezielt zu Abschnitten springen, sagt er wenig aus. Die Orientierung übernehmen die gleitende Menü-Markierung und der Nach-oben-Knopf.
+- Bewusst **keine** seitliche Punkte-Navigation: wiederholt nur das Menü, auf dem Handy kein Platz, kollidiert mit dem Nach-oben-Knopf.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
