@@ -47,8 +47,23 @@ if ($proto -eq "ftps") {
   # ALL-INKL-Server ab (Fehler 426, Datei kommt mit 0 Byte an). TLS 1.2 ist weiterhin sicher.
   for ($i = 0; $i -lt $files.Count; $i++) {
     Write-Host "  $($rels[$i])"
-    & curl.exe --silent --show-error --ssl-reqd --tls-max 1.2 --ftp-create-dirs `
-      --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" -T $files[$i].FullName "ftp://$($cfg.FTP_HOST)$remoteDir/$($rels[$i])"
+    # bis zu 3 Versuche – einzelne Verbindungsabbrüche kommen vor
+    for ($versuch = 1; $versuch -le 3; $versuch++) {
+      & curl.exe --silent --show-error --ssl-reqd --tls-max 1.2 --ftp-create-dirs `
+        --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" -T $files[$i].FullName "ftp://$($cfg.FTP_HOST)$remoteDir/$($rels[$i])"
+      if ($LASTEXITCODE -eq 0) { break }
+      # Bei manchen Dateien bleibt die Abschlussmeldung des Servers aus, obwohl die Datei vollständig
+      # angekommen ist (curl-Fehler 56). Dann zählt die Dateigröße auf dem Server.
+      $kopf = & curl.exe --silent --ssl-reqd --tls-max 1.2 -I `
+        --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" "ftp://$($cfg.FTP_HOST)$remoteDir/$($rels[$i])" | Out-String
+      if ($kopf -match 'Content-Length:\s*(\d+)' -and [int64]$Matches[1] -eq $files[$i].Length) {
+        Write-Host "    (Abschlussmeldung fehlte, Datei aber vollständig angekommen)"
+        $global:LASTEXITCODE = 0
+        break
+      }
+      Write-Host "    Versuch $versuch fehlgeschlagen, wiederhole …"
+      Start-Sleep -Seconds 2
+    }
     if ($LASTEXITCODE -ne 0) { throw "Upload fehlgeschlagen: $($rels[$i])" }
   }
 }
