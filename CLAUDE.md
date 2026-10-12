@@ -1,0 +1,44 @@
+# Kita St. Laurentius Neufang – Website
+
+Statische One-Page-Website (ehemals WordPress) für https://kita-neufang.de/.
+Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der Inhalte: Deutsch (Sie-Form gegenüber Eltern).
+
+## Struktur
+
+- `index.html` – die komplette Startseite. Jeder Abschnitt ist mit einem großen `<!-- ===== ABSCHNITT ===== -->`-Kommentar markiert:
+  Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Gruppen · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
+- `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
+- `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
+- `assets/js/main.js` – Menü, Dialoge, Scroll-Effekte, automatisches Ausgrauen vergangener Schließtage
+- `assets/img/team/NN.jpg` – Teamfotos (Reihenfolge = Reihenfolge im Team-Abschnitt)
+- `assets/img/illustrations/*.png` – generierte Illustrationen (Prompts in `BILDER-PROMPTS.md`)
+- `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
+- `assets/docs/Voranmeldung.pdf` – Anmeldeformular
+- `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
+- `deploy.ps1` – FTP-Upload (Zugangsdaten in `deploy.env`, nie committen)
+
+## Häufige Änderungen
+
+- **Schließtage** (jährlich): Abschnitt ZEITEN, `<li data-ende="JJJJ-MM-TT">` – `data-ende` ist der letzte geschlossene Tag; vergangene Einträge werden automatisch ausgegraut. Überschrift „Schließtage JJJJ/JJJJ“ und Hinweis „Kindergartenbeginn“ mitpflegen.
+- **Team**: `<li class="member">` im Abschnitt TEAM; neues Foto als `assets/img/team/NN.jpg` (Hochformat, Gesicht im oberen Drittel). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
+- **Zahlen** (Mitarbeiter/Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`.
+- **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
+- **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
+- **Telefon**: 09260 / 785 (kommt in index, impressum, datenschutz und JSON-LD im `<head>` vor – überall ändern).
+
+## Illustrationen
+
+Muster: `<div class="art"> <img class="ill" src="…png" onerror="this.remove()"> <svg class="fallback">…</svg> </div>`.
+Existiert die PNG, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausgeblendet. Neue PNGs vor dem Einbinden auf max. ~1400 px Breite verkleinern (Python/Pillow ist vorhanden).
+
+## Lokal ansehen & veröffentlichen
+
+- Vorschau: `python -m http.server 8080` im Projektordner → http://localhost:8080
+- Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen)
+
+## Regeln
+
+- Getroffene Entscheidungen und offene Punkte stehen in `docs/ENTSCHEIDUNGEN.md` – neue Abmachungen dort mit Datum ergänzen.
+- Keine externen Dienste einbinden (Google Fonts, Maps, CDNs, Tracking) – sonst muss die Datenschutzerklärung angepasst werden.
+- Keine erfundenen Inhalte (z. B. Elternzitate, Termine) – nur, was die Kita liefert.
+- Barrierearm bleiben: Alt-Texte, echte Überschriften-Hierarchie, ausreichende Kontraste.

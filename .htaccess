@@ -1,0 +1,37 @@
+# Kita Neufang – Apache-Konfiguration
+# Leitet alte WordPress-Adressen auf die neue One-Page-Seite um (Google-Links & Lesezeichen bleiben gültig).
+
+RewriteEngine On
+
+# Immer HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Alte WordPress-Unterseiten
+RewriteRule ^voranmeldung/?$ /#voranmeldung [R=301,NE,L]
+RewriteRule ^beitraege/?$ /#beitraege [R=301,NE,L]
+RewriteRule ^gemeinsam-lernen-entdecken-und-wachsen/?$ /#angebote [R=301,NE,L]
+RewriteRule ^impressum/?$ /impressum.html [R=301,L]
+RewriteRule ^datenschutz/?$ /datenschutz.html [R=301,L]
+RewriteRule ^wp-content/uploads/2024/11/Voranmeldung_V1\.pdf$ /assets/docs/Voranmeldung.pdf [R=301,L]
+
+# Alles andere aus WordPress (wp-admin, Feeds, …) → Startseite
+RewriteRule ^(wp-admin|wp-login\.php|wp-content|wp-includes|feed|xmlrpc\.php) / [R=301,L]
+
+# Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+
+ErrorDocument 404 /index.html
