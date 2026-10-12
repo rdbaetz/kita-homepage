@@ -310,6 +310,40 @@ p { margin: 0 0 1em; }
   align-items: center;
 }
 .about-text p { color: var(--ink-soft); }
+.about-text strong { color: var(--green-700); font-weight: 800; }
+
+/* Kernaussage: groß, in der Schmuckschrift, mit Textmarker */
+.about-text .about-kern {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.3vw, 1.7rem);
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+.about-kern mark {
+  color: inherit;
+  background: linear-gradient(transparent 58%, var(--logo-yellow) 58%, var(--logo-yellow) 88%, transparent 88%) no-repeat 0 0 / 100% 100%;
+  padding-inline: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+/* Marker "zieht" sich beim Einblenden über die Wörter */
+.reveal .about-kern mark { background-size: 0 100%; transition: background-size 0.9s ease 0.5s; }
+.reveal .about-kern mark + mark { transition-delay: 1s; }
+.reveal.in .about-kern mark { background-size: 100% 100%; }
+
+.about-punkte { display: grid; gap: 12px; }
+.about-punkt {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.about-punkt p { margin: 0; }
+.about-icon { flex: 0 0 auto; width: 44px; height: 44px; }
+
 .about .values {
   display: flex;
   flex-wrap: wrap;
@@ -327,6 +361,18 @@ p { margin: 0 0 1em; }
   color: var(--green-700);
   box-shadow: var(--shadow-sm);
 }
+.about .values li::before {
+  content: "";
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: 1px;
+  background: var(--logo-red);
+}
+.about .values li:nth-child(2)::before { background: var(--logo-yellow); }
+.about .values li:nth-child(3)::before { background: var(--logo-blue); }
+.about .values li:nth-child(4)::before { background: var(--green-500); }
 @media (max-width: 820px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-art { order: -1; max-width: 520px; margin-inline: auto; }
