@@ -23,7 +23,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 ## Häufige Änderungen
 
 - **Schließtage** (jährlich): Abschnitt ZEITEN, `<li data-ende="JJJJ-MM-TT">` – `data-ende` ist der letzte geschlossene Tag; vergangene Einträge werden automatisch ausgegraut. Überschrift „Schließtage JJJJ/JJJJ“ und Hinweis „Kindergartenbeginn“ mitpflegen.
-- **Team**: `<li class="member">` im Abschnitt TEAM; neues Foto als `assets/img/team/NN.jpg` (Hochformat, Gesicht im oberen Drittel). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
+- **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung mit `<b>Gruppenleitung</b>`); neues Foto als `assets/img/team/NN.jpg` (Hochformat, Gesicht im oberen Drittel). Zahl „Mitarbeiterinnen“ im Leitspruch-Abschnitt und Text „Zehn Kolleginnen“ anpassen.
 - **Zahlen** (Mitarbeiter/Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`.
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.

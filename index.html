@@ -382,6 +382,8 @@
 
 <!-- =====================================================
      TEAM  (Fotos: assets/img/team/NN.jpg)
+     data-gruppen = Gruppen der Person (perlen, edelstein, goldtaler) für den Filter;
+     Schild: <span class="tag t-GRUPPE">, Leitung mit <b>Gruppenleitung</b>
      ===================================================== -->
 <section class="team section" id="team">
   <div class="container">
@@ -390,17 +392,23 @@
       <h2>Die Menschen hinter der Kita</h2>
       <p class="lead">Zehn Kolleginnen, die mit Herz, Erfahrung und viel Geduld für Ihre Kinder da sind.</p>
     </div>
+    <div class="team-filter" role="group" aria-label="Team nach Gruppe filtern">
+      <button class="chip active" data-filter="alle" aria-pressed="true">Alle</button>
+      <button class="chip t-perlen" data-filter="perlen" aria-pressed="false">Perlengruppe</button>
+      <button class="chip t-edelstein" data-filter="edelstein" aria-pressed="false">Edelsteingruppe</button>
+      <button class="chip t-goldtaler" data-filter="goldtaler" aria-pressed="false">Goldtalergruppe</button>
+    </div>
     <ul class="team-grid">
-      <li class="member reveal"><img src="assets/img/team/01.jpg" alt="Yvonne Siegel" loading="lazy" width="223" height="272"><strong>Yvonne Siegel</strong><span>Kita-Leitung</span></li>
-      <li class="member reveal"><img src="assets/img/team/02.jpg" alt="Barbara Erhardt" loading="lazy" width="223" height="272"><strong>Barbara Erhardt</strong><span>Erzieherin / Praxisanleitung</span></li>
-      <li class="member reveal"><img src="assets/img/team/03.jpg" alt="Ulla Schaller" loading="lazy" width="223" height="272"><strong>Ulla Schaller</strong><span>päd. Zweitkraft</span></li>
-      <li class="member reveal"><img src="assets/img/team/04.jpg" alt="Tanja Buckreus" loading="lazy" width="223" height="272"><strong>Tanja Buckreus</strong><span>päd. Zweitkraft</span></li>
-      <li class="member reveal"><img src="assets/img/team/05.jpg" alt="Diana Löffler" loading="lazy" width="223" height="272"><strong>Diana Löffler</strong><span>Erzieherin</span></li>
-      <li class="member reveal"><img src="assets/img/team/06.jpg" alt="Leila Schnabrich" loading="lazy" width="223" height="272"><strong>Leila Schnabrich</strong><span>päd. Zweitkraft</span></li>
-      <li class="member reveal"><img src="assets/img/team/07.jpg" alt="Sabine Papst" loading="lazy" width="223" height="272"><strong>Sabine Papst</strong><span>päd. Zweitkraft</span></li>
-      <li class="member reveal"><img src="assets/img/team/08.jpg" alt="Susanne Gebhardt" loading="lazy" width="223" height="272"><strong>Susanne Gebhardt</strong><span>Erzieherin / Krippenpädagogin</span></li>
-      <li class="member reveal"><img src="assets/img/team/09.jpg" alt="Sybille Fröba" loading="lazy" width="223" height="272"><strong>Sybille Fröba</strong><span>päd. Zweitkraft / Krippenpädagogin</span></li>
-      <li class="member reveal"><img src="assets/img/team/10.jpg" alt="Karin Wiedel" loading="lazy" width="223" height="272"><strong>Karin Wiedel</strong><span>päd. Zweitkraft</span></li>
+      <li class="member reveal" data-gruppen="edelstein"><img src="assets/img/team/01.jpg" alt="Yvonne Siegel" loading="lazy" width="223" height="272"><strong>Yvonne Siegel</strong><span>Kita-Leitung</span><div class="tags"><span class="tag t-edelstein"><b>Gruppenleitung</b> Edelsteingruppe</span></div></li>
+      <li class="member reveal" data-gruppen="edelstein"><img src="assets/img/team/02.jpg" alt="Barbara Erhardt" loading="lazy" width="223" height="272"><strong>Barbara Erhardt</strong><span>Erzieherin / Praxisanleitung</span><div class="tags"><span class="tag t-edelstein">Edelsteingruppe</span></div></li>
+      <li class="member reveal" data-gruppen="edelstein"><img src="assets/img/team/03.jpg" alt="Ulla Schaller" loading="lazy" width="223" height="272"><strong>Ulla Schaller</strong><span>päd. Zweitkraft</span><div class="tags"><span class="tag t-edelstein">Edelsteingruppe</span></div></li>
+      <li class="member reveal" data-gruppen="edelstein"><img src="assets/img/team/04.jpg" alt="Tanja Buckreus" loading="lazy" width="223" height="272"><strong>Tanja Buckreus</strong><span>päd. Zweitkraft</span><div class="tags"><span class="tag t-edelstein">Edelsteingruppe</span></div></li>
+      <li class="member reveal" data-gruppen="goldtaler"><img src="assets/img/team/05.jpg" alt="Diana Löffler" loading="lazy" width="223" height="272"><strong>Diana Löffler</strong><span>Erzieherin</span><div class="tags"><span class="tag t-goldtaler"><b>Gruppenleitung</b> Goldtalergruppe</span></div></li>
+      <li class="member reveal" data-gruppen="goldtaler"><img src="assets/img/team/06.jpg" alt="Leila Schnabrich" loading="lazy" width="223" height="272"><strong>Leila Schnabrich</strong><span>päd. Zweitkraft</span><div class="tags"><span class="tag t-goldtaler">Goldtalergruppe</span></div></li>
+      <li class="member reveal" data-gruppen="goldtaler"><img src="assets/img/team/07.jpg" alt="Sabine Papst" loading="lazy" width="223" height="272"><strong>Sabine Papst</strong><span>päd. Zweitkraft</span><div class="tags"><span class="tag t-goldtaler">Goldtalergruppe</span></div></li>
+      <li class="member reveal" data-gruppen="perlen"><img src="assets/img/team/08.jpg" alt="Susanne Gebhardt" loading="lazy" width="223" height="272"><strong>Susanne Gebhardt</strong><span>Erzieherin / Krippenpädagogin</span><div class="tags"><span class="tag t-perlen"><b>Gruppenleitung</b> Perlengruppe</span></div></li>
+      <li class="member reveal" data-gruppen="perlen goldtaler"><img src="assets/img/team/09.jpg" alt="Sybille Fröba" loading="lazy" width="223" height="272"><strong>Sybille Fröba</strong><span>päd. Zweitkraft / Krippenpädagogin</span><div class="tags"><span class="tag t-perlen">Perlengruppe</span><span class="tag t-goldtaler">Goldtalergruppe</span></div></li>
+      <li class="member reveal" data-gruppen="edelstein"><img src="assets/img/team/10.jpg" alt="Karin Wiedel" loading="lazy" width="223" height="272"><strong>Karin Wiedel</strong><span>päd. Zweitkraft</span><div class="tags"><span class="tag t-edelstein">Edelsteingruppe</span></div></li>
     </ul>
   </div>
 </section>

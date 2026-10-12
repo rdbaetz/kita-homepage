@@ -53,6 +53,21 @@ document.querySelectorAll("dialog.info").forEach((dlg) => {
   });
 });
 
+// Team nach Gruppe filtern
+const chips = document.querySelectorAll(".team-filter .chip");
+chips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const f = chip.dataset.filter;
+    chips.forEach((c) => {
+      c.classList.toggle("active", c === chip);
+      c.setAttribute("aria-pressed", c === chip);
+    });
+    document.querySelectorAll(".member[data-gruppen]").forEach((m) => {
+      m.classList.toggle("hidden", f !== "alle" && !m.dataset.gruppen.split(" ").includes(f));
+    });
+  });
+});
+
 // Vergangene Schließtage ausgrauen
 const today = new Date();
 today.setHours(0, 0, 0, 0);

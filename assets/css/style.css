@@ -511,6 +511,53 @@ dialog.info .close svg { width: 18px; height: 18px; }
 }
 .member strong { display: block; font-weight: 800; line-height: 1.3; }
 .member span { display: block; color: var(--muted); font-size: 0.92rem; line-height: 1.35; margin-top: 2px; }
+.member .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 10px; }
+.tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--ink-soft);
+}
+.tag b { display: block; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-700); }
+.t-perlen { background: var(--sky); }
+.t-edelstein { background: var(--peach); }
+.t-goldtaler { background: var(--butter); }
+
+.team-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: -12px 0 36px; }
+.chip {
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: var(--white);
+  color: var(--ink-soft);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.chip:hover { transform: translateY(-2px); }
+.chip.active { border-color: var(--green-600); color: var(--green-700); }
+.chip[class*="t-"] { background: var(--white); }
+.chip[class*="t-"]::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.chip.t-perlen::before { background: var(--sky); }
+.chip.t-edelstein::before { background: var(--peach); }
+.chip.t-goldtaler::before { background: var(--butter); }
+.member.hidden { display: none; }
+
 @media (max-width: 960px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 560px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
 
