@@ -38,6 +38,7 @@ Existiert die PNG, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausge
 
 ## Regeln
 
+- Git: alle Änderungen direkt auf `main` committen, keine Feature-Branches.
 - Getroffene Entscheidungen und offene Punkte stehen in `docs/ENTSCHEIDUNGEN.md` – neue Abmachungen dort mit Datum ergänzen.
 - Keine externen Dienste einbinden (Google Fonts, Maps, CDNs, Tracking) – sonst muss die Datenschutzerklärung angepasst werden.
 - Keine erfundenen Inhalte (z. B. Elternzitate, Termine) – nur, was die Kita liefert.
