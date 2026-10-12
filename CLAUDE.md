@@ -18,7 +18,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
-- `deploy.ps1` – FTP-Upload (Zugangsdaten in `deploy.env`, nie committen)
+- `deploy.ps1` – verschlüsselter Upload per FTPS (Standard) oder SFTP (`PROTOKOLL` in `deploy.env`; Zugangsdaten nie committen)
 
 ## Häufige Änderungen
 

@@ -69,6 +69,13 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Verschlüsselter Upload
+
+- Upload ausschließlich **verschlüsselt**: Standard ist **FTPS** (FTP über TLS, `--ssl-reqd` erzwingt TLS).
+- Alternativ **SFTP** über das in Windows enthaltene OpenSSH, mit SSH-Schlüssel statt Passwort (`PROTOKOLL=sftp` in `deploy.env`). Voraussetzung: SSH-Zugang im ALL-INKL-Tarif verfügbar und im KAS aktiviert.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
@@ -82,4 +89,5 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] Mitarbeiterzahl aus Team übernommen (automatisch).
 - [ ] **Kinderzahl (45)** auf Aktualität prüfen.
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
+- [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [ ] Erster Upload: WordPress sichern, entfernen, `deploy.ps1` ausführen, Weiterleitungen testen.
