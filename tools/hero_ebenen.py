@@ -1,28 +1,32 @@
-"""Zerlegt das Hero-Bild in Ebenen für die Animation (Sonne, Drache).
+"""Zerlegt ein Hero-Bild in Ebenen für die Animation (Sonne, ggf. Drache).
 
-Eingang:  bilder-roh/hero.png  (Original mit Transparenz, 1374×1145)
-Ausgang:  assets/img/illustrations/hero-basis.webp      – Szene ohne Sonne und Drachen
-          assets/img/illustrations/hero-strahlen.webp   – Sonnenstrahlen (drehen sich)
-          assets/img/illustrations/hero-gesicht.webp    – Sonnengesicht (pulsiert)
-          assets/img/illustrations/hero-drache.webp     – Drache mit Schwänzen (wiegt sich)
+Eingang:  bilder-roh/<name>.png  (Original mit Transparenz)
+Ausgang:  assets/img/illustrations/<name>-basis.webp      – Szene ohne Sonne (und Drachen)
+          assets/img/illustrations/<name>-strahlen.webp   – Sonnenstrahlen (drehen sich)
+          assets/img/illustrations/<name>-gesicht.webp    – Sonnengesicht (pulsiert)
+          assets/img/illustrations/<name>-drache.webp     – Drache mit Schwänzen (nur "hero")
 Ausgabe der Positionen (in % des Gesamtbilds) für das CSS.
 
-Aufruf:   python tools/hero_ebenen.py
+Aufruf:   python tools/hero_ebenen.py            # bilder-roh/hero.png
+          python tools/hero_ebenen.py hero-2     # bilder-roh/hero-2.png
 """
 
+import sys
 from collections import deque
 from pathlib import Path
 
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-QUELLE = ROOT / "bilder-roh" / "hero.png"
 ZIEL = ROOT / "assets" / "img" / "illustrations"
 
-SONNE_MITTE = (315, 215)   # Mittelpunkt der Sonnenscheibe (px im Original)
-SONNE_SCHEIBE = 116        # Radius Gesicht/Scheibe
-SONNE_AUSSEN = 215         # bis hierhin zählen Teile zur Sonne
-DRACHE_PIVOT = (1129, 327) # Schnittstelle der Schnur unter der 1. Schleife = Drehpunkt
+# Je Bild: Mittelpunkt der Sonnenscheibe (px im Original), Radius Gesicht/Scheibe,
+# bis zu welchem Abstand Teile zur Sonne zählen, und ob ein Drache ausgeschnitten wird
+BILDER = {
+    "hero":   dict(mitte=(315, 215), scheibe=116, aussen=215, drache=True),
+    "hero-2": dict(mitte=(221, 180), scheibe=92, aussen=165, drache=False),
+}
+DRACHE_PIVOT = (1129, 327) # nur "hero": Schnittstelle der Schnur unter der 1. Schleife = Drehpunkt
 
 
 def komponenten(maske, w, h, box):
@@ -45,12 +49,14 @@ def komponenten(maske, w, h, box):
             yield teil
 
 
-def main():
-    im = Image.open(QUELLE).convert("RGBA")
+def main(name="hero"):
+    cfg = BILDER[name]
+    SONNE_SCHEIBE, SONNE_AUSSEN = cfg["scheibe"], cfg["aussen"]
+    im = Image.open(ROOT / "bilder-roh" / f"{name}.png").convert("RGBA")
     w, h = im.size
     px = im.load()
     sichtbar = lambda x, y: px[x, y][3] > 10
-    cx, cy = SONNE_MITTE
+    cx, cy = cfg["mitte"]
 
     # --- Sonne: alle Teile, deren Schwerpunkt nah an der Sonnenmitte liegt (Bäume/Wolke liegen weiter weg)
     box = (max(0, cx - SONNE_AUSSEN - 20), 0, min(w, cx + SONNE_AUSSEN + 20), min(h, cy + SONNE_AUSSEN + 20))
@@ -70,25 +76,30 @@ def main():
     def im_drachen(x, y):
         lx = x - ox
         return lx > 120 and (y < DRACHE_PIVOT[1] or (x > 1235 and y < 400) or (x > 1250 and y < 415))
-    drache = [(x, y) for y in range(0, 415) for x in range(ox, w) if im_drachen(x, y) and sichtbar(x, y)]
+    drache = [(x, y) for y in range(0, 415) for x in range(ox, w) if im_drachen(x, y) and sichtbar(x, y)] if cfg["drache"] else []
 
-    def ebene(punkte, name):
+    def ebene(punkte, teil):
         xs = [p[0] for p in punkte]; ys = [p[1] for p in punkte]
         b = (min(xs) - 2, min(ys) - 2, max(xs) + 3, max(ys) + 3)
         lay = Image.new("RGBA", (b[2] - b[0], b[3] - b[1]), (0, 0, 0, 0))
         lp = lay.load()
         for x, y in punkte:
             lp[x - b[0], y - b[1]] = px[x, y]
-        lay.save(ZIEL / f"hero-{name}.webp", "WEBP", quality=88, method=6)
+        lay.save(ZIEL / f"{name}-{teil}.webp", "WEBP", quality=88, method=6)
         return b
 
-    boxen = {n: ebene(p, n) for n, p in (("strahlen", strahlen), ("gesicht", gesicht), ("drache", drache))}
+    boxen = {n: ebene(p, n) for n, p in (("strahlen", strahlen), ("gesicht", gesicht), ("drache", drache)) if p}
 
     basis = im.copy()
     bp = basis.load()
     for x, y in sonne + drache:
         bp[x, y] = (0, 0, 0, 0)
-    basis.save(ZIEL / "hero-basis.webp", "WEBP", quality=84, method=6)
+    # Fast unsichtbaren Schimmer (Alpha <= 10) rund um die Sonne ebenfalls entfernen
+    for y in range(box[1], box[3]):
+        for x in range(box[0], box[2]):
+            if bp[x, y][3] <= 10 and (x - cx) ** 2 + (y - cy) ** 2 <= SONNE_AUSSEN ** 2:
+                bp[x, y] = (0, 0, 0, 0)
+    basis.save(ZIEL / f"{name}-basis.webp", "WEBP", quality=84, method=6)
 
     print(f"Gesamtbild {w}×{h}")
     for n, (x0, y0, x1, y1) in boxen.items():
@@ -102,4 +113,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(*sys.argv[1:2])

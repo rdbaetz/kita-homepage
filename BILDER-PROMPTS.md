@@ -36,6 +36,21 @@ Oben links eine lachende, stilisierte Sonne, ein paar weiche Wolken, runde Laubb
 Der untere Rand läuft als weiche, wellige Wiese aus. Transparenter Hintergrund außerhalb der Szene.
 ```
 
+### Hero, Variante 2 – `hero-2.png`
+Format: Querformat ca. 6:5 (z. B. 1536×1280)
+
+Passend zum Slogan „Gemeinsam lernen, entdecken und wachsen“ und zum Leitspruch „Man ist nie zu klein, um großartig zu sein“. Die Sonne wird per `tools/hero_ebenen.py` als eigene Ebene animiert – deshalb muss sie frei stehen.
+
+```
+Der Garten eines kleinen, freundlichen Kindergartens im Frankenwald: Im Hintergrund das Kita-Haus (weißes Haus mit grünem Satteldach, runde Holztür, kleines Herz im Giebel), dahinter angedeutet ein schlichter kleiner Kirchturm, ein paar runde Laubbäume und Tannen, ein niedriger Holzzaun.
+Im Vordergrund links ein Sandkasten mit Holzrand: Zwei Kinder (ca. 4 Jahre) bauen zusammen eine Sandburg, eine freundliche Erzieherin (ca. 35 Jahre, Pastellkleidung, Haare zum Dutt) kniet am Rand des Sandkastens und schaut ihnen lächelnd zu.
+Rechts eine kleine Holzrutsche mit Leiter: Ein größeres Kind (ca. 6 Jahre) hilft einem ganz kleinen Kind (ca. 3 Jahre) die Leiter hinauf, das Kleine strahlt stolz.
+In der Mitte vorne hockt ein Kind im Gras und betrachtet mit einer Lupe einen Marienkäfer auf einem Gänseblümchen.
+Kinder vielfältig, alle fröhlich, niemand schaut den Betrachter direkt an. Ruhige, übersichtliche Komposition mit klaren Gruppen und Luft dazwischen, nicht überladen.
+Oben links eine große lachende, stilisierte Sonne mit rundem Gesicht und einzelnen, getrennt stehenden Strahlen. Die Sonne steht frei im Himmel und berührt weder Bäume, Wolken noch das Haus (deutlicher Abstand rundherum). Ein bis zwei weiche Wolken nur rechts oben.
+Weiße Gänseblümchen im Gras. Der untere Rand läuft als weiche, wellige Wiese aus. Transparenter Hintergrund außerhalb der Szene.
+```
+
 ## 2. Über uns – `ueber-uns.png`
 Format: Querformat ca. 6:5
 
