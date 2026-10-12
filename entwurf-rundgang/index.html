@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/img/logo-gross.webp" as="image">
   <link rel="preload" href="../assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css?v=2026-10-12d">
+  <link rel="stylesheet" href="../assets/css/style.css?v=2026-10-12q">
   <link rel="stylesheet" href="rundgang.css?v=2">
   <script type="application/ld+json">
   {
@@ -67,7 +67,7 @@
 
 <!-- =====================================================
      HERO
-     Illustration: assets/img/illustrations/hero.webp
+     Illustration: hero-3-basis.webp + animierte Sonne (Strahlen, Gesicht) – erzeugt mit tools/hero_ebenen.py hero-3
      (fehlt sie, wird die SVG-Ersatzgrafik gezeigt)
      ===================================================== -->
 <section class="hero" id="start">
@@ -85,7 +85,11 @@
     </div>
 
     <div class="hero-art art">
-      <img class="ill" src="../assets/img/illustrations/hero.webp" alt="Fröhliche Kinder rennen über eine grüne Wiese vor dem Kindergarten" width="1358" height="1135" fetchpriority="high" onerror="this.remove()">
+      <div class="hero-szene">
+        <img class="ill" src="../assets/img/illustrations/hero-3-basis.webp" alt="Der Garten der Kita mit dem gelben Kindergartengebäude: Eine Erzieherin sitzt mit zwei Kindern am Sandkasten neben Pumpe und Holzpferd, ein Kind betrachtet mit der Lupe einen Marienkäfer, ein größeres Kind hilft einem kleinen an der Kletterwand des Spielturms hinauf; darüber lacht die Sonne" width="1374" height="1145" fetchpriority="high" onerror="this.closest('.hero-szene').remove()">
+        <img class="ebene strahlen" src="../assets/img/illustrations/hero-3-strahlen.webp" alt="" aria-hidden="true">
+        <img class="ebene gesicht" src="../assets/img/illustrations/hero-3-gesicht.webp" alt="" aria-hidden="true">
+      </div>
       <svg class="fallback" viewBox="0 0 640 520" role="img" aria-label="Illustration: Kindergarten auf einem grünen Hügel mit Sonne und Bäumen">
         <!-- Sonne -->
         <g transform="translate(250 92)" stroke="#f2c230" stroke-width="6" stroke-linecap="round">
@@ -138,7 +142,7 @@
 
 <!-- =====================================================
      ÜBER UNS
-     Illustration: assets/img/illustrations/ueber-uns.webp
+     Illustration: assets/img/illustrations/ueber-uns-2.webp
      ===================================================== -->
 <section class="about section" id="ueber-uns">
   <div class="container about-grid">
@@ -156,7 +160,7 @@
       </ul>
     </div>
     <div class="about-art art reveal">
-      <img class="ill" src="../assets/img/illustrations/ueber-uns.webp" alt="Ein Mädchen liest mit einem Häschen auf der Wiese ein Buch" width="1200" height="990" loading="lazy" onerror="this.remove()">
+      <img class="ill" src="../assets/img/illustrations/ueber-uns-2.webp" alt="Eine Erzieherin sitzt mit vier Kindern unter einem großen Baum auf der Wiese; sie hält ein kleines Mädchen im Arm, ein Junge reicht einem Mädchen eine Blume, zwei Kinder halten sich an den Händen" width="1200" height="999" loading="lazy" onerror="this.remove()">
       <svg class="fallback" viewBox="0 0 560 440" role="img" aria-label="Illustration: Wiese mit Baum, Buch und Schmetterling">
         <ellipse cx="290" cy="360" rx="270" ry="70" fill="#c9dfb4"/>
         <rect x="402" y="140" width="8" height="200" rx="4" fill="#7a5b44"/>
@@ -718,7 +722,7 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js?v=2026-10-12d" defer></script>
+<script src="../assets/js/main.js?v=2026-10-12q" defer></script>
 <script src="rundgang.js?v=2" defer></script>
 </body>
 </html>

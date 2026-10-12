@@ -938,12 +938,6 @@ h2.arrived::after {
   60% { transform: scale(1.02) rotate(3deg); filter: drop-shadow(0 0 10px rgba(255, 210, 60, 0.5)); }
 }
 
-/* Hero-Bild schwebt sanft */
-.hero-szene { animation: schweben 7s ease-in-out infinite; }
-@keyframes schweben {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(-0.6deg); }
-}
 .hero-art, .hero-text { will-change: transform; }
 
 /* Hover: Icons wippen, Fotos zoomen */
