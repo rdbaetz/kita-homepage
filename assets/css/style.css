@@ -178,7 +178,7 @@ p { margin: 0 0 1em; }
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .main-nav a:hover,
 .main-nav a.active { background: var(--green-100); color: var(--green-700); }
@@ -813,8 +813,29 @@ dialog.info .close svg { width: 18px; height: 18px; }
 }
 .main-nav li { position: relative; z-index: 1; }
 @media (min-width: 1061px) {
-  .main-nav li:not(.nav-cta) a.active { background: transparent; }
-  .main-nav li:not(.nav-cta) a:hover { background: transparent; color: var(--green-700); }
+  .main-nav li:not(.nav-cta) a.active { background: transparent; color: var(--green-700); }
+  /* Hover: getönter Hintergrund + Unterstrich, der von der Mitte aus wächst */
+  .main-nav li:not(.nav-cta) a { position: relative; }
+  .main-nav li:not(.nav-cta) a::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 3px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--green-600);
+    transform: scaleX(0);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .main-nav li:not(.nav-cta) a:hover {
+    background: rgba(79, 127, 90, 0.12);
+    color: var(--green-700);
+  }
+  .main-nav li:not(.nav-cta) a:hover::after,
+  .main-nav li:not(.nav-cta) a:focus-visible::after { transform: scaleX(1); }
+  .main-nav .nav-cta a { transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+  .main-nav .nav-cta a:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
 }
 @media (max-width: 1060px) { .nav-pill { display: none; } }
 

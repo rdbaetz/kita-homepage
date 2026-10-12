@@ -27,6 +27,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - **Zahlen** (Mitarbeiter/Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`.
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
+- **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).
 - **Telefon**: 09260 / 785 (kommt in index, impressum, datenschutz und JSON-LD im `<head>` vor – überall ändern).
 
 ## Illustrationen

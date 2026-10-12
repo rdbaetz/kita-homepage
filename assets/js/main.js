@@ -1,5 +1,13 @@
 // Kita St. Laurentius Neufang – kleine Helfer (kein Framework nötig)
 
+// E-Mail-Schutz: Die Adresse steht im HTML rückwärts und mit "#" statt "@" (data-m)
+// und wird erst hier zu einem klickbaren Link zusammengesetzt.
+document.querySelectorAll(".js-mail[data-m]").forEach((a) => {
+  const adresse = a.dataset.m.split("").reverse().join("").replace("#", "@");
+  a.href = "mailto:" + adresse;
+  a.textContent = adresse;
+});
+
 // Mobiles Menü
 const toggle = document.querySelector(".nav-toggle");
 const nav = document.getElementById("main-nav");
