@@ -900,8 +900,7 @@ h2.arrived::after {
 }
 .hero-szene .drache {
   left: 78.093%; top: 4.891%; width: 21.106%;
-  transform-origin: 19.31% 76.77%;   /* Schnittstelle der Schnur – dort bleibt sie verbunden */
-  animation: drache-wiegen 5s ease-in-out infinite;
+  /* steht still; zum Wiederbeleben: transform-origin 19.31% 76.77% (Schnittstelle der Schnur) + Animation */
 }
 @keyframes strahlen-drehen { to { rotate: 360deg; } }
 @keyframes strahlen-pulsieren {
@@ -912,12 +911,6 @@ h2.arrived::after {
   0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(255, 210, 60, 0)); }
   30% { transform: scale(1.04) rotate(-4deg); filter: drop-shadow(0 0 18px rgba(255, 210, 60, 0.75)); }
   60% { transform: scale(1.02) rotate(3deg); filter: drop-shadow(0 0 10px rgba(255, 210, 60, 0.5)); }
-}
-@keyframes drache-wiegen {
-  0%, 100% { transform: rotate(-4deg); }
-  30% { transform: rotate(3deg); }
-  50% { transform: rotate(5deg); }
-  75% { transform: rotate(-1deg); }
 }
 
 /* Hero-Bild schwebt sanft */
