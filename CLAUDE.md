@@ -15,6 +15,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)
 - `tools/bilder_generieren.py` – erzeugt Bilder per Codex CLI (ChatGPT-Plus) nach `bilder-roh/`
 - `tools/bilder_aufbereiten.py` – entfernt Karomuster, verkleinert, speichert WebP
+- `tools/hero_ebenen.py` – zerlegt `bilder-roh/hero.png` in Basis + animierte Ebenen (Sonnenstrahlen, Sonnengesicht, Drache) und gibt die %-Positionen für das CSS (`.hero-szene`) aus
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching

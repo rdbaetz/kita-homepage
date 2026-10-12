@@ -15,7 +15,7 @@
   <link rel="preload" href="assets/img/logo-gross.webp" as="image">
   <link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-12h">
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-12k">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,7 +63,7 @@
 
 <!-- =====================================================
      HERO
-     Illustration: assets/img/illustrations/hero.webp
+     Illustration: hero-basis.webp + animierte Ebenen (Sonne, Drache) – erzeugt mit tools/hero_ebenen.py
      (fehlt sie, wird die SVG-Ersatzgrafik gezeigt)
      ===================================================== -->
 <section class="hero" id="start">
@@ -71,28 +71,6 @@
     <div class="hero-text">
       <div class="hero-logo-wrap">
         <img class="hero-logo" src="assets/img/logo-gross.webp" alt="Kita St. Laurentius Neufang" width="640" height="315" fetchpriority="high">
-      <span class="ballons" aria-hidden="true">
-        <svg viewBox="0 0 90 104">
-          <g class="ballon b1">
-            <path d="M22 69 Q16 80 14 100" fill="none" stroke="#7d887e" stroke-width="1"/>
-            <ellipse cx="22" cy="46" rx="14" ry="17.5" fill="#e0533f"/>
-            <ellipse cx="17" cy="39" rx="3.5" ry="5.5" fill="#fff" opacity=".45" transform="rotate(-20 17 39)"/>
-            <path d="M19.5 69 L22 65.5 L24.5 69 Z" fill="#e0533f"/>
-          </g>
-          <g class="ballon b2">
-            <path d="M44 53 Q30 72 14 100" fill="none" stroke="#7d887e" stroke-width="1"/>
-            <ellipse cx="44" cy="30" rx="14" ry="17.5" fill="#f5c938"/>
-            <ellipse cx="39" cy="23" rx="3.5" ry="5.5" fill="#fff" opacity=".45" transform="rotate(-20 39 23)"/>
-            <path d="M41.5 53 L44 49.5 L46.5 53 Z" fill="#f5c938"/>
-          </g>
-          <g class="ballon b3">
-            <path d="M66 73 Q38 88 14 100" fill="none" stroke="#7d887e" stroke-width="1"/>
-            <ellipse cx="66" cy="50" rx="14" ry="17.5" fill="#3445b4"/>
-            <ellipse cx="61" cy="43" rx="3.5" ry="5.5" fill="#fff" opacity=".45" transform="rotate(-20 61 43)"/>
-            <path d="M63.5 73 L66 69.5 L68.5 73 Z" fill="#3445b4"/>
-          </g>
-        </svg>
-      </span>
       </div>
       <h1 class="slogan"><span class="slogan-over">Gemeinsam</span> <span class="z1">lernen,</span> <span class="z2">entdecken</span> <span class="z3">und wachsen</span></h1>
       <p>Herzlich willkommen in der Kita St. Laurentius Neufang – ein sicherer, herzlicher Ort, an dem Kinder von 1 bis 6 Jahren spielen, forschen und über sich hinauswachsen.</p>
@@ -105,7 +83,12 @@
     </div>
 
     <div class="hero-art art">
-      <img class="ill" src="assets/img/illustrations/hero.webp" alt="Fröhliche Kinder rennen über eine grüne Wiese vor dem Kindergarten" width="1358" height="1135" fetchpriority="high" onerror="this.remove()">
+      <div class="hero-szene">
+        <img class="ill" src="assets/img/illustrations/hero-basis.webp" alt="Fröhliche Kinder rennen über eine grüne Wiese vor dem Kindergarten, darüber lacht die Sonne und ein Drache fliegt" width="1374" height="1145" fetchpriority="high" onerror="this.closest('.hero-szene').remove()">
+        <img class="ebene strahlen" src="assets/img/illustrations/hero-strahlen.webp" alt="" aria-hidden="true">
+        <img class="ebene gesicht" src="assets/img/illustrations/hero-gesicht.webp" alt="" aria-hidden="true">
+        <img class="ebene drache" src="assets/img/illustrations/hero-drache.webp" alt="" aria-hidden="true">
+      </div>
       <svg class="fallback" viewBox="0 0 640 520" role="img" aria-label="Illustration: Kindergarten auf einem grünen Hügel mit Sonne und Bäumen">
         <!-- Sonne -->
         <g transform="translate(250 92)" stroke="#f2c230" stroke-width="6" stroke-linecap="round">
@@ -637,6 +620,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=2026-10-12h" defer></script>
+<script src="assets/js/main.js?v=2026-10-12k" defer></script>
 </body>
 </html>
