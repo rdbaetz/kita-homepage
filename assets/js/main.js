@@ -17,6 +17,17 @@ if (toggle && nav) {
   });
 }
 
+// Header-Logo einblenden, sobald das große Logo im Hero aus dem Bild scrollt
+const heroLogo = document.querySelector(".hero-logo");
+const headerEl = document.querySelector(".site-header");
+if (heroLogo && headerEl && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("js-logo");
+  new IntersectionObserver(
+    ([entry]) => headerEl.classList.toggle("brand-sichtbar", !entry.isIntersecting),
+    { rootMargin: "-80px 0px 0px 0px" }
+  ).observe(heroLogo);
+}
+
 // Schatten unter dem Header beim Scrollen
 const header = document.querySelector(".site-header");
 const onScroll = () => header && header.classList.toggle("scrolled", window.scrollY > 8);

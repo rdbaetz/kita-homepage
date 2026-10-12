@@ -157,7 +157,9 @@ p { margin: 0 0 1em; }
   gap: 24px;
   min-height: 76px;
 }
-.brand { display: flex; align-items: center; flex: none; }
+.brand { display: flex; align-items: center; flex: none; transition: opacity 0.35s ease, transform 0.35s ease; }
+/* Header-Logo erst zeigen, wenn das große Hero-Logo aus dem Bild ist (nur mit JS, sonst immer sichtbar) */
+.js-logo .site-header:not(.brand-sichtbar) .brand { opacity: 0; transform: translateY(-8px); pointer-events: none; }
 .brand img { height: 52px; width: auto; }
 
 .main-nav ul {
@@ -246,6 +248,17 @@ p { margin: 0 0 1em; }
 }
 .hero-text { padding-bottom: clamp(16px, 3vw, 40px); }
 .hero-text p { font-size: 1.15rem; color: var(--ink-soft); max-width: 30em; }
+.hero-logo {
+  width: clamp(220px, 28vw, 340px);
+  height: auto;
+  margin: 0 0 clamp(18px, 3vw, 30px) -6px;
+  animation: logo-auftritt 0.9s cubic-bezier(0.2, 0.8, 0.2, 1.1) both;
+}
+@keyframes logo-auftritt {
+  from { opacity: 0; transform: translateY(-14px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+.hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
 .hero-art { position: relative; }
 .hero-art .fallback {
