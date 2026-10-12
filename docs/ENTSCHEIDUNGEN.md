@@ -17,7 +17,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 | **One-Page** (`index.html`) mit Sprungmarken | Wunsch nach neuem, intuitivem One-Page-Design |
 | Impressum und Datenschutz als **eigene Seiten** | Rechtlich üblich, von jeder Seite aus direkt erreichbar |
 | Schriften (Fraunces, Nunito) **lokal gehostet** | Kein Google-Fonts-Abruf → keine Datenübertragung an Dritte (DSGVO) |
-| **Keine externen Dienste** (kein Google Maps, kein Facebook, kein Tracking, keine Cookies) | Datenschutz; Karte nur als Link zu OpenStreetMap |
+| **Keine externen Dienste** (kein Google Maps, kein Facebook, kein Tracking, keine Cookies) | Datenschutz; Karte nur als **Link** zu Google Maps (keine eingebettete Karte → keine Einwilligung nötig) |
 | `.htaccess` mit 301-Weiterleitungen der alten WordPress-URLs | Bestehende Links, Lesezeichen und Google-Treffer bleiben gültig |
 | Detailtexte der Angebote in nativen `<dialog>`-Fenstern | Seite bleibt kompakt, Details auf Klick |
 | Vergangene Schließtage werden per JS automatisch ausgegraut | Weniger Pflegeaufwand |
