@@ -48,6 +48,14 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Bilderzeugung ohne Zusatzkosten
+
+- **Keine OpenAI-API** (kostet pro Bild extra) und **keine Fernsteuerung der ChatGPT-App/-Webseite** (Grauzone laut Nutzungsbedingungen).
+- Stattdessen: **Codex CLI** mit ChatGPT-Plus-Login; Bilder laufen über das Plus-Kontingent. Skript `tools/bilder_generieren.py` liest die Prompts aus `BILDER-PROMPTS.md`.
+- Das Skript wird **vom Nutzer selbst gestartet**, nicht von Claude Code (Claude darf keinen weiteren autonomen Agenten starten). Danach übernimmt Claude Code Prüfung, Optimierung und Einbau.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).

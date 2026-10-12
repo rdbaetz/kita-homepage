@@ -1,6 +1,8 @@
 # Bild-Prompts für ChatGPT
 
-So geht's:
+**Automatisch (empfohlen):** `python tools/bilder_generieren.py` im Projektordner ausführen. Das Skript nutzt die Codex CLI mit dem ChatGPT-Plus-Login (keine API-Kosten) und speichert die Bilder direkt am richtigen Ort. Einzelne Bilder: `python tools/bilder_generieren.py hero`, neu erzeugen mit `--neu`.
+
+**Manuell** in der ChatGPT-App:
 
 1. In ChatGPT zuerst den **Stil-Block** einfügen, danach jeweils einen Bild-Prompt (alle Bilder im selben Chat erzeugen, damit der Stil einheitlich bleibt).
 2. Bild als **PNG mit transparentem Hintergrund** herunterladen.
@@ -47,7 +49,7 @@ Rechts ein runder Laubbaum, Gräser und weiße Blumen am Rand. Ruhige, geborgene
 
 ### `angebot-bildung.png`
 ```
-Einzelnes Icon-Motiv: Ein Malerpalette mit bunten Farbklecksen, ein Pinsel und ein kleines Holzpuzzle-Teil. Kein Hintergrund, quadratisch, Motiv zentriert.
+Einzelnes Icon-Motiv: Eine Malerpalette mit bunten Farbklecksen, ein Pinsel und ein kleines Holzpuzzle-Teil. Kein Hintergrund, quadratisch, Motiv zentriert.
 ```
 
 ### `angebot-vorschule.png`
