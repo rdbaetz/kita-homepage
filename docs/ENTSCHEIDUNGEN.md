@@ -66,4 +66,5 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [ ] Klären, ob bei kirchlicher Trägerschaft das **KDG** statt der DSGVO gilt; ggf. Datenschutzbeauftragten nennen.
 - [x] ChatGPT-Illustrationen erzeugt (händisch), aufbereitet und eingebaut (2026-10-12).
 - [ ] Zahlen (Mitarbeiterinnen/Kinder/Gruppen) auf Aktualität prüfen.
+- [ ] **Gruppenbesetzung** in den Gruppentexten passt nicht zur Team-Zuordnung: Edelsteine laut Text 4 Personen, laut Team 5; Goldtaler laut Text 3, laut Team 4 (inkl. S. Fröba).
 - [ ] Erster Upload: WordPress sichern, entfernen, `deploy.ps1` ausführen, Weiterleitungen testen.
