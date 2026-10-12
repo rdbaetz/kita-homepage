@@ -85,6 +85,14 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Entwurf „Rundgang“
+
+- Wunsch der Kita-Leitung: Bereich „Rundgang“ mit Unterpunkten (Gruppen, Garten, Turnraum …), die man anklicken kann, um Fotos zu sehen.
+- Umsetzungsvorschlag: eigener Abschnitt auf der Startseite (zwischen Gruppen und Team, mit Menüpunkt) mit **Kacheln je Bereich**; Klick öffnet eine **Vollbild-Galerie** (Blättern, Pfeiltasten, Wischen, Vorschauleiste, Bildunterschriften).
+- Entwurf mit Platzhalter-Fotos unter **https://kita-neufang.de/entwurf-rundgang/** (noindex, in robots.txt gesperrt). Dateien: `entwurf-rundgang/`.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
@@ -98,6 +106,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] Mitarbeiterzahl aus Team übernommen (automatisch).
 - [ ] **Kinderzahl (45)** auf Aktualität prüfen.
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
+- [ ] **Rundgang:** Entwurf mit Kita-Leitung abstimmen; Bereiche festlegen; Fotos liefern (Querformat, möglichst **ohne erkennbare Kinder** bzw. nur mit schriftlicher Einwilligung der Eltern); danach in die Startseite übernehmen und Entwurfsordner löschen.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [x] Erster Upload nach `/kita-static` (2026-10-12).
 - [x] **Live-Schaltung** am 2026-10-12: Domain-Ziel auf `/kita-static/`, Seite und Weiterleitungen getestet (www → ohne www, HTTP → HTTPS, alte WordPress-URLs → neue Abschnitte).

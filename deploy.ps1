@@ -24,7 +24,7 @@ foreach ($k in $pflicht) { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" }
 $remoteDir = if ($cfg["FTP_DIR"]) { $cfg["FTP_DIR"].TrimEnd("/") } else { "" }
 
 # Nur diese Dateien/Ordner gehören auf den Server
-$include = @("index.html", "impressum.html", "datenschutz.html", ".htaccess", "robots.txt", "assets")
+$include = @("index.html", "impressum.html", "datenschutz.html", ".htaccess", "robots.txt", "assets", "entwurf-rundgang")
 $exclude = @("assets\img\original")
 
 $files = foreach ($item in $include) {
