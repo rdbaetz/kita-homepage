@@ -9,7 +9,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
   Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Gruppen · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
-- `assets/js/main.js` – Menü, Dialoge, Scroll-Effekte, automatisches Ausgrauen vergangener Schließtage
+- `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (Fortschrittsbalken, gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Hervorhebung angesprungener Überschriften, Nach-oben-Knopf), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
 - `assets/img/team/NN.jpg` – Teamfotos (Reihenfolge = Reihenfolge im Team-Abschnitt)
 - `assets/img/illustrations/*.webp` – aufbereitete Illustrationen (Prompts in `BILDER-PROMPTS.md`)
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)

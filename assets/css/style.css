@@ -407,7 +407,8 @@ dialog.info .close svg { width: 18px; height: 18px; }
 /* ---------- Leitspruch-Band ---------- */
 .motto { background: var(--green-500); color: #fff; text-align: center; }
 .motto-wave-top { background: var(--cream); }
-.motto-wave-bottom { background: var(--cream); }
+.motto-wave-bottom { background: var(--cream); margin-top: -1px; }
+.motto-wave-top { margin-bottom: -1px; }
 .motto blockquote {
   margin: 0 auto;
   max-width: 900px;
@@ -755,10 +756,128 @@ dialog.info .close svg { width: 18px; height: 18px; }
   font-weight: 700;
 }
 
-/* ---------- Kleine Animation beim Scrollen ---------- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+/* ---------- Bewegung ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
 .reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Header wird beim Scrollen schmaler */
+.header-inner { transition: min-height 0.3s ease; }
+.brand img { transition: height 0.3s ease; }
+.site-header.scrolled .header-inner { min-height: 62px; }
+.site-header.scrolled .brand img { height: 42px; }
+
+/* Lesefortschritt */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-400), var(--green-600));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+/* Gleitende Menü-Markierung */
+.main-nav ul { position: relative; }
+.nav-pill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 38px;
+  margin-top: -19px;
+  border-radius: 999px;
+  background: var(--green-100);
+  opacity: 0;
+  z-index: 0;
+  transition: transform 0.45s cubic-bezier(0.3, 0.8, 0.2, 1), width 0.45s cubic-bezier(0.3, 0.8, 0.2, 1), opacity 0.2s ease;
+  pointer-events: none;
+}
+.main-nav li { position: relative; z-index: 1; }
+@media (min-width: 1061px) {
+  .main-nav li:not(.nav-cta) a.active { background: transparent; }
+  .main-nav li:not(.nav-cta) a:hover { background: transparent; color: var(--green-700); }
+}
+@media (max-width: 1060px) { .nav-pill { display: none; } }
+
+/* Angesprungene Überschrift: Unterstrich zeichnet sich */
+h2 { position: relative; }
+h2.arrived::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.12em;
+  height: 0.14em;
+  width: 3.2em;
+  border-radius: 999px;
+  background: var(--logo-yellow);
+  transform-origin: 0 50%;
+  animation: unterstreichen 1.6s ease forwards;
+}
+.section-head.center h2.arrived::after { left: 50%; margin-left: -1.6em; transform-origin: 50% 50%; }
+@keyframes unterstreichen {
+  0% { transform: scaleX(0); opacity: 1; }
+  35% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* Hero-Bild schwebt sanft */
+.hero-art img.ill { animation: schweben 7s ease-in-out infinite; }
+@keyframes schweben {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-0.6deg); }
+}
+.hero-art, .hero-text { will-change: transform; }
+
+/* Hover: Icons wippen, Fotos zoomen */
+.program .circle img.ill,
+.group .art img.ill { transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.program:hover .circle img.ill,
+.program:focus-visible .circle img.ill { transform: scale(1.1) rotate(-6deg); }
+.group:hover .art img.ill { transform: scale(1.08) rotate(5deg); }
+.group.in { transition: opacity 0.7s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+.group.in:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -16px rgba(46, 74, 52, 0.35); }
+.member img { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+.member:hover img { transform: scale(1.05) rotate(-2deg); box-shadow: var(--shadow); }
+.stats li.in { transition: opacity 0.7s ease, transform 0.25s ease; }
+.stats li.in:hover { transform: translateY(-4px) rotate(-1deg); }
+
+/* Nach-oben-Knopf */
+.to-top {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--green-600);
+  color: #fff;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.15s ease;
+}
+.to-top svg { width: 22px; height: 22px; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--green-700); color: #fff; }
+
+/* Team-Filter: eingeblendete Personen poppen kurz auf */
+.team-grid.gefiltert .member:not(.hidden) { animation: auftauchen 0.4s ease; }
+@keyframes auftauchen { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
