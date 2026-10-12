@@ -855,8 +855,16 @@ h2.arrived::after {
 .group:hover .art img.ill { transform: scale(1.08) rotate(5deg); }
 .group.in { transition: opacity 0.7s ease, transform 0.25s ease, box-shadow 0.25s ease; }
 .group.in:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -16px rgba(46, 74, 52, 0.35); }
-.member img { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-.member:hover img { transform: scale(1.05) rotate(-2deg); box-shadow: var(--shadow); }
+/* Team-Fotos: weiches Vergrößern – nur transform animieren (GPU), kein Schatten-/Dreh-Übergang */
+.member { position: relative; }
+.member img {
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.member:hover { z-index: 2; }
+.member:hover img { transform: translateZ(0) scale(1.18); }
 .stats li.in { transition: opacity 0.7s ease, transform 0.25s ease; }
 .stats li.in:hover { transform: translateY(-4px) rotate(-1deg); }
 
