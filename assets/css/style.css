@@ -259,6 +259,19 @@ p { margin: 0 0 1em; }
   to { opacity: 1; transform: none; }
 }
 .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+/* Slogan als "Treppe": jede Zeile etwas größer und weiter eingerückt – die Schrift wächst mit */
+.hero h1.slogan { font-size: 1rem; font-weight: 500; line-height: 1; }
+.slogan > span { display: block; }
+.slogan-over {
+  font: 800 0.95rem/1 var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--green-600);
+  margin-bottom: 0.7em;
+}
+.slogan .z1 { font-size: clamp(1.5rem, 2.6vw, 2rem); color: var(--ink-soft); }
+.slogan .z2 { font-size: clamp(2rem, 3.6vw, 2.8rem); padding-left: 0.9em; font-style: italic; color: var(--green-600); }
+.slogan .z3 { font-size: clamp(2.5rem, 4.8vw, 3.8rem); padding-left: 1.6em; color: var(--green-700); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
 .hero-art { position: relative; }
 .hero-art .fallback {

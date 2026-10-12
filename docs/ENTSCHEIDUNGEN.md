@@ -93,6 +93,13 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-12 – Slogan im Hero als „Treppe“
+
+- Der Slogan „Gemeinsam lernen, entdecken und wachsen“ wirkte zu groß und eintönig.
+- Umsetzung (Variante C aus drei Entwürfen): „Gemeinsam“ klein als Überzeile, darunter drei Zeilen, die nach unten **größer und weiter eingerückt** werden – die Schrift „wächst“. Klassen `.slogan`, `.z1`–`.z3` in `style.css`.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
