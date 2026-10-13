@@ -278,25 +278,6 @@ if (nav) new MutationObserver(movePill).observe(nav, { subtree: true, attributes
 window.addEventListener("resize", movePill);
 document.fonts?.ready.then(movePill);
 
-// Angesprungene Überschrift kurz hervorheben
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener("click", () => {
-    const ziel = document.querySelector(a.getAttribute("href"));
-    const h = ziel?.querySelector("h2");
-    if (!h || reduceMotion) return;
-    let erledigt = false;
-    const markieren = () => {
-      if (erledigt) return;
-      erledigt = true;
-      h.classList.remove("arrived");
-      void h.offsetWidth; // Animation neu starten
-      h.classList.add("arrived");
-    };
-    document.addEventListener("scrollend", markieren, { once: true });
-    setTimeout(markieren, 1100); // Fallback, falls "scrollend" nicht unterstützt wird
-  });
-});
-
 {
   // Fotos: Knopf mit data-raum (Gruppen-Karte, Kachel „Unser Haus“, Angebots-Dialog) → Vollbild-Galerie
   // mit Blättern, Tastatur und Wischen. Bilder je Bereich stehen im HTML in <template id="galerie-KEY"> als <figure>-Liste.

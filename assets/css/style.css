@@ -925,27 +925,6 @@ dialog.info .close svg { width: 18px; height: 18px; }
 }
 @media (max-width: 1060px) { .nav-pill { display: none; } }
 
-/* Angesprungene Überschrift: Unterstrich zeichnet sich */
-h2 { position: relative; }
-h2.arrived::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.12em;
-  height: 0.14em;
-  width: 3.2em;
-  border-radius: 999px;
-  background: var(--logo-yellow);
-  transform-origin: 0 50%;
-  animation: unterstreichen 1.6s ease forwards;
-}
-.section-head.center h2.arrived::after { left: 50%; margin-left: -1.6em; transform-origin: 50% 50%; }
-@keyframes unterstreichen {
-  0% { transform: scaleX(0); opacity: 1; }
-  35% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(1); opacity: 0; }
-}
-
 /* Hero-Szene: Basisbild + animierte Ebenen (Positionen in % des Gesamtbilds 1374×1145,
    Werte stammen aus `python tools/hero_ebenen.py hero-3`) */
 .hero-szene { position: relative; }
