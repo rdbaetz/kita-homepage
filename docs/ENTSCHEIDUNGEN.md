@@ -122,7 +122,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - **Feste im Jahreskreis:** Pater Haagen ist nicht mehr tätig → „Begegnungen mit Gemeindereferenten“.
 - **Team:** Karin Wiedel ausgeschieden (entfernt); Sybille Fröba nur noch in der Perlengruppe. Mitarbeiterzahl jetzt 9 (automatisch). Gruppentexte entsprechend angepasst: Edelsteine und Goldtaler je **zwei** päd. Zweitkräfte.
 - **Kinderzahl** wird nicht mehr angezeigt, da sie sich im Lauf des Jahres ändert. Die Zahlenleiste passt sich der Anzahl der Kacheln an.
-- **Öffnungszeit Freitag:** 07:00 – 14:00 Uhr (auch im JSON-LD). Abholung freitags auch 13:30 – 14:00 Uhr möglich.
+- **Öffnungszeit Freitag:** 07:00 – 14:00 Uhr (auch im JSON-LD). Abholung freitags durchgehend 11:45 – 14:00 Uhr.
 - Gruppentexte (je zwei Zweitkräfte) und Sommerferien ab Samstag 07.08.2027 von der Kita-Leitung bestätigt.
 - **Schließtage 2026/2027** eingetragen, Kindergartenbeginn 01.09.2027.
 
