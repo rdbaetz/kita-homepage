@@ -262,7 +262,14 @@ p { margin: 0 0 1em; }
   position: relative;
   overflow: hidden;
   padding-top: clamp(24px, 5vw, 56px);
+  /* mindestens bildschirmhoch (abzüglich Menüleiste), Inhalt senkrecht mittig –
+     so ist beim Öffnen nur die Startseite zu sehen, auch auf großen Monitoren */
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 76px);
+  min-height: calc(100svh - 76px);
 }
+.hero > .hero-grid { flex: 1; }
 .hero::before {
   /* zarte Wolken im Hintergrund */
   content: "";
