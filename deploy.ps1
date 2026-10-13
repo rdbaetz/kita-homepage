@@ -76,7 +76,9 @@ else {
 
 $tmpDir = $null
 if ($Dev) {
-  foreach ($k in "DEV_DIR", "DEV_USER", "DEV_PASS", "DEV_HTPASSWD") { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" } }
+  foreach ($k in "DEV_DIR", "DEV_USER", "DEV_PASS", "DEV_HTPASSWD", "DEV_ZUGANG") { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" } }
+  # steht im regulären Ausdruck der .htaccess – daher nur Buchstaben und Ziffern
+  if ($cfg.DEV_ZUGANG -notmatch '^[A-Za-z0-9]{20,}$') { throw "DEV_ZUGANG: mindestens 20 Zeichen, nur Buchstaben und Ziffern" }
   $remoteDir = $cfg["DEV_DIR"].TrimEnd("/")
 
   # Live-.htaccess und -robots.txt gehören nicht auf die Testseite
@@ -105,7 +107,7 @@ if ($Dev) {
   Remove-Item -Force $pwDatei
   if ($LASTEXITCODE -ne 0 -or -not $hash) { throw "Passwort-Hash konnte nicht erzeugt werden" }
   $erzeugt = [ordered]@{
-    ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\dev.htaccess")).Replace("{{HTPASSWD}}", $cfg.DEV_HTPASSWD)
+    ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\dev.htaccess")).Replace("{{HTPASSWD}}", $cfg.DEV_HTPASSWD).Replace("{{ZUGANG}}", $cfg.DEV_ZUGANG)
     "robots.txt" = "User-agent: *`nDisallow: /`n"
     ".htpasswd"  = "$($cfg.DEV_USER):$hash`n"
   }

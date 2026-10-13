@@ -1,5 +1,5 @@
 # Testseite dev.kita-neufang.de – wird von "deploy.ps1 -Dev" als .htaccess hochgeladen.
-# {{HTPASSWD}} ersetzt deploy.ps1 durch DEV_HTPASSWD aus deploy.env.
+# {{HTPASSWD}} und {{ZUGANG}} ersetzt deploy.ps1 durch DEV_HTPASSWD und DEV_ZUGANG aus deploy.env.
 
 Options -MultiViews
 
@@ -9,8 +9,14 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Passwortschutz – nur über HTTPS abfragen, damit das Passwort nie unverschlüsselt übertragen wird
-<If "%{HTTPS} == 'on'">
+# Freischalt-Link https://dev.kita-neufang.de/?zugang={{ZUGANG}}: setzt ein Cookie für ein Jahr
+# (525600 Minuten) und leitet auf dieselbe Adresse ohne den Parameter weiter.
+RewriteCond %{QUERY_STRING} (^|&)zugang={{ZUGANG}}(&|$)
+RewriteRule ^ %{REQUEST_URI}? [CO=kita_dev:{{ZUGANG}}:dev.kita-neufang.de:525600:/:secure:httponly,R=302,L]
+
+# Passwortschutz – nur über HTTPS abfragen, damit das Passwort nie unverschlüsselt übertragen wird.
+# Entfällt mit gültigem Freischalt-Cookie oder -Link.
+<If "%{HTTPS} == 'on' && !(%{HTTP_COOKIE} =~ /(^|;\s*)kita_dev={{ZUGANG}}(;|$)/ || %{QUERY_STRING} =~ /(^|&)zugang={{ZUGANG}}(&|$)/)">
   AuthType Basic
   AuthName "Testseite Kita Neufang"
   AuthUserFile "{{HTPASSWD}}"
