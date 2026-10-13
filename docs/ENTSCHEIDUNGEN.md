@@ -107,6 +107,14 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-13 – Testseite auf eigener Subdomain
+
+- Vor dem Veröffentlichen gibt es eine Testseite unter **https://test.kita-neufang.de/** (Server-Ordner `/kita-test`, neben `/kita-static`). Hochladen mit `deploy.ps1 -Test`.
+- Subdomain statt Unterordner `/test/`: Die Live-`.htaccess` (Weiterleitungen, 404-Seite, Caching) wirkt dort nicht hinein, Test und Live bleiben sauber getrennt.
+- Die Testseite ist **passwortgeschützt** (nur über HTTPS abgefragt), sendet `noindex` und wird nicht zwischengespeichert. `robots.txt` allein würde nur Suchmaschinen fernhalten, nicht neugierige Besucher.
+
+---
+
 ## Offene Punkte
 
 - [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
@@ -124,4 +132,5 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [x] Erster Upload nach `/kita-static` (2026-10-12).
 - [x] **Live-Schaltung** am 2026-10-12: Domain-Ziel auf `/kita-static/`, Seite und Weiterleitungen getestet (www → ohne www, HTTP → HTTPS, alte WordPress-URLs → neue Abschnitte).
+- [ ] **Testseite einrichten:** im KAS Subdomain `test.kita-neufang.de` mit Ziel `/kita-test/` anlegen, SSL (Let's Encrypt) aktivieren; `TEST_*` in `deploy.env` eintragen; erster `deploy.ps1 -Test`.
 - [ ] Später (nach erfolgreichem Betrieb): WordPress in `/kita` sichern und entfernen.

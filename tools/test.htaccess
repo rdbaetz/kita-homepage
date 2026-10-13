@@ -1,0 +1,27 @@
+# Testseite test.kita-neufang.de – wird von "deploy.ps1 -Test" als .htaccess hochgeladen.
+# {{HTPASSWD}} ersetzt deploy.ps1 durch TEST_HTPASSWD aus deploy.env.
+
+Options -MultiViews
+
+RewriteEngine On
+
+# Immer HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Passwortschutz – nur über HTTPS abfragen, damit das Passwort nie unverschlüsselt übertragen wird
+<If "%{HTTPS} == 'on'">
+  AuthType Basic
+  AuthName "Testseite Kita Neufang"
+  AuthUserFile "{{HTPASSWD}}"
+  Require valid-user
+</If>
+
+<IfModule mod_headers.c>
+  # Nicht in Suchmaschinen aufnehmen
+  Header set X-Robots-Tag "noindex, nofollow"
+  # Nicht zwischenspeichern – beim Testen immer den aktuellen Stand sehen
+  Header set Cache-Control "no-cache"
+</IfModule>
+
+ErrorDocument 404 /index.html
