@@ -500,9 +500,11 @@ dialog.info .close svg { width: 18px; height: 18px; }
 .motto .eyebrow { color: var(--green-100); }
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 248px);
+  justify-content: center;
   gap: 18px;
-  max-width: 780px;
+  width: 100%;
   margin: clamp(36px, 5vw, 56px) auto 0;
   padding: 0;
   list-style: none;

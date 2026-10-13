@@ -30,7 +30,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 
 - **Schließtage** (jährlich): Abschnitt ZEITEN, `<li data-ende="JJJJ-MM-TT">` – `data-ende` ist der letzte geschlossene Tag; vergangene Einträge werden automatisch ausgegraut. Überschrift „Schließtage JJJJ/JJJJ“ und Hinweis „Kindergartenbeginn“ mitpflegen.
 - **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto quadratisch 600×600 als `assets/img/team/vorname-nachname.jpg` (neuer Dateiname statt Überschreiben, wegen Browser-Cache). Die Zahl „Mitarbeiterinnen“ zählt `main.js` automatisch aus den `.member`-Einträgen (`data-team-anzahl`) – nichts von Hand anpassen.
-- **Zahlen** (Kinder/Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">`. Die Mitarbeiterzahl dort ergibt sich automatisch (siehe Team).
+- **Zahlen** (Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">` (Kinderzahl bewusst weggelassen; die Leiste passt sich der Anzahl der Kacheln an). Die Mitarbeiterzahl dort ergibt sich automatisch (siehe Team).
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
 - **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).

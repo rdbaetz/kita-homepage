@@ -63,7 +63,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - **Träger:** Katholische Kirchenstiftung St. Laurentius Neufang (im Impressum und in der Datenschutzerklärung).
 - **Datenschutzrecht:** Wegen kirchlicher Trägerschaft gilt das **KDG** statt der DSGVO. Aufsicht: Katholisches Datenschutzzentrum Bayern, Nürnberg.
 - **Webhoster:** ALL-INKL.COM (Neue Medien Münnich, Friedersdorf).
-- **Gruppenbesetzung:** Maßgeblich ist die Team-Zuordnung; die Gruppentexte wurden angepasst (Edelsteine: Kita-Leitung + Erzieherin + 3 päd. Zweitkräfte; Goldtaler: Erzieherin + 3 päd. Zweitkräfte; Perlen: Erzieherin/Krippenpädagogin + päd. Zweitkraft/Krippenpädagogin).
+- **Gruppenbesetzung:** Maßgeblich ist die Team-Zuordnung; die Gruppentexte wurden angepasst (Edelsteine: Kita-Leitung + Erzieherin + 2 päd. Zweitkräfte; Goldtaler: Erzieherin + 2 päd. Zweitkräfte – Stand 2026-10-13; Perlen: Erzieherin/Krippenpädagogin + päd. Zweitkraft/Krippenpädagogin).
 - **Mitarbeiterzahl** wird automatisch aus der Anzahl der Personen im Team-Abschnitt berechnet.
 - **Reihenfolge der Gruppen** überall: Edelsteine, Goldtaler, Perlen.
 
@@ -116,9 +116,20 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-13 – Änderungswünsche der Kita-Leitung
+
+- **Schwimmkurs:** Hinweis auf den Schwimmgutschein des Staatsministeriums entfernt (gibt es nicht mehr); Text der Kita-Leitung übernommen, inkl. Unterstützung durch einen Bademeister.
+- **Feste im Jahreskreis:** Pater Haagen ist nicht mehr tätig → „Begegnungen mit Gemeindereferenten“.
+- **Team:** Karin Wiedel ausgeschieden (entfernt); Sybille Fröba nur noch in der Perlengruppe. Mitarbeiterzahl jetzt 9 (automatisch). Gruppentexte entsprechend angepasst: Edelsteine und Goldtaler je **zwei** päd. Zweitkräfte.
+- **Kinderzahl** wird nicht mehr angezeigt, da sie sich im Lauf des Jahres ändert. Die Zahlenleiste passt sich der Anzahl der Kacheln an.
+- **Öffnungszeit Freitag:** 07:00 – 14:00 Uhr (auch im JSON-LD).
+- **Schließtage 2026/2027** eingetragen, Kindergartenbeginn 01.09.2027.
+
+---
+
 ## Offene Punkte
 
-- [ ] **Schließtage 2026/2027** von der Kita einholen (alle Termine 2025/26 sind vergangen).
+- [x] **Schließtage 2026/2027** eingetragen (2026-10-13).
 - [x] Träger ergänzt.
 - [x] Vertretungsberechtigte Person im Impressum: Jochen Kotschenreuther.
 - [ ] Prüfen, ob die Kirchenstiftung eine*n **betriebliche*n Datenschutzbeauftragte*n** benannt hat; ggf. in `datenschutz.html` ergänzen.
@@ -127,7 +138,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] KDG statt DSGVO umgesetzt.
 - [x] ChatGPT-Illustrationen erzeugt (händisch), aufbereitet und eingebaut.
 - [x] Mitarbeiterzahl aus Team übernommen (automatisch).
-- [ ] **Kinderzahl (45)** auf Aktualität prüfen.
+- [x] Kinderzahl entfernt (Wunsch der Kita-Leitung, 2026-10-13).
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
 - [ ] **Rundgang:** Entwurf mit Kita-Leitung abstimmen; Bereiche festlegen; Fotos liefern (Querformat, möglichst **ohne erkennbare Kinder** bzw. nur mit schriftlicher Einwilligung der Eltern); danach in die Startseite übernehmen und Entwurfsordner löschen.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
