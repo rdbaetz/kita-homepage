@@ -156,6 +156,11 @@ topBtn.setAttribute("aria-label", "Nach oben");
 topBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
 document.body.appendChild(topBtn);
 
+// Entwürfe (hidden data-entwurf) nur mit ?entwurf an der Adresse zeigen, z. B. „Gut zu wissen“
+if (new URLSearchParams(location.search).has("entwurf")) {
+  document.querySelectorAll("[data-entwurf]").forEach((el) => (el.hidden = false));
+}
+
 // Hero: Jahreszeit – im Frühling fallen Blütenblätter, im Herbst Blätter, im Winter Schnee
 // (Sommer: nur die Sonne). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
 const heroSzene = document.querySelector(".hero-szene");

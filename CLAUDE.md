@@ -6,7 +6,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 ## Struktur
 
 - `index.html` – die komplette Startseite. Jeder Abschnitt ist mit einem großen `<!-- ===== ABSCHNITT ===== -->`-Kommentar markiert:
-  Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Unser Haus · Gruppen (+ Foto-Galerie) · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
+  Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Unser Haus · Gruppen (+ Foto-Galerie) · Team · Zeiten · Elternbeiträge · Gut zu wissen (Entwurf, ausgeblendet) · Voranmeldung & Kontakt · Footer
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
 - `404.html` – Fehlerseite für falsche Adressen (`ErrorDocument` in `.htaccess` und `tools/dev.htaccess`); nutzt als einzige Seite **absolute** Pfade (`/assets/…`), weil sie unter beliebigen Adressen ausgeliefert wird
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
@@ -36,6 +36,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - **Zahlen** (Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">` (Kinderzahl bewusst weggelassen; die Leiste passt sich der Anzahl der Kacheln an). Die Mitarbeiterzahl dort ergibt sich automatisch (siehe Team).
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Fotos** (Abschnitte UNSER HAUS und GRUPPEN): Knopf/Kachel mit `data-raum="KEY"` öffnet die Galerie; die Bilder stehen in `<template id="galerie-KEY">` als `<figure><img><figcaption>`. Bildunterschriften und die Anzahl „N Fotos“ von Hand pflegen. Neue Fotos: in `bilder-roh/galerie/` ablegen, Skript laufen lassen – wegen Browser-Cache (30 Tage) bei geänderten Bildern das Ziel unter neuem Namen speichern bzw. Bild-URL mit `?v=` versehen.
+- **Gut zu wissen** (Abschnitt GUT ZU WISSEN): je Frage ein `<details class="frage" name="gut-zu-wissen">` mit `<summary>`; noch ausgeblendet (`hidden data-entwurf`), sichtbar mit `?entwurf` an der Adresse.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
 - **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).
 - **Telefon**: 09260 / 785 (kommt in index, impressum, datenschutz und JSON-LD im `<head>` vor – überall ändern).
@@ -63,5 +64,6 @@ CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
 - Git: alle Änderungen direkt auf `main` committen, keine Feature-Branches.
 - Getroffene Entscheidungen und offene Punkte stehen in `docs/ENTSCHEIDUNGEN.md` – neue Abmachungen dort mit Datum ergänzen.
 - Keine externen Dienste einbinden (Google Fonts, Maps, CDNs, Tracking) – sonst muss die Datenschutzerklärung angepasst werden.
+- Seite nicht überladen: Leitlinie in `docs/ENTSCHEIDUNGEN.md` (2026-10-13) beachten – höchstens ein neuer Abschnitt, Längeres zugeklappt, Menü wächst nicht.
 - Keine erfundenen Inhalte (z. B. Elternzitate, Termine) – nur, was die Kita liefert.
 - Barrierearm bleiben: Alt-Texte, echte Überschriften-Hierarchie, ausreichende Kontraste.

@@ -1303,3 +1303,31 @@ dialog.galerie::backdrop { background: transparent; }
   .galerie-buehne .zurueck, .galerie-buehne .weiter { display: none; }  /* auf dem Handy: wischen */
   .galerie-leiste button { width: 56px; height: 42px; }
 }
+
+/* ---------- Gut zu wissen – Fragen & Antworten (zugeklappt) ---------- */
+/* gleicher Hintergrund wie die Beiträge davor: geht ohne Welle in sie über */
+.faq { background: var(--green-50); padding-top: 0; }
+.fragen { max-width: 820px; margin-inline: auto; display: grid; gap: 12px; }
+.frage { background: var(--white); border-radius: 18px; box-shadow: 0 2px 10px rgba(31, 42, 34, 0.05); }
+.frage summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 22px; font-weight: 800; color: var(--ink);
+}
+.frage summary::-webkit-details-marker { display: none; }
+/* Plus, das beim Öffnen zum Minus wird */
+.frage summary::after {
+  content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--green-100) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d6648' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 12h12M12 6v12'/%3E%3C/svg%3E") center / 16px no-repeat;
+  transition: transform 0.2s ease;
+}
+.frage[open] summary::after {
+  transform: rotate(180deg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233d6648' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+}
+.frage summary:hover { color: var(--green-700); }
+.frage summary:focus-visible { outline: 3px solid var(--green-400); outline-offset: 2px; border-radius: 18px; }
+.frage > :not(summary) { margin: 0 22px; color: var(--ink-soft); }
+.frage > :last-child { padding-bottom: 20px; }
+/* Platzhalter im Entwurf, solange die Antwort der Kita fehlt */
+.antwort-offen { font-style: italic; color: var(--muted) !important; }

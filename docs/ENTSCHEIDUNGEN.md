@@ -177,3 +177,34 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - **Eigene Fehlerseite** `404.html` mit absoluten Pfaden statt `index.html`: Unter Adressen wie `/irgendwas/tiefer` fehlten sonst Design und Bilder (relative Pfade). Sie verlinkt die wichtigsten Abschnitte der Startseite.
 - **Jahreszeit im Hero:** Statt eigener Illustrationen je Jahreszeit fällt über dem vorhandenen Bild eine dezente Ebene – Frühling (März–Mai) Blütenblätter, Herbst (Sept.–Nov.) Blätter, Winter (Dez.–Feb.) Schnee, Sommer nichts (die Sonne lacht ja). Kein Pflegeaufwand, keine zusätzlichen Bilder; bei „Bewegung reduzieren“ abgeschaltet, außerhalb des Bildschirms angehalten.
 - Anrede vereinheitlicht („Tippen Sie …“ bei den Angeboten), „Unser Haus“ auch im Footer verlinkt.
+
+---
+
+## 2026-10-13 – Leitlinie: Seite nicht überladen
+
+Neue Inhalte sollen die Seite nicht unübersichtlich machen. Deshalb gilt:
+
+1. **Höchstens ein neuer Abschnitt** („Gut zu wissen“). Alles andere kommt in bestehende Abschnitte oder in Dialoge.
+2. **Zugeklappt statt ausgeschrieben:** Längere Texte stehen hinter einem Klick (Dialog wie bei den Angeboten, Frage-Antwort-Liste in „Gut zu wissen“).
+3. **Das Menü wächst nicht** (8 Punkte + Voranmeldung). Kommt ein Punkt dazu, werden andere zusammengelegt – geplant: „Zeiten“ und „Beiträge“ → „Zeiten & Beiträge“, sobald „Gut zu wissen“ online geht.
+4. **Was nur zeitweise gilt, erscheint nur zeitweise** (z. B. Stellenangebote mit Ablaufdatum, wie bei den Schließtagen).
+5. **Keine weiteren Effekte:** Sonne, Schmetterling und Jahreszeiten-Ebene reichen.
+6. **Auf dem Handy prüfen:** vor und nach jeder Erweiterung Seitenlänge und Übersicht in Handygröße ansehen.
+7. **Aufräumen:** veraltete oder nie gebrauchte Inhalte wieder entfernen.
+
+Zuordnung der geplanten Inhalte:
+
+| Inhalt | Ort |
+|---|---|
+| Eingewöhnung, Tagesablauf, Essen, Mitbringen, Platzvergabe, Krankheit, Elternbeirat/Förderverein | Abschnitt „Gut zu wissen“ (Frage-Antwort-Liste, zugeklappt) |
+| Zuschüsse zum Beitrag | ein Satz unter den Beitragstabellen |
+| Telefonzeiten | eine Zeile beim Telefon im Kontakt |
+| Konzeption (PDF) | Link unter dem Text bei „Über uns“ |
+| Stellenangebote | schmales Band über dem Footer, nur solange gesucht wird |
+| Alltagsfotos, Team-Gruppenfoto | bestehende Galerien bzw. Team-Abschnitt |
+
+### Vorlage „Gut zu wissen“
+
+- Abschnitt steht in `index.html` zwischen Elternbeiträgen und Voranmeldung, ist aber mit `hidden data-entwurf` **ausgeblendet**. Ansehen mit `?entwurf` an der Adresse (z. B. `https://dev.kita-neufang.de/?entwurf#gut-zu-wissen`).
+- Die Fragen sind Vorschläge; Antworten liefert die Kita-Leitung (bis dahin Platzhalter „Antwort folgt“). Fragen ohne Antwort werden gestrichen.
+- Online gehen: `hidden data-entwurf` entfernen, Menüpunkt „Gut zu wissen“ ergänzen und „Zeiten“/„Beiträge“ zusammenlegen (siehe oben).
