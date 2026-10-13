@@ -6,6 +6,11 @@
 # Aufruf:  powershell -ExecutionPolicy Bypass -File .\deploy.ps1
 #          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -DryRun
 #          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Dev     (Testseite dev.kita-neufang.de)
+#          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Alles   (alle Dateien, nicht nur geänderte)
+#
+# Hochgeladen werden nur Dateien, die sich seit dem letzten Upload (Markierung "dev" bzw. "live",
+# siehe unten) geändert haben. Gelöschte oder umbenannte Dateien bleiben auf dem Server liegen –
+# das Skript nennt sie, entfernt werden sie von Hand.
 #
 # -Dev lädt dieselben Dateien nach DEV_DIR statt FTP_DIR. Statt .htaccess und robots.txt der
 # Live-Seite kommen dort hin: tools/dev.htaccess (Passwortschutz, noindex, kein Cache),
@@ -15,7 +20,7 @@
 # hochgeladenen Commit. Live geht nur ein committeter Stand; weicht er von dem ab, was zuletzt auf
 # der Testseite war, fragt das Skript nach (-Force überspringt die Frage).
 
-param([switch]$DryRun, [switch]$Dev, [switch]$Force)
+param([switch]$DryRun, [switch]$Dev, [switch]$Force, [switch]$Alles)
 
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
@@ -74,6 +79,32 @@ else {
   }
 }
 
+# Nur hochladen, was sich seit dem letzten Upload geändert hat (Vergleich mit der Markierung,
+# einschließlich nicht committeter und neuer Dateien)
+$marke = if ($Dev) { "dev" } else { "live" }
+$letzter = & git -C $root rev-parse --short --verify --quiet "$marke^{commit}"
+if ($Alles) { Write-Host "-Alles: alle Dateien werden hochgeladen." }
+elseif (-not $letzter) { Write-Host "Noch kein Upload mit Markierung '$marke' – alle Dateien werden hochgeladen." }
+else {
+  $geaendert = @{}
+  $geloescht = @()
+  & git -C $root -c core.quotepath=off diff --name-status --no-renames $letzter -- $seite | ForEach-Object {
+    $status, $pfad = $_ -split "`t", 2
+    if ($status -eq "D") { $geloescht += $pfad } else { $geaendert[$pfad] = $true }
+  }
+  & git -C $root -c core.quotepath=off ls-files --others --exclude-standard -- $seite | ForEach-Object { $geaendert[$_] = $true }
+  $alle = $files.Count
+  $behalten = @(for ($i = 0; $i -lt $rels.Count; $i++) { if ($geaendert.ContainsKey($rels[$i])) { $i } })
+  $files = @($behalten | ForEach-Object { $files[$_] })
+  $rels = @($behalten | ForEach-Object { $rels[$_] })
+  Write-Host "Seit '$marke' ($letzter) geändert: $($files.Count) von $alle Dateien (alle hochladen: -Alles)"
+  if ($geloescht) {
+    Write-Host "Hinweis: Diese Dateien sind lokal gelöscht/umbenannt, liegen aber noch auf dem Server:"
+    $geloescht | ForEach-Object { Write-Host "  $_" }
+  }
+}
+
+$utf8 = New-Object System.Text.UTF8Encoding($false)
 $tmpDir = $null
 if ($Dev) {
   foreach ($k in "DEV_DIR", "DEV_USER", "DEV_PASS", "DEV_HTPASSWD", "DEV_ZUGANG") { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" } }
@@ -97,7 +128,6 @@ if ($Dev) {
   # Erzeugte Dateien ohne BOM schreiben (Apache verträgt kein BOM in .htaccess)
   $tmpDir = Join-Path ([IO.Path]::GetTempPath()) ("kita-dev-" + [guid]::NewGuid())
   New-Item -ItemType Directory $tmpDir | Out-Null
-  $utf8 = New-Object System.Text.UTF8Encoding($false)
 
   # Passwort per Datei übergeben, nicht per Pipe: PowerShell setzt beim Pipen an Programme ein BOM
   # davor und ein Zeilenende dahinter – der Hash passte dann nicht zum Passwort.
@@ -128,11 +158,34 @@ if ($DryRun) {
 # erzeugte Testseiten-Dateien (u. a. Passwort-Hash) auch bei Abbruch nicht liegen lassen
 trap { if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir -ErrorAction SilentlyContinue }; break }
 
-if ($proto -eq "ftps") {
+if ($files.Count -eq 0) { Write-Host "Nichts hochzuladen." }
+elseif ($proto -eq "ftps") {
   # FTPS: TLS ist Pflicht (--ssl-reqd) – ohne Verschlüsselung bricht der Upload ab.
   # --tls-max 1.2: Mit TLS 1.3 bricht die Datenverbindung zwischen Windows (Schannel) und dem
   # ALL-INKL-Server ab (Fehler 426, Datei kommt mit 0 Byte an). TLS 1.2 ist weiterhin sicher.
-  for ($i = 0; $i -lt $files.Count; $i++) {
+  $basis = "ftp://$($cfg.FTP_HOST)$remoteDir/"
+
+  # Erst alle Dateien in einem einzigen curl-Aufruf: Die Verbindung bleibt offen, statt für jede
+  # Datei neu aufgebaut und angemeldet zu werden. Die Dateiliste steht in einer curl-Konfigdatei.
+  $liste = New-TemporaryFile
+  $zeilen = for ($i = 0; $i -lt $files.Count; $i++) {
+    "upload-file = `"$($files[$i].FullName.Replace('\', '/'))`""
+    "url = `"$basis$($rels[$i])`""
+  }
+  [IO.File]::WriteAllLines($liste.FullName, [string[]]$zeilen, $utf8)
+  $angekommen = @{}
+  try {
+    & curl.exe --silent --show-error --ssl-reqd --tls-max 1.2 --ftp-create-dirs `
+      --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" -K $liste.FullName -w "%{exitcode} %{url}\n" | ForEach-Object {
+      if ($_ -match '^0 (.+)$') { $angekommen[$Matches[1]] = $true; Write-Host "  $($Matches[1].Substring($basis.Length))" }
+    }
+  }
+  finally { Remove-Item $liste -Force }
+
+  # Was dabei nicht geklappt hat, einzeln nachladen
+  $nachladen = @(for ($i = 0; $i -lt $files.Count; $i++) { if (-not $angekommen.ContainsKey("$basis$($rels[$i])")) { $i } })
+  if ($nachladen) { Write-Host "$($nachladen.Count) Datei(en) einzeln nachladen …" }
+  foreach ($i in $nachladen) {
     Write-Host "  $($rels[$i])"
     # bis zu 3 Versuche – einzelne Verbindungsabbrüche kommen vor
     for ($versuch = 1; $versuch -le 3; $versuch++) {
@@ -178,7 +231,6 @@ else {
 if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir }
 
 # Markierung auf den hochgeladenen Commit setzen (nicht bei nicht committeten Änderungen)
-$marke = if ($Dev) { "dev" } else { "live" }
 if (-not $offen) {
   & git -C $root tag -f $marke HEAD | Out-Null
   Write-Host "Markierung '$marke' -> $(& git -C $root rev-parse --short HEAD)"

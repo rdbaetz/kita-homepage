@@ -51,7 +51,7 @@ CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
 
 - Vorschau: `python -m http.server 8080` im Projektordner → http://localhost:8080
 - Testseite: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Dev` → https://dev.kita-neufang.de/ (Ordner `DEV_DIR`, Passwort `DEV_USER`/`DEV_PASS` in `deploy.env`). Statt der Live-`.htaccess`/`robots.txt` werden `tools/dev.htaccess` (Passwortschutz, noindex, kein Cache), eine sperrende `robots.txt` und eine erzeugte `.htpasswd` hochgeladen. Ohne Passwortabfrage: einmal den Freischalt-Link `https://dev.kita-neufang.de/?zugang=<DEV_ZUGANG>` öffnen (Cookie, 1 Jahr). Größere Änderungen erst hier prüfen, dann live.
-- Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen). Bricht ab bei nicht committeten Änderungen an Seiten-Dateien; fragt nach, wenn sich die Seiten-Dateien von dem unterscheiden, was zuletzt per `-Dev` hochgeladen wurde (`-Force` überspringt die Frage).
+- Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen). Bricht ab bei nicht committeten Änderungen an Seiten-Dateien; fragt nach, wenn sich die Seiten-Dateien von dem unterscheiden, was zuletzt per `-Dev` hochgeladen wurde (`-Force` überspringt die Frage). Hochgeladen werden nur Dateien, die sich seit der Markierung `dev`/`live` geändert haben, alle zusammen über eine FTPS-Verbindung; `-Alles` lädt den kompletten Stand. Gelöschte/umbenannte Dateien werden nur gemeldet und müssen auf dem Server von Hand entfernt werden.
 - Nach jedem Upload zeigen die lokalen Git-Tags `dev` bzw. `live` auf den hochgeladenen Commit (`git log --oneline --decorate`). Kein lokales Dev-Verzeichnis: der Projektordner *ist* der Entwicklungsstand.
 
 ## Regeln
