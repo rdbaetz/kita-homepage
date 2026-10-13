@@ -113,8 +113,9 @@ if ($Dev) {
   if ($cfg.DEV_ZUGANG -notmatch '^[A-Za-z0-9]{20,}$') { throw "DEV_ZUGANG: mindestens 20 Zeichen, nur Buchstaben und Ziffern" }
   $remoteDir = $cfg["DEV_DIR"].TrimEnd("/")
 
-  # Live-.htaccess und -robots.txt gehören nicht auf die Testseite
-  $behalten = @(for ($i = 0; $i -lt $rels.Count; $i++) { if ($rels[$i] -notin ".htaccess", "robots.txt") { $i } })
+  # Live-.htaccess und -robots.txt gehören nicht auf die Testseite; index.html kommt unten mit
+  # Testseiten-Link (immer, damit der Link auch bei unveränderter Startseite vorhanden ist)
+  $behalten = @(for ($i = 0; $i -lt $rels.Count; $i++) { if ($rels[$i] -notin ".htaccess", "robots.txt", "index.html") { $i } })
   $files = @($behalten | ForEach-Object { $files[$_] })
   $rels = @($behalten | ForEach-Object { $rels[$_] })
 
@@ -143,6 +144,11 @@ if ($Dev) {
     ".htpasswd"  = "$($cfg.DEV_USER):$hash`n"
     # Liste der letzten Commits: https://dev.kita-neufang.de/aenderungen.html
     "aenderungen.html" = & (Join-Path $root "tools\aenderungen.ps1") -NichtCommittet @($offen | ForEach-Object { $_.Substring(3) })
+    # Startseite mit festem Knopf "Testseite · Änderungen" unten links (nur hier, nicht live)
+    "index.html" = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "index.html")).Replace("</body>",
+      '<a href="aenderungen.html" style="position:fixed;left:12px;bottom:12px;z-index:60;background:#b23a2a;color:#fff;' +
+      'font:700 14px/1.2 Nunito,sans-serif;padding:8px 14px;border-radius:99px;text-decoration:none;' +
+      'box-shadow:0 4px 14px rgba(0,0,0,.25)">Testseite · Änderungen</a>' + "`n</body>")
   }
   foreach ($name in $erzeugt.Keys) {
     $pfad = Join-Path $tmpDir $name
