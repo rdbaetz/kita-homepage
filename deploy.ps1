@@ -14,7 +14,8 @@
 #
 # -Dev lädt dieselben Dateien nach DEV_DIR statt FTP_DIR. Statt .htaccess und robots.txt der
 # Live-Seite kommen dort hin: tools/dev.htaccess (Passwortschutz, noindex, kein Cache),
-# eine robots.txt, die alles sperrt, und eine .htpasswd aus DEV_USER/DEV_PASS.
+# eine robots.txt, die alles sperrt, und eine .htpasswd aus DEV_USER/DEV_PASS. Dazu kommt
+# aenderungen.html mit den letzten Commits (tools/aenderungen.ps1), Noch-nicht-Live hervorgehoben.
 #
 # Absicherung über Git: Nach jedem Upload zeigt die Markierung (Tag) "dev" bzw. "live" auf den
 # hochgeladenen Commit. Live geht nur ein committeter Stand; weicht er von dem ab, was zuletzt auf
@@ -140,6 +141,8 @@ if ($Dev) {
     ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\dev.htaccess")).Replace("{{HTPASSWD}}", $cfg.DEV_HTPASSWD).Replace("{{ZUGANG}}", $cfg.DEV_ZUGANG)
     "robots.txt" = "User-agent: *`nDisallow: /`n"
     ".htpasswd"  = "$($cfg.DEV_USER):$hash`n"
+    # Liste der letzten Commits: https://dev.kita-neufang.de/aenderungen.html
+    "aenderungen.html" = & (Join-Path $root "tools\aenderungen.ps1") -NichtCommittet @($offen | ForEach-Object { $_.Substring(3) })
   }
   foreach ($name in $erzeugt.Keys) {
     $pfad = Join-Path $tmpDir $name
