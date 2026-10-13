@@ -30,4 +30,4 @@ RewriteRule ^ %{REQUEST_URI}? [CO=kita_dev:{{ZUGANG}}:dev.kita-neufang.de:525600
   Header set Cache-Control "no-cache"
 </IfModule>
 
-ErrorDocument 404 /index.html
+ErrorDocument 404 /404.html

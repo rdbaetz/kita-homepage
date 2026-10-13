@@ -968,6 +968,33 @@ h2.arrived::after {
   60% { transform: scale(1.02) rotate(3deg); filter: drop-shadow(0 0 10px rgba(255, 210, 60, 0.5)); }
 }
 
+/* Jahreszeit im Hero (main.js): fallende Blütenblätter / Blätter / Schneeflocken.
+   Je Teil: --x Startposition, --s Größe, --d Falldauer, --v Verzögerung, --p Pendeldauer, --w Pendelwinkel */
+.hero-szene .jahreszeit { position: absolute; inset: 0; z-index: 3; overflow: hidden; pointer-events: none; }
+.jahreszeit i {
+  position: absolute; top: -6%; left: var(--x); width: var(--s);
+  animation: jz-fallen var(--d) linear var(--v) infinite;
+}
+.jahreszeit svg {
+  display: block; width: 100%; height: auto;
+  animation: jz-pendeln var(--p) ease-in-out var(--v) infinite alternate;
+}
+.jahreszeit.winter svg { animation-name: jz-wehen; }
+.jahreszeit.pause i, .jahreszeit.pause svg { animation-play-state: paused; }
+@keyframes jz-fallen {
+  0% { top: -6%; opacity: 0; }
+  8%, 82% { opacity: 1; }
+  100% { top: 96%; opacity: 0; }
+}
+@keyframes jz-pendeln {
+  from { transform: translateX(-140%) rotate(calc(var(--w) * -1)); }
+  to { transform: translateX(140%) rotate(var(--w)); }
+}
+@keyframes jz-wehen {
+  from { transform: translateX(-60%); }
+  to { transform: translateX(60%); }
+}
+
 .hero-art, .hero-text { will-change: transform; }
 
 /* Über uns: Schmetterling flattert (Position in % des Bilds 1200×999,

@@ -168,3 +168,12 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - Auf dem Foto der **Infowand** sind Gesichter und Namen (Team, Elternbeirat, Kinderfotos) **verwischt** – Kinder und Eltern sollen auf der Website nicht erkennbar sein.
 - Bildunterschriften beschreiben, was auf dem Foto zu sehen ist; vom Betreiber so freigegeben.
 - Der Entwurf wurde unverändert in die Startseite übernommen (Abschnitt „Unser Haus“ mit Menüpunkt, Foto-Knöpfe in den Gruppen-Karten, Garten-Knopf im Dialog „Draußen spielen“). Ordner `entwurf-rundgang/` gelöscht; CSS/JS stecken jetzt in `style.css` bzw. `main.js`, Fotos in `assets/img/galerie/`.
+
+---
+
+## 2026-10-13 – Teilen-Vorschau, 404-Seite, Jahreszeiten im Hero
+
+- **Vorschaubild beim Teilen** (WhatsApp, Facebook …): eigenes Bild `assets/img/teilen.jpg` (1200×630) mit Logo, Slogan und Hero-Illustration statt nur des Logos; erzeugt mit `tools/teilen_bild.py`. Dazu vollständige `og:`-Angaben und `twitter:card`.
+- **Eigene Fehlerseite** `404.html` mit absoluten Pfaden statt `index.html`: Unter Adressen wie `/irgendwas/tiefer` fehlten sonst Design und Bilder (relative Pfade). Sie verlinkt die wichtigsten Abschnitte der Startseite.
+- **Jahreszeit im Hero:** Statt eigener Illustrationen je Jahreszeit fällt über dem vorhandenen Bild eine dezente Ebene – Frühling (März–Mai) Blütenblätter, Herbst (Sept.–Nov.) Blätter, Winter (Dez.–Feb.) Schnee, Sommer nichts (die Sonne lacht ja). Kein Pflegeaufwand, keine zusätzlichen Bilder; bei „Bewegung reduzieren“ abgeschaltet, außerhalb des Bildschirms angehalten.
+- Anrede vereinheitlicht („Tippen Sie …“ bei den Angeboten), „Unser Haus“ auch im Footer verlinkt.

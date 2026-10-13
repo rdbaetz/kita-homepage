@@ -40,4 +40,4 @@ RewriteRule ^(wp-admin|wp-login\.php|wp-content|wp-includes|feed|xmlrpc\.php) / 
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>
 
-ErrorDocument 404 /index.html
+ErrorDocument 404 /404.html

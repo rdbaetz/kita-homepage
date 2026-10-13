@@ -156,6 +156,48 @@ topBtn.setAttribute("aria-label", "Nach oben");
 topBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
 document.body.appendChild(topBtn);
 
+// Hero: Jahreszeit – im Frühling fallen Blütenblätter, im Herbst Blätter, im Winter Schnee
+// (Sommer: nur die Sonne). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
+const heroSzene = document.querySelector(".hero-szene");
+if (heroSzene && !reduceMotion) {
+  const monat = new Date().getMonth() + 1;
+  const ausUrl = new URLSearchParams(location.search).get("jahreszeit");
+  const jahreszeit = ausUrl || (monat <= 2 || monat === 12 ? "winter" : monat <= 5 ? "fruehling" : monat <= 8 ? "sommer" : "herbst");
+  const formen = {
+    // Blatt mit Mittelrippe, Farben: Orange, Rot, Gelb, Braun
+    herbst: ["#e8892c", "#c9532e", "#e9b52f", "#a8642f"].map(
+      (c) => `<svg viewBox="0 0 24 24"><path d="M12 2C6 7 4 13 6 18c1.5 3 4 4 6 4s4.5-1 6-4c2-5 0-11-6-16z" fill="${c}"/><path d="M12 6v16" stroke="rgba(80,40,10,.45)" stroke-width="1.2" fill="none"/></svg>`
+    ),
+    // Blütenblatt in Rosa (wie die Kastanienblüten im Bild)
+    fruehling: ["#f6c6d3", "#f2b0c3", "#fbe0e7"].map(
+      (c) => `<svg viewBox="0 0 24 24"><path d="M12 3c5 4 6 10 0 18C6 13 7 7 12 3z" fill="${c}"/></svg>`
+    ),
+    // Schneeflocke mit zartem Rand, damit sie auch vor hellem Himmel sichtbar ist
+    winter: [`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="#fff" stroke="#a9c3d6" stroke-width="3"/></svg>`],
+  }[jahreszeit];
+  if (formen) {
+    const ebene = document.createElement("div");
+    ebene.className = "jahreszeit " + jahreszeit;
+    ebene.setAttribute("aria-hidden", "true");
+    const anzahl = jahreszeit === "winter" ? 26 : 12;
+    const zufall = (a, b) => a + Math.random() * (b - a);
+    for (let i = 0; i < anzahl; i++) {
+      const teil = document.createElement("i");
+      const dauer = zufall(9, 16);
+      teil.style.cssText =
+        `--x:${zufall(2, 95).toFixed(1)}%;--s:${(jahreszeit === "winter" ? zufall(1.6, 2.8) : zufall(3, 5)).toFixed(2)}%;` +
+        `--d:${dauer.toFixed(1)}s;--v:${(-zufall(0, dauer)).toFixed(1)}s;--p:${zufall(1.6, 3.2).toFixed(1)}s;--w:${zufall(10, 28).toFixed(0)}deg`;
+      teil.innerHTML = formen[i % formen.length];
+      ebene.appendChild(teil);
+    }
+    heroSzene.appendChild(ebene);
+    // außerhalb des Bildschirms anhalten (spart Akku)
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => ebene.classList.toggle("pause", !e.isIntersecting)).observe(heroSzene);
+    }
+  }
+}
+
 // Hero: leichte Tiefenwirkung beim Scrollen
 const heroArt = document.querySelector(".hero-art");
 const heroText = document.querySelector(".hero-text");

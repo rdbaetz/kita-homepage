@@ -8,8 +8,9 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `index.html` – die komplette Startseite. Jeder Abschnitt ist mit einem großen `<!-- ===== ABSCHNITT ===== -->`-Kommentar markiert:
   Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Unser Haus · Gruppen (+ Foto-Galerie) · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
+- `404.html` – Fehlerseite für falsche Adressen (`ErrorDocument` in `.htaccess` und `tools/dev.htaccess`); nutzt als einzige Seite **absolute** Pfade (`/assets/…`), weil sie unter beliebigen Adressen ausgeliefert wird
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
-- `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Hervorhebung angesprungener Überschriften, Nach-oben-Knopf), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
+- `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Hervorhebung angesprungener Überschriften, Nach-oben-Knopf, Jahreszeit im Hero: Blütenblätter/Blätter/Schnee nach Monat, Test mit `?jahreszeit=fruehling|sommer|herbst|winter`), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
 - `assets/img/team/vorname-nachname.jpg` – Teamfotos, quadratisch 600×600 (Originale in `bilder-roh/team/`)
 - `assets/img/illustrations/*.webp` – aufbereitete Illustrationen (Prompts in `BILDER-PROMPTS.md`)
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)
@@ -17,6 +18,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `tools/bilder_aufbereiten.py` – entfernt Karomuster, verkleinert, speichert WebP
 - `tools/hero_ebenen.py <name>` – zerlegt `bilder-roh/<name>.png` in Basis + animierte Ebenen (Sonnenstrahlen, Sonnengesicht) und gibt die %-Positionen für das CSS (`.hero-szene`) aus; Sonnen-Mittelpunkt je Bild in `BILDER` im Skript. Aktuell im Einsatz: `hero-3`
 - `tools/aenderungen.ps1` – erzeugt beim `deploy.ps1 -Dev` die Seite https://dev.kita-neufang.de/aenderungen.html (letzte Commits, noch nicht Live-Stände hervorgehoben, Links zu den Commits auf GitHub). Commit-Nachrichten deshalb verständlich auf Deutsch schreiben
+- `tools/teilen_bild.py` – erzeugt das Vorschaubild für geteilte Links `assets/img/teilen.jpg` (1200×630, `og:image`) aus Hero-Illustration, Logo und Slogan
 - `tools/ebene_ausschneiden.py <name> <teil> <x> <y>` – schneidet einen frei stehenden Bildteil (Fläche unter Punkt x/y der `.webp`) als eigene Ebene aus, z. B. den flatternden Schmetterling `ueber-uns-2-falter.webp`; gibt die %-Position fürs CSS aus
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/fonts/` – Fraunces und Nunito als lokale `.woff2` (kein Google Fonts)
@@ -46,7 +48,7 @@ Existiert das Bild, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausg
 ## Browser-Cache
 
 CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
-- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen** HTML-Dateien hochzählen: `index.html`, `impressum.html`, `datenschutz.html`.
+- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen** HTML-Dateien hochzählen: `index.html`, `impressum.html`, `datenschutz.html`, `404.html`.
 - Geänderte Bilder unter **neuem Dateinamen** speichern statt die alte Datei zu überschreiben.
 
 ## Lokal ansehen & veröffentlichen
