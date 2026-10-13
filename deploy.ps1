@@ -10,8 +10,12 @@
 # -Dev lädt dieselben Dateien nach DEV_DIR statt FTP_DIR. Statt .htaccess und robots.txt der
 # Live-Seite kommen dort hin: tools/dev.htaccess (Passwortschutz, noindex, kein Cache),
 # eine robots.txt, die alles sperrt, und eine .htpasswd aus DEV_USER/DEV_PASS.
+#
+# Absicherung über Git: Nach jedem Upload zeigt die Markierung (Tag) "dev" bzw. "live" auf den
+# hochgeladenen Commit. Live geht nur ein committeter Stand; weicht er von dem ab, was zuletzt auf
+# der Testseite war, fragt das Skript nach (-Force überspringt die Frage).
 
-param([switch]$DryRun, [switch]$Dev)
+param([switch]$DryRun, [switch]$Dev, [switch]$Force)
 
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
@@ -42,6 +46,31 @@ $files = @($files | Where-Object {
   -not ($exclude | Where-Object { $rel.StartsWith($_) })
 })
 $rels = @($files | ForEach-Object { $_.FullName.Substring($root.Length + 1).Replace("\", "/") })
+
+# Git-Stand prüfen – nur die Dateien, die auch hochgeladen werden
+$seite = @($include) + @($exclude | ForEach-Object { ":!" + $_.Replace("\", "/") })
+$offen = @(& git -C $root status --porcelain -- $seite)
+$devTag = & git -C $root rev-parse --short --verify --quiet "dev^{commit}"
+if ($Dev) {
+  if ($offen) { Write-Host "Hinweis: Nicht committete Änderungen werden mit hochgeladen; die Markierung 'dev' bleibt dabei unverändert." }
+}
+else {
+  if ($offen) {
+    Write-Host "Nicht committete Änderungen:"
+    $offen | ForEach-Object { Write-Host "  $_" }
+    if (-not $DryRun) { throw "Live geht nur ein committeter Stand – erst committen und mit -Dev testen." }
+  }
+  # Unterscheiden sich die Seiten-Dateien vom zuletzt auf der Testseite geprüften Stand?
+  $getestet = $false
+  if ($devTag) { & git -C $root diff --quiet $devTag HEAD -- $seite; $getestet = ($LASTEXITCODE -eq 0) }
+  if (-not $getestet) {
+    $stand = if ($devTag) { "Testseite zeigt Commit $devTag" } else { "noch nie mit -Dev hochgeladen" }
+    Write-Host "WARNUNG: Dieser Stand war so noch nicht auf der Testseite ($stand)."
+    if (-not $DryRun -and -not $Force) {
+      if ((Read-Host "Trotzdem live hochladen? (j/n)") -notmatch '^[jJ]') { Write-Host "Abgebrochen."; return }
+    }
+  }
+}
 
 $tmpDir = $null
 if ($Dev) {
@@ -137,4 +166,11 @@ else {
   finally { Remove-Item $batchFile -Force }
 }
 if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir }
+
+# Markierung auf den hochgeladenen Commit setzen (nicht bei nicht committeten Änderungen)
+$marke = if ($Dev) { "dev" } else { "live" }
+if (-not $offen) {
+  & git -C $root tag -f $marke HEAD | Out-Null
+  Write-Host "Markierung '$marke' -> $(& git -C $root rev-parse --short HEAD)"
+}
 Write-Host "Fertig."

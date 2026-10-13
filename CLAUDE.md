@@ -51,7 +51,8 @@ CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
 
 - Vorschau: `python -m http.server 8080` im Projektordner → http://localhost:8080
 - Testseite: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Dev` → https://dev.kita-neufang.de/ (Ordner `DEV_DIR`, Passwort `DEV_USER`/`DEV_PASS` in `deploy.env`). Statt der Live-`.htaccess`/`robots.txt` werden `tools/dev.htaccess` (Passwortschutz, noindex, kein Cache), eine sperrende `robots.txt` und eine erzeugte `.htpasswd` hochgeladen. Größere Änderungen erst hier prüfen, dann live.
-- Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen)
+- Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen). Bricht ab bei nicht committeten Änderungen an Seiten-Dateien; fragt nach, wenn sich die Seiten-Dateien von dem unterscheiden, was zuletzt per `-Dev` hochgeladen wurde (`-Force` überspringt die Frage).
+- Nach jedem Upload zeigen die lokalen Git-Tags `dev` bzw. `live` auf den hochgeladenen Commit (`git log --oneline --decorate`). Kein lokales Dev-Verzeichnis: der Projektordner *ist* der Entwicklungsstand.
 
 ## Regeln
 

@@ -112,6 +112,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - Vor dem Veröffentlichen gibt es eine Testseite unter **https://dev.kita-neufang.de/** (Server-Ordner `/kita-static-dev`, neben `/kita-static`). Hochladen mit `deploy.ps1 -Dev`.
 - Subdomain statt Unterordner `/test/`: Die Live-`.htaccess` (Weiterleitungen, 404-Seite, Caching) wirkt dort nicht hinein, Test und Live bleiben sauber getrennt.
 - Die Testseite ist **passwortgeschützt** (nur über HTTPS abgefragt), sendet `noindex` und wird nicht zwischengespeichert. `robots.txt` allein würde nur Suchmaschinen fernhalten, nicht neugierige Besucher.
+- **Kein eigenes lokales Dev-Verzeichnis** (zwei Kopien laufen auseinander). Stattdessen sichert `deploy.ps1` den Ablauf über Git ab: Live nur mit committetem Stand, Warnung + Rückfrage, wenn die Seiten-Dateien nicht dem zuletzt auf der Testseite hochgeladenen Stand entsprechen; Tags `dev`/`live` zeigen, was wo liegt.
 
 ---
 
