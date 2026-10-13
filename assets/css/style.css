@@ -240,6 +240,7 @@ p { margin: 0 0 1em; }
 /* Sanfte Welle statt gerader Kante, wo die Hintergrundfarbe wechselt:
    jeder Abschnitt ragt mit einer Welle in seiner eigenen Farbe in den vorherigen hinein */
 .team, #zeiten, .fees, #kontakt, .site-footer { position: relative; }
+#zeiten, #kontakt { background: var(--cream); } /* sonst durchsichtig – die Welle braucht eine eigene Farbe */
 .team::before, #zeiten::before, .fees::before, #kontakt::before, .site-footer::before {
   content: "";
   position: absolute;
