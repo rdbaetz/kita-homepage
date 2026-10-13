@@ -50,7 +50,7 @@ CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
 ## Lokal ansehen & veröffentlichen
 
 - Vorschau: `python -m http.server 8080` im Projektordner → http://localhost:8080
-- Testseite: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Test` → https://test.kita-neufang.de/ (Ordner `TEST_DIR`, Passwort `TEST_USER`/`TEST_PASS` in `deploy.env`). Statt der Live-`.htaccess`/`robots.txt` werden `tools/test.htaccess` (Passwortschutz, noindex, kein Cache), eine sperrende `robots.txt` und eine erzeugte `.htpasswd` hochgeladen. Größere Änderungen erst hier prüfen, dann live.
+- Testseite: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Dev` → https://dev.kita-neufang.de/ (Ordner `DEV_DIR`, Passwort `DEV_USER`/`DEV_PASS` in `deploy.env`). Statt der Live-`.htaccess`/`robots.txt` werden `tools/dev.htaccess` (Passwortschutz, noindex, kein Cache), eine sperrende `robots.txt` und eine erzeugte `.htpasswd` hochgeladen. Größere Änderungen erst hier prüfen, dann live.
 - Upload: `powershell -ExecutionPolicy Bypass -File .\deploy.ps1` (vorher `-DryRun` zum Prüfen)
 
 ## Regeln

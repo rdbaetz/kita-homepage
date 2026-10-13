@@ -5,13 +5,13 @@
 #
 # Aufruf:  powershell -ExecutionPolicy Bypass -File .\deploy.ps1
 #          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -DryRun
-#          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Test     (Testseite test.kita-neufang.de)
+#          powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -Dev     (Testseite dev.kita-neufang.de)
 #
-# -Test lädt dieselben Dateien nach TEST_DIR statt FTP_DIR. Statt .htaccess und robots.txt der
-# Live-Seite kommen dort hin: tools/test.htaccess (Passwortschutz, noindex, kein Cache),
-# eine robots.txt, die alles sperrt, und eine .htpasswd aus TEST_USER/TEST_PASS.
+# -Dev lädt dieselben Dateien nach DEV_DIR statt FTP_DIR. Statt .htaccess und robots.txt der
+# Live-Seite kommen dort hin: tools/dev.htaccess (Passwortschutz, noindex, kein Cache),
+# eine robots.txt, die alles sperrt, und eine .htpasswd aus DEV_USER/DEV_PASS.
 
-param([switch]$DryRun, [switch]$Test)
+param([switch]$DryRun, [switch]$Dev)
 
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
@@ -44,9 +44,9 @@ $files = @($files | Where-Object {
 $rels = @($files | ForEach-Object { $_.FullName.Substring($root.Length + 1).Replace("\", "/") })
 
 $tmpDir = $null
-if ($Test) {
-  foreach ($k in "TEST_DIR", "TEST_USER", "TEST_PASS", "TEST_HTPASSWD") { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" } }
-  $remoteDir = $cfg["TEST_DIR"].TrimEnd("/")
+if ($Dev) {
+  foreach ($k in "DEV_DIR", "DEV_USER", "DEV_PASS", "DEV_HTPASSWD") { if (-not $cfg[$k]) { throw "$k fehlt in deploy.env" } }
+  $remoteDir = $cfg["DEV_DIR"].TrimEnd("/")
 
   # Live-.htaccess und -robots.txt gehören nicht auf die Testseite
   $behalten = @(for ($i = 0; $i -lt $rels.Count; $i++) { if ($rels[$i] -notin ".htaccess", "robots.txt") { $i } })
@@ -60,17 +60,17 @@ if ($Test) {
       Where-Object { Test-Path $_ } | Select-Object -First 1
   }
   if (-not $openssl) { throw "openssl.exe nicht gefunden (wird für die .htpasswd gebraucht; kommt mit Git für Windows)" }
-  $hash = ($cfg.TEST_PASS | & $openssl passwd -apr1 -stdin)
+  $hash = ($cfg.DEV_PASS | & $openssl passwd -apr1 -stdin)
   if ($LASTEXITCODE -ne 0 -or -not $hash) { throw "Passwort-Hash konnte nicht erzeugt werden" }
 
   # Erzeugte Dateien ohne BOM schreiben (Apache verträgt kein BOM in .htaccess)
-  $tmpDir = Join-Path ([IO.Path]::GetTempPath()) ("kita-test-" + [guid]::NewGuid())
+  $tmpDir = Join-Path ([IO.Path]::GetTempPath()) ("kita-dev-" + [guid]::NewGuid())
   New-Item -ItemType Directory $tmpDir | Out-Null
   $utf8 = New-Object System.Text.UTF8Encoding($false)
   $erzeugt = [ordered]@{
-    ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\test.htaccess")).Replace("{{HTPASSWD}}", $cfg.TEST_HTPASSWD)
+    ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\dev.htaccess")).Replace("{{HTPASSWD}}", $cfg.DEV_HTPASSWD)
     "robots.txt" = "User-agent: *`nDisallow: /`n"
-    ".htpasswd"  = "$($cfg.TEST_USER):$hash`n"
+    ".htpasswd"  = "$($cfg.DEV_USER):$hash`n"
   }
   foreach ($name in $erzeugt.Keys) {
     $pfad = Join-Path $tmpDir $name

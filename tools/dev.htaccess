@@ -1,5 +1,5 @@
-# Testseite test.kita-neufang.de – wird von "deploy.ps1 -Test" als .htaccess hochgeladen.
-# {{HTPASSWD}} ersetzt deploy.ps1 durch TEST_HTPASSWD aus deploy.env.
+# Testseite dev.kita-neufang.de – wird von "deploy.ps1 -Dev" als .htaccess hochgeladen.
+# {{HTPASSWD}} ersetzt deploy.ps1 durch DEV_HTPASSWD aus deploy.env.
 
 Options -MultiViews
 
