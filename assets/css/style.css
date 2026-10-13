@@ -289,7 +289,8 @@ p { margin: 0 0 1em; }
   gap: clamp(16px, 4vw, 48px);
 }
 .hero-text { padding-bottom: clamp(16px, 3vw, 40px); }
-.hero-text p { font-size: 1.15rem; color: var(--ink-soft); max-width: 30em; }
+.hero-text p { font-size: clamp(1.1rem, 1.35vw, 1.25rem); line-height: 1.65; color: var(--ink-soft); max-width: 30em; text-wrap: pretty; }
+.hero-text p strong { color: var(--ink); font-weight: 800; }
 .hero-logo-wrap {
   position: relative;
   width: fit-content;
@@ -309,7 +310,7 @@ p { margin: 0 0 1em; }
 .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
 .hero-text { padding-top: 0; }
 /* Slogan als "Treppe": jede Zeile etwas größer und weiter eingerückt – die Schrift wächst mit */
-.hero h1.slogan { font-size: 1rem; font-weight: 500; line-height: 1; }
+.hero h1.slogan { font-size: 1rem; font-weight: 500; line-height: 1.05; margin-bottom: clamp(1.2rem, 2.2vw, 1.9rem); }
 .slogan > span { display: block; }
 .slogan-over {
   font: 800 0.95rem/1 var(--font-body);
@@ -318,8 +319,8 @@ p { margin: 0 0 1em; }
   color: var(--green-600);
   margin-bottom: 0.7em;
 }
-.slogan .z1 { font-size: clamp(1.5rem, 2.6vw, 2rem); color: var(--ink-soft); }
-.slogan .z2 { font-size: clamp(2rem, 3.6vw, 2.8rem); padding-left: 0.9em; font-style: italic; color: var(--green-600); }
+.slogan .z1 { font-size: clamp(1.75rem, 3vw, 2.4rem); color: var(--ink); }
+.slogan .z2 { font-size: clamp(2.1rem, 3.8vw, 3rem); padding-left: 0.9em; font-style: italic; color: var(--green-600); }
 .slogan .z3 { font-size: clamp(2.5rem, 4.8vw, 3.8rem); padding-left: 1.6em; color: var(--green-700); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
 .hero-art { position: relative; }
