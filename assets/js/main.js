@@ -42,20 +42,38 @@ const onScroll = () => header && header.classList.toggle("scrolled", window.scro
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// Aktiven Menüpunkt markieren
+// Aktiven Menüpunkt markieren: der letzte Abschnitt, dessen Anfang schon oben angekommen ist
+// (Grenze höchstens 300 px unter dem Fensterrand – sonst würde auf hohen Bildschirmen ein kurzer
+// Abschnitt wie „Unser Haus“ gleich vom nächsten abgelöst). Ganz unten: der letzte Abschnitt.
 const links = [...document.querySelectorAll('.main-nav a[href^="#"]')];
-const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
-if ("IntersectionObserver" in window && sections.length) {
-  const spy = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
-      });
-    },
-    { rootMargin: "-45% 0px -50% 0px" }
-  );
-  sections.forEach((s) => spy.observe(s));
+const ziele = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+// nur äußere Abschnitte (#voranmeldung liegt in #kontakt), in Seitenreihenfolge
+const sections = ziele.filter((s) => !ziele.some((t) => t !== s && t.contains(s)));
+let aktiv = null;
+function markiereMenue() {
+  const grenze = Math.min(window.innerHeight * 0.4, 300);
+  let neu = null;
+  sections.forEach((s) => {
+    if (s.getBoundingClientRect().top <= grenze) neu = s;
+  });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) neu = sections[sections.length - 1];
+  if (neu === aktiv) return;
+  aktiv = neu;
+  links.forEach((a) => a.classList.toggle("active", !!neu && a.getAttribute("href") === "#" + neu.id));
+}
+if (sections.length) {
+  let geplant = false;
+  const planen = () => {
+    if (geplant) return;
+    geplant = true;
+    requestAnimationFrame(() => {
+      geplant = false;
+      markiereMenue();
+    });
+  };
+  window.addEventListener("scroll", planen, { passive: true });
+  window.addEventListener("resize", planen);
+  markiereMenue();
 }
 
 // Angebote: Detail-Dialoge
