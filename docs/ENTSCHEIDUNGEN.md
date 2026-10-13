@@ -134,7 +134,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - Umsetzung im Entwurf: Jede Gruppen-Karte hat unten eine Foto-Vorschau (3 Bilder, Anzahl) mit Knopf „Gruppenräume ansehen“; er öffnet dieselbe Vollbild-Galerie wie vorher. Der eigene Abschnitt „Rundgang“ (mit Eingang, Turnraum, Garten) und sein Menüpunkt entfallen.
 - Bis die echten Fotos da sind: Platzhalter in `entwurf-rundgang/bilder/<gruppe>/`.
 - Nachtrag (gleicher Tag): Auf dem Stick sind auch Fotos vom Haus von außen, vom Garten, vom Turnraum und weiteren Bereichen; die Kita wünscht sie „an passenden Stellen“. Vorschlag im Entwurf:
-  - neuer Abschnitt **„Unser Haus“** (nach den Gruppen, mit Menüpunkt) mit Kacheln *Haus von außen*, *Garten*, *Turnraum*, *Weitere Räume* – Klick öffnet die Galerie;
+  - neuer Abschnitt **„Unser Haus“** (mit Menüpunkt; seit Nachtrag **vor** den Gruppen – Rundgang von außen nach innen, „Drei Gruppen, ein Haus“ knüpft daran an; ohne eigenen Hintergrund, damit er nahtlos an die Leitspruch-Welle anschließt) mit Kacheln *Haus von außen*, *Garten*, *Turnraum*, *Weitere Räume* – Klick öffnet die Galerie;
   - im Angebot **„Draußen spielen“** ein Knopf „Fotos von unserem Garten“ (öffnet dieselbe Garten-Galerie).
   - Kacheln und Bildunterschriften werden angepasst, sobald klar ist, welche Fotos es gibt (Bildunterschriften nur nach Angabe der Kita). Denkbar außerdem: Außenansicht beim Kontakt („So erreichen Sie uns“).
 

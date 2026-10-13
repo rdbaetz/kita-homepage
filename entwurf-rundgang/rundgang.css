@@ -64,7 +64,7 @@
 }
 
 /* ---------- Unser Haus – Kacheln je Bereich ---------- */
-.tour { background: var(--green-50); }
+/* kein eigener Hintergrund: schließt nahtlos an die Welle des Leitspruchs an und geht in die Gruppen über */
 .tour-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
