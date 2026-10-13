@@ -80,7 +80,15 @@ if (sections.length) {
 document.querySelectorAll("[data-dialog]").forEach((btn) => {
   const dlg = document.getElementById(btn.dataset.dialog);
   if (!dlg || typeof dlg.showModal !== "function") return;
-  btn.addEventListener("click", () => dlg.showModal());
+  btn.addEventListener("click", () => {
+    // Bild der Kachel (oder deren Ersatzgrafik) in den farbigen Kreis im Dialog-Kopf übernehmen
+    const dot = dlg.querySelector(".info-head .dot");
+    if (dot && !dot.firstElementChild) {
+      const bild = btn.querySelector(".circle img.ill") || btn.querySelector(".circle .fallback");
+      if (bild) dot.append(bild.cloneNode(true));
+    }
+    dlg.showModal();
+  });
 });
 document.querySelectorAll("dialog.info").forEach((dlg) => {
   dlg.querySelector(".close")?.addEventListener("click", () => dlg.close());

@@ -492,6 +492,7 @@ dialog.info .info-head .dot {
   flex: none;
 }
 dialog.info .info-head .dot svg { width: 58%; }
+dialog.info .info-head .dot img { width: 80%; height: auto; }
 dialog.info h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.8rem; margin: 0; }
 dialog.info .info-body { padding: 18px 28px 28px; color: var(--ink-soft); }
 dialog.info .close {
