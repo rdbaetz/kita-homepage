@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css?v=2026-10-13b">
-  <link rel="stylesheet" href="rundgang.css?v=3">
+  <link rel="stylesheet" href="rundgang.css?v=4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +34,7 @@
   </script>
 </head>
 <body>
-<div class="entwurf-banner">ENTWURF zur Abstimmung – Fotos der Gruppenräume (Platzhalter) · <a href="#gruppen">ansehen</a> · <a href="../">zur aktuellen Seite</a></div>
+<div class="entwurf-banner">ENTWURF zur Abstimmung – Fotos (Platzhalter): <a href="#gruppen">Gruppenräume</a> · <a href="#haus">Unser Haus</a> · <a href="../">zur aktuellen Seite</a></div>
 
 <!-- =====================================================
      HEADER / NAVIGATION
@@ -52,6 +52,7 @@
         <li><a href="#ueber-uns">Über uns</a></li>
         <li><a href="#angebote">Angebote</a></li>
         <li><a href="#gruppen">Gruppen</a></li>
+        <li><a href="#haus">Unser Haus</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#zeiten">Zeiten</a></li>
         <li><a href="#beitraege">Beiträge</a></li>
@@ -325,6 +326,7 @@
     <div class="info-body">
       <p>Bei uns haben Erlebnisse in der Natur einen besonders hohen Stellenwert! Regelmäßig gehen wir mit den Kindern nach draußen, sei es für Spaziergänge, zum Spielen im Garten, für Experimente in der Natur oder für kleine Abenteuer im Sand und in der Matschzone.</p>
       <p>Im großen Garten können die Kinder toben, klettern, rennen und ihre motorischen Fähigkeiten stärken – am Klettergerüst, auf dem Spielplatz oder bei freien Bewegungsangeboten in der Natur.</p>
+      <button class="btn btn-light info-fotos" data-raum="garten" data-titel="Garten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>Fotos von unserem Garten</button>
     </div>
   </dialog>
 </section>
@@ -445,6 +447,65 @@
       <div class="galerie-leiste"></div>
     </div>
   </dialog>
+</section>
+
+<!-- =====================================================
+     UNSER HAUS  (ENTWURF, Platzhalter-Fotos)
+     Kachel: <button class="raum" data-raum="KEY" data-titel="…"> (Titelbild = erstes Foto)
+     Fotos:  <template id="galerie-KEY"> mit <figure><img><figcaption>; Galerie-Dialog steht im Abschnitt GRUPPEN
+     Bilder: bilder/KEY/01.jpg, 02.jpg … (Querformat 4:3, ca. 1600 px breit)
+     ===================================================== -->
+<section class="tour section" id="haus">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Unser Haus</span>
+      <h2>Schauen Sie sich bei uns um</h2>
+      <p class="lead">Vom Garten bis zum Turnraum: Tippen Sie auf einen Bereich, um die Fotos anzusehen.</p>
+    </div>
+    <div class="tour-grid">
+      <button class="raum reveal" data-raum="aussen" data-titel="Haus von außen">
+        <div class="raum-bild"><img src="bilder/aussen/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>3 Fotos</span></div>
+        <div class="raum-text"><h3>Haus von außen</h3><p>So sieht unser Kindergarten aus</p></div>
+      </button>
+      <button class="raum reveal" data-raum="garten" data-titel="Garten">
+        <div class="raum-bild"><img src="bilder/garten/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>6 Fotos</span></div>
+        <div class="raum-text"><h3>Garten</h3><p>Toben, klettern und entdecken</p></div>
+      </button>
+      <button class="raum reveal" data-raum="turnraum" data-titel="Turnraum">
+        <div class="raum-bild"><img src="bilder/turnraum/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>4 Fotos</span></div>
+        <div class="raum-text"><h3>Turnraum</h3><p>Platz für Bewegung</p></div>
+      </button>
+      <button class="raum reveal" data-raum="weitere" data-titel="Weitere Räume">
+        <div class="raum-bild"><img src="bilder/weitere/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>3 Fotos</span></div>
+        <div class="raum-text"><h3>Weitere Räume</h3><p>Noch mehr zu entdecken</p></div>
+      </button>
+    </div>
+  </div>
+
+  <template id="galerie-aussen">
+    <figure><img src="bilder/aussen/01.jpg" alt="Haus von außen – Platzhalter 1"><figcaption>Haus von außen – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/aussen/02.jpg" alt="Haus von außen – Platzhalter 2"><figcaption>Haus von außen – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/aussen/03.jpg" alt="Haus von außen – Platzhalter 3"><figcaption>Haus von außen – Bildunterschrift folgt</figcaption></figure>
+  </template>
+  <template id="galerie-garten">
+    <figure><img src="bilder/garten/01.jpg" alt="Garten – Platzhalter 1"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/garten/02.jpg" alt="Garten – Platzhalter 2"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/garten/03.jpg" alt="Garten – Platzhalter 3"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/garten/04.jpg" alt="Garten – Platzhalter 4"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/garten/05.jpg" alt="Garten – Platzhalter 5"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/garten/06.jpg" alt="Garten – Platzhalter 6"><figcaption>Garten – Bildunterschrift folgt</figcaption></figure>
+  </template>
+  <template id="galerie-turnraum">
+    <figure><img src="bilder/turnraum/01.jpg" alt="Turnraum – Platzhalter 1"><figcaption>Turnraum – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/turnraum/02.jpg" alt="Turnraum – Platzhalter 2"><figcaption>Turnraum – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/turnraum/03.jpg" alt="Turnraum – Platzhalter 3"><figcaption>Turnraum – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/turnraum/04.jpg" alt="Turnraum – Platzhalter 4"><figcaption>Turnraum – Bildunterschrift folgt</figcaption></figure>
+  </template>
+  <template id="galerie-weitere">
+    <figure><img src="bilder/weitere/01.jpg" alt="Weitere Räume – Platzhalter 1"><figcaption>Weitere Räume – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/weitere/02.jpg" alt="Weitere Räume – Platzhalter 2"><figcaption>Weitere Räume – Bildunterschrift folgt</figcaption></figure>
+    <figure><img src="bilder/weitere/03.jpg" alt="Weitere Räume – Platzhalter 3"><figcaption>Weitere Räume – Bildunterschrift folgt</figcaption></figure>
+  </template>
 </section>
 
 <!-- =====================================================
@@ -684,6 +745,6 @@
 </footer>
 
 <script src="../assets/js/main.js?v=2026-10-12t" defer></script>
-<script src="rundgang.js?v=3" defer></script>
+<script src="rundgang.js?v=4" defer></script>
 </body>
 </html>

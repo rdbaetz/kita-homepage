@@ -1,5 +1,5 @@
 /* =========================================================
-   Gruppenräume – Foto-Knopf in den Gruppen-Karten + Vollbild-Galerie
+   Fotos: Gruppenräume (Knopf in den Gruppen-Karten), Unser Haus (Kacheln) + Vollbild-Galerie
    ========================================================= */
 
 /* Karten gleich hoch, Foto-Knopf immer unten */
@@ -62,6 +62,75 @@
 @media (prefers-reduced-motion: reduce) {
   .gruppe-fotos { transition: none; }
 }
+
+/* ---------- Unser Haus – Kacheln je Bereich ---------- */
+.tour { background: var(--green-50); }
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.5vw, 28px);
+}
+.raum {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.raum.in { transition: opacity 0.7s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+.raum.in:hover,
+.raum.in:focus-visible { transform: translateY(-6px); box-shadow: 0 22px 44px -18px rgba(46, 74, 52, 0.4); }
+.raum-bild {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.raum-bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.raum:hover .raum-bild img { transform: scale(1.06); }
+.raum-anzahl {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--green-700);
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+.raum-anzahl svg { width: 15px; height: 15px; }
+.raum-text { padding: 16px 20px 20px; }
+.raum-text h3 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 500; font-size: 1.45rem; }
+.raum-text p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+@media (max-width: 1000px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .tour-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .raum-bild img { transition: none; }
+  .raum:hover .raum-bild img { transform: none; }
+}
+
+/* Foto-Knopf in einem Angebots-Dialog (z. B. „Draußen spielen“ → Garten) */
+.info-fotos { margin-top: 6px; background: var(--green-50); gap: 8px; }
+.info-fotos:hover { background: var(--green-100); }
+.info-fotos svg { width: 18px; height: 18px; }
 
 /* ---------- Galerie (Vollbild) ---------- */
 dialog.galerie {

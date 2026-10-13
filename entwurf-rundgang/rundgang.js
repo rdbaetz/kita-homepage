@@ -1,5 +1,8 @@
-// Gruppenräume: Foto-Knopf in der Gruppen-Karte → Vollbild-Galerie mit Blättern, Tastatur und Wischen.
-// Bilder je Gruppe stehen im HTML in <template id="galerie-GRUPPE"> als <figure>-Liste.
+// Fotos: Knopf mit data-raum (Gruppen-Karte, Kachel „Unser Haus“, Angebots-Dialog) → Vollbild-Galerie
+// mit Blättern, Tastatur und Wischen. Bilder je Bereich stehen im HTML in <template id="galerie-KEY"> als <figure>-Liste.
+
+// Kacheln nacheinander einblenden (wie die anderen Raster)
+document.querySelectorAll(".tour-grid > *").forEach((el, i) => el.style.setProperty("--d", `${Math.min(i, 8) * 70}ms`));
 
 const dlg = document.getElementById("galerie");
 if (dlg && typeof dlg.showModal === "function") {
@@ -51,7 +54,10 @@ if (dlg && typeof dlg.showModal === "function") {
   }
 
   document.querySelectorAll("[data-raum]").forEach((k) =>
-    k.addEventListener("click", () => oeffne(k.dataset.raum, k.dataset.titel))
+    k.addEventListener("click", () => {
+      k.closest("dialog.info")?.close(); // aus einem Angebots-Dialog heraus: den zuerst schließen
+      oeffne(k.dataset.raum, k.dataset.titel);
+    })
   );
   dlg.querySelector(".schliessen").addEventListener("click", () => dlg.close());
   dlg.querySelector(".zurueck").addEventListener("click", () => zeige(index - 1));

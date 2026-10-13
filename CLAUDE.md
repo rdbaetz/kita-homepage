@@ -21,7 +21,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/fonts/` – Fraunces und Nunito als lokale `.woff2` (kein Google Fonts)
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
-- `entwurf-rundgang/` – Entwurf „Fotos der Gruppenräume“ (ehemals „Rundgang“): Foto-Knopf in den Gruppen-Karten öffnet eine Vollbild-Galerie (eigene `index.html`, `rundgang.css/.js`, Platzhalter-Fotos in `bilder/<gruppe>/`); wird nur per `deploy.ps1 -Dev` hochgeladen → https://dev.kita-neufang.de/entwurf-rundgang/ (zusätzlich `noindex`). Nach Abstimmung in die Startseite übernehmen und Ordner löschen
+- `entwurf-rundgang/` – Entwurf „Fotos“ (ehemals „Rundgang“): Foto-Knopf in den Gruppen-Karten, Abschnitt „Unser Haus“ (Kacheln außen/Garten/Turnraum/weitere) und Garten-Knopf im Dialog „Draußen spielen“ öffnen eine Vollbild-Galerie (eigene `index.html`, `rundgang.css/.js`, Platzhalter-Fotos in `bilder/<bereich>/`); wird nur per `deploy.ps1 -Dev` hochgeladen → https://dev.kita-neufang.de/entwurf-rundgang/ (zusätzlich `noindex`). Nach Abstimmung in die Startseite übernehmen und Ordner löschen
 - `docs/ENTSCHEIDUNGEN.md` – Entscheidungen und offene Punkte; `docs/rundgang-fotos-anleitung.png` – Foto-Anleitung für die Kita-Leitung
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
 - `robots.txt` – sperrt den Entwurfsordner für Suchmaschinen
