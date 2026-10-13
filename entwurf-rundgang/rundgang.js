@@ -1,8 +1,5 @@
-// Rundgang: Kachel anklicken → Vollbild-Galerie mit Blättern, Tastatur und Wischen.
-// Bilder je Raum stehen im HTML in <template id="galerie-RAUM"> als <figure>-Liste.
-
-// Kacheln nacheinander einblenden (wie die anderen Raster)
-document.querySelectorAll(".tour-grid > *").forEach((el, i) => el.style.setProperty("--d", `${Math.min(i, 8) * 70}ms`));
+// Gruppenräume: Foto-Knopf in der Gruppen-Karte → Vollbild-Galerie mit Blättern, Tastatur und Wischen.
+// Bilder je Gruppe stehen im HTML in <template id="galerie-GRUPPE"> als <figure>-Liste.
 
 const dlg = document.getElementById("galerie");
 if (dlg && typeof dlg.showModal === "function") {
@@ -54,7 +51,7 @@ if (dlg && typeof dlg.showModal === "function") {
   }
 
   document.querySelectorAll("[data-raum]").forEach((k) =>
-    k.addEventListener("click", () => oeffne(k.dataset.raum, k.querySelector("h3").textContent))
+    k.addEventListener("click", () => oeffne(k.dataset.raum, k.dataset.titel))
   );
   dlg.querySelector(".schliessen").addEventListener("click", () => dlg.close());
   dlg.querySelector(".zurueck").addEventListener("click", () => zeige(index - 1));

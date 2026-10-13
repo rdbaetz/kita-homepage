@@ -128,6 +128,14 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 ---
 
+## 2026-10-13 – Rundgang wird zu „Fotos der Gruppenräume“
+
+- Feedback der Kita-Leitung: Die Fotos (kommen per USB-Stick, bereits nach Gruppen sortiert) sollen im Bereich **„Drei Gruppen, ein Haus“** erscheinen – Klick auf eine Gruppe zeigt die Bilder ihrer Gruppenräume.
+- Umsetzung im Entwurf: Jede Gruppen-Karte hat unten eine Foto-Vorschau (3 Bilder, Anzahl) mit Knopf „Gruppenräume ansehen“; er öffnet dieselbe Vollbild-Galerie wie vorher. Der eigene Abschnitt „Rundgang“ (mit Eingang, Turnraum, Garten) und sein Menüpunkt entfallen.
+- Bis die echten Fotos da sind: Platzhalter in `entwurf-rundgang/bilder/<gruppe>/`.
+
+---
+
 ## Offene Punkte
 
 - [x] **Schließtage 2026/2027** eingetragen (2026-10-13).
@@ -141,7 +149,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] Mitarbeiterzahl aus Team übernommen (automatisch).
 - [x] Kinderzahl entfernt (Wunsch der Kita-Leitung, 2026-10-13).
 - [x] Gruppenbesetzung an Team-Zuordnung angepasst.
-- [ ] **Rundgang:** Entwurf mit Kita-Leitung abstimmen; Bereiche festlegen; Fotos liefern (Querformat, möglichst **ohne erkennbare Kinder** bzw. nur mit schriftlicher Einwilligung der Eltern); danach in die Startseite übernehmen und Entwurfsordner löschen.
+- [ ] **Fotos der Gruppenräume (ehem. Rundgang):** Fotos vom Stick einbauen; Entwurf mit Kita-Leitung abstimmen; Fotos (Querformat, möglichst **ohne erkennbare Kinder** bzw. nur mit schriftlicher Einwilligung der Eltern); danach in die Startseite übernehmen und Entwurfsordner löschen.
 - [ ] Klären, ob der ALL-INKL-Tarif SSH/SFTP enthält (sonst FTPS nutzen).
 - [x] Erster Upload nach `/kita-static` (2026-10-12).
 - [x] **Live-Schaltung** am 2026-10-12: Domain-Ziel auf `/kita-static/`, Seite und Weiterleitungen getestet (www → ohne www, HTTP → HTTPS, alte WordPress-URLs → neue Abschnitte).
