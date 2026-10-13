@@ -16,6 +16,7 @@
 # Live-Seite kommen dort hin: tools/dev.htaccess (Passwortschutz, noindex, kein Cache),
 # eine robots.txt, die alles sperrt, und eine .htpasswd aus DEV_USER/DEV_PASS. Dazu kommt
 # aenderungen.html mit den letzten Commits (tools/aenderungen.ps1), Noch-nicht-Live hervorgehoben.
+# Nach jedem Live-Upload wird aenderungen.html auf der Testseite neu erzeugt und hochgeladen.
 #
 # Absicherung über Git: Nach jedem Upload zeigt die Markierung (Tag) "dev" bzw. "live" auf den
 # hochgeladenen Commit. Live geht nur ein committeter Stand; weicht er von dem ab, was zuletzt auf
@@ -241,5 +242,31 @@ if ($tmpDir) { Remove-Item -Recurse -Force $tmpDir }
 if (-not $offen) {
   & git -C $root tag -f $marke HEAD | Out-Null
   Write-Host "Markierung '$marke' -> $(& git -C $root rev-parse --short HEAD)"
+}
+
+# Nach dem Live-Upload die Änderungsseite der Testseite auffrischen – sonst stünde dort weiter
+# "nicht live" bei allem, was gerade live gegangen ist. Ein Fehler hier bricht nichts ab.
+if (-not $Dev -and $cfg["DEV_DIR"]) {
+  $devDir = $cfg["DEV_DIR"].TrimEnd("/")
+  $aend = Join-Path ([IO.Path]::GetTempPath()) ("kita-aenderungen-" + [guid]::NewGuid() + ".html")
+  & (Join-Path $root "tools\aenderungen.ps1") -Ziel $aend
+  try {
+    if ($proto -eq "ftps") {
+      & curl.exe --silent --show-error --ssl-reqd --tls-max 1.2 `
+        --user "$($cfg.FTP_USER):$($cfg.FTP_PASS)" -T $aend "ftp://$($cfg.FTP_HOST)$devDir/aenderungen.html"
+    }
+    else {
+      $batchFile = New-TemporaryFile
+      Set-Content -Path $batchFile -Value "put `"$($aend.Replace('\', '/'))`" `"$devDir/aenderungen.html`"" -Encoding ascii
+      $sshArgs = @("-b", $batchFile.FullName, "-o", "StrictHostKeyChecking=accept-new")
+      if ($cfg["SFTP_PORT"]) { $sshArgs += @("-P", $cfg["SFTP_PORT"]) }
+      if ($cfg["SFTP_KEY"]) { $sshArgs += @("-i", $cfg["SFTP_KEY"]) }
+      & sftp.exe @sshArgs "$($cfg.FTP_USER)@$($cfg.FTP_HOST)"
+      Remove-Item $batchFile -Force
+    }
+    if ($LASTEXITCODE -eq 0) { Write-Host "Änderungsseite der Testseite aktualisiert." }
+    else { Write-Host "Hinweis: Änderungsseite der Testseite nicht aktualisiert (Fehler $LASTEXITCODE) – beim nächsten -Dev wird sie neu erzeugt." }
+  }
+  finally { Remove-Item -Force $aend -ErrorAction SilentlyContinue }
 }
 Write-Host "Fertig."
