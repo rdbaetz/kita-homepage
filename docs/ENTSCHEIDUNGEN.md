@@ -89,7 +89,7 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 
 - Wunsch der Kita-Leitung: Bereich „Rundgang“ mit Unterpunkten (Gruppen, Garten, Turnraum …), die man anklicken kann, um Fotos zu sehen.
 - Umsetzungsvorschlag: eigener Abschnitt auf der Startseite (zwischen Gruppen und Team, mit Menüpunkt) mit **Kacheln je Bereich**; Klick öffnet eine **Vollbild-Galerie** (Blättern, Pfeiltasten, Wischen, Vorschauleiste, Bildunterschriften).
-- Entwurf mit Platzhalter-Fotos unter **https://kita-neufang.de/entwurf-rundgang/** (noindex, in robots.txt gesperrt). Dateien: `entwurf-rundgang/`.
+- Entwurf mit Platzhalter-Fotos unter **https://dev.kita-neufang.de/entwurf-rundgang/** (seit 2026-10-13 nur noch auf der passwortgeschützten Testseite, vorher öffentlich unter kita-neufang.de/entwurf-rundgang/). Dateien: `entwurf-rundgang/`.
 
 ---
 

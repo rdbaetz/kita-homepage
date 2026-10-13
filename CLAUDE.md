@@ -20,7 +20,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/fonts/` – Fraunces und Nunito als lokale `.woff2` (kein Google Fonts)
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
-- `entwurf-rundgang/` – Entwurf des Abschnitts „Rundgang“ (eigene `index.html`, `rundgang.css/.js`, Platzhalter-Fotos in `bilder/`); online unter `/entwurf-rundgang/`, per `robots.txt` und `noindex` gesperrt. Nach Abstimmung in die Startseite übernehmen und Ordner löschen
+- `entwurf-rundgang/` – Entwurf des Abschnitts „Rundgang“ (eigene `index.html`, `rundgang.css/.js`, Platzhalter-Fotos in `bilder/`); wird nur per `deploy.ps1 -Dev` hochgeladen → https://dev.kita-neufang.de/entwurf-rundgang/ (zusätzlich `noindex`). Nach Abstimmung in die Startseite übernehmen und Ordner löschen
 - `docs/ENTSCHEIDUNGEN.md` – Entscheidungen und offene Punkte; `docs/rundgang-fotos-anleitung.png` – Foto-Anleitung für die Kita-Leitung
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
 - `robots.txt` – sperrt den Entwurfsordner für Suchmaschinen
