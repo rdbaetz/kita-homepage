@@ -159,3 +159,12 @@ Die bisherige WordPress-Seite https://kita-neufang.de/ wird durch eine **statisc
 - [x] **Live-Schaltung** am 2026-10-12: Domain-Ziel auf `/kita-static/`, Seite und Weiterleitungen getestet (www → ohne www, HTTP → HTTPS, alte WordPress-URLs → neue Abschnitte).
 - [ ] **Testseite einrichten:** im KAS Subdomain `dev.kita-neufang.de` mit Ziel `/kita-static-dev/` anlegen, SSL (Let's Encrypt) aktivieren; `DEV_*` in `deploy.env` eintragen; erster `deploy.ps1 -Dev`.
 - [ ] Später (nach erfolgreichem Betrieb): WordPress in `/kita` sichern und entfernen.
+
+---
+
+## 2026-10-13 – Fotos auf der Startseite veröffentlicht
+
+- Die echten Fotos vom USB-Stick (bereits nach Bereichen sortiert, je ein Titelbild mit Präfix `1_`) ersetzen die Platzhalter. Aufbereitung mit `tools/galerie_aufbereiten.py` (lange Kante 1600 px).
+- Auf dem Foto der **Infowand** sind Gesichter und Namen (Team, Elternbeirat, Kinderfotos) **verwischt** – Kinder und Eltern sollen auf der Website nicht erkennbar sein.
+- Bildunterschriften beschreiben, was auf dem Foto zu sehen ist; vom Betreiber so freigegeben.
+- Der Entwurf wurde unverändert in die Startseite übernommen (Abschnitt „Unser Haus“ mit Menüpunkt, Foto-Knöpfe in den Gruppen-Karten, Garten-Knopf im Dialog „Draußen spielen“). Ordner `entwurf-rundgang/` gelöscht; CSS/JS stecken jetzt in `style.css` bzw. `main.js`, Fotos in `assets/img/galerie/`.

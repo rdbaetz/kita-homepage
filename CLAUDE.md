@@ -6,7 +6,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 ## Struktur
 
 - `index.html` – die komplette Startseite. Jeder Abschnitt ist mit einem großen `<!-- ===== ABSCHNITT ===== -->`-Kommentar markiert:
-  Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Gruppen · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
+  Header/Navigation · Hero · Über uns · Angebote (+ Detail-Dialoge `dlg-*`) · Leitspruch + Zahlen · Unser Haus · Gruppen (+ Foto-Galerie) · Team · Zeiten · Elternbeiträge · Voranmeldung & Kontakt · Footer
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
 - `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Hervorhebung angesprungener Überschriften, Nach-oben-Knopf), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
@@ -21,10 +21,10 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `assets/img/original/` – Archiv der alten Seite, wird nicht hochgeladen
 - `assets/fonts/` – Fraunces und Nunito als lokale `.woff2` (kein Google Fonts)
 - `assets/docs/Voranmeldung.pdf` – Anmeldeformular
-- `entwurf-rundgang/` – Entwurf „Fotos“ (ehemals „Rundgang“): Foto-Knopf in den Gruppen-Karten, Abschnitt „Unser Haus“ (Kacheln außen/Garten/Turnraum/weitere) und Garten-Knopf im Dialog „Draußen spielen“ öffnen eine Vollbild-Galerie (eigene `index.html`, `rundgang.css/.js`, Fotos in `bilder/<bereich>/01.jpg …`, erzeugt mit `python tools/galerie_aufbereiten.py` aus `bilder-roh/galerie/<Ordner>/` – Bild mit Präfix `1_` wird `01.jpg`; Bildunterschriften/Anzahl „N Fotos“ im HTML von Hand pflegen); wird nur per `deploy.ps1 -Dev` hochgeladen → https://dev.kita-neufang.de/entwurf-rundgang/ (zusätzlich `noindex`). Nach Abstimmung in die Startseite übernehmen und Ordner löschen
+- `assets/img/galerie/<bereich>/01.jpg …` – Fotos für die Galerien (Bereiche `aussen`, `garten`, `turnraum`, `weitere`, `edelsteine`, `goldtaler`, `perlen`); erzeugt mit `python tools/galerie_aufbereiten.py` aus `bilder-roh/galerie/<Ordner>/` (Bild mit Präfix `1_` wird `01.jpg`, Gesichter/Namen werden über `VERWISCHEN` im Skript unkenntlich gemacht)
 - `docs/ENTSCHEIDUNGEN.md` – Entscheidungen und offene Punkte; `docs/rundgang-fotos-anleitung.png` – Foto-Anleitung für die Kita-Leitung
 - `.htaccess` – Weiterleitungen alter WordPress-URLs, HTTPS, Caching
-- `robots.txt` – sperrt den Entwurfsordner für Suchmaschinen
+- `robots.txt` – erlaubt Suchmaschinen alles
 - `deploy.ps1` – verschlüsselter Upload per FTPS (Standard) oder SFTP (`PROTOKOLL` in `deploy.env`; Zugangsdaten nie committen)
 
 ## Häufige Änderungen
@@ -33,6 +33,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - **Team**: `<li class="member" data-gruppen="…">` im Abschnitt TEAM (Gruppen-Schild `<span class="tag t-perlen|t-edelstein|t-goldtaler">`, Leitung: `<b>Gruppenleitung</b>` hinter dem Gruppennamen); neues Foto quadratisch 600×600 als `assets/img/team/vorname-nachname.jpg` (neuer Dateiname statt Überschreiben, wegen Browser-Cache). Die Zahl „Mitarbeiterinnen“ zählt `main.js` automatisch aus den `.member`-Einträgen (`data-team-anzahl`) – nichts von Hand anpassen.
 - **Zahlen** (Gruppen): Abschnitt LEITSPRUCH, `<ul class="stats">` (Kinderzahl bewusst weggelassen; die Leiste passt sich der Anzahl der Kacheln an). Die Mitarbeiterzahl dort ergibt sich automatisch (siehe Team).
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
+- **Fotos** (Abschnitte UNSER HAUS und GRUPPEN): Knopf/Kachel mit `data-raum="KEY"` öffnet die Galerie; die Bilder stehen in `<template id="galerie-KEY">` als `<figure><img><figcaption>`. Bildunterschriften und die Anzahl „N Fotos“ von Hand pflegen. Neue Fotos: in `bilder-roh/galerie/` ablegen, Skript laufen lassen – wegen Browser-Cache (30 Tage) bei geänderten Bildern das Ziel unter neuem Namen speichern bzw. Bild-URL mit `?v=` versehen.
 - **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
 - **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).
 - **Telefon**: 09260 / 785 (kommt in index, impressum, datenschutz und JSON-LD im `<head>` vor – überall ändern).
@@ -45,7 +46,7 @@ Existiert das Bild, wird die SVG-Ersatzgrafik per CSS (`.art:has(img.ill)`) ausg
 ## Browser-Cache
 
 CSS/JS werden 7 Tage, Bilder 30 Tage zwischengespeichert (`.htaccess`). Deshalb:
-- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen** HTML-Dateien hochzählen: `index.html`, `impressum.html`, `datenschutz.html` und – solange es ihn gibt – `entwurf-rundgang/index.html`.
+- Nach Änderungen an `style.css` oder `main.js` die Versionsnummer `?v=…` in **allen** HTML-Dateien hochzählen: `index.html`, `impressum.html`, `datenschutz.html`.
 - Geänderte Bilder unter **neuem Dateinamen** speichern statt die alte Datei zu überschreiben.
 
 ## Lokal ansehen & veröffentlichen

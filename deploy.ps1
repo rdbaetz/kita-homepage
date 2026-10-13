@@ -41,8 +41,6 @@ $remoteDir = if ($cfg["FTP_DIR"]) { $cfg["FTP_DIR"].TrimEnd("/") } else { "" }
 # Nur diese Dateien/Ordner gehören auf den Server
 $include = @("index.html", "impressum.html", "datenschutz.html", ".htaccess", "robots.txt", "assets")
 $exclude = @("assets\img\original")
-# Entwürfe nur auf die Testseite
-if ($Dev) { $include += "entwurf-rundgang" }
 
 $files = foreach ($item in $include) {
   $p = Join-Path $root $item

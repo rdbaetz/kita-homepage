@@ -15,7 +15,7 @@
   <link rel="preload" href="assets/img/logo-gross.webp" as="image">
   <link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-13e">
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-13f">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,6 +48,7 @@
       <ul>
         <li><a href="#ueber-uns">Über uns</a></li>
         <li><a href="#angebote">Angebote</a></li>
+        <li><a href="#haus">Unser Haus</a></li>
         <li><a href="#gruppen">Gruppen</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#zeiten">Zeiten</a></li>
@@ -322,6 +323,7 @@
     <div class="info-body">
       <p>Bei uns haben Erlebnisse in der Natur einen besonders hohen Stellenwert! Regelmäßig gehen wir mit den Kindern nach draußen, sei es für Spaziergänge, zum Spielen im Garten, für Experimente in der Natur oder für kleine Abenteuer im Sand und in der Matschzone.</p>
       <p>Im großen Garten können die Kinder toben, klettern, rennen und ihre motorischen Fähigkeiten stärken – am Klettergerüst, auf dem Spielplatz oder bei freien Bewegungsangeboten in der Natur.</p>
+      <button class="btn btn-light info-fotos" data-raum="garten" data-titel="Garten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>Fotos von unserem Garten</button>
     </div>
   </dialog>
 </section>
@@ -347,8 +349,75 @@
 </section>
 
 <!-- =====================================================
+     UNSER HAUS
+     Kachel: <button class="raum" data-raum="KEY" data-titel="…"> (Titelbild = erstes Foto)
+     Fotos:  <template id="galerie-KEY"> mit <figure><img><figcaption>; Galerie-Dialog steht im folgenden Abschnitt GRUPPEN
+     Bilder: assets/img/galerie/KEY/01.jpg, 02.jpg … (lange Kante 1600 px; erzeugt mit tools/galerie_aufbereiten.py aus bilder-roh/galerie/)
+     ===================================================== -->
+<section class="tour section" id="haus">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Unser Haus</span>
+      <h2>Schauen Sie sich bei uns um</h2>
+      <p class="lead">Vom Garten bis zum Turnraum: Tippen Sie auf einen Bereich, um die Fotos anzusehen.</p>
+    </div>
+    <div class="tour-grid">
+      <button class="raum reveal" data-raum="aussen" data-titel="Haus von außen">
+        <div class="raum-bild"><img src="assets/img/galerie/aussen/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>3 Fotos</span></div>
+        <div class="raum-text"><h3>Haus von außen</h3><p>So sieht unser Kindergarten aus</p></div>
+      </button>
+      <button class="raum reveal" data-raum="garten" data-titel="Garten">
+        <div class="raum-bild"><img src="assets/img/galerie/garten/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>7 Fotos</span></div>
+        <div class="raum-text"><h3>Garten</h3><p>Toben, klettern und entdecken</p></div>
+      </button>
+      <button class="raum reveal" data-raum="turnraum" data-titel="Turnraum">
+        <div class="raum-bild"><img src="assets/img/galerie/turnraum/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>5 Fotos</span></div>
+        <div class="raum-text"><h3>Turnraum</h3><p>Platz für Bewegung</p></div>
+      </button>
+      <button class="raum reveal" data-raum="weitere" data-titel="Weitere Räume">
+        <div class="raum-bild"><img src="assets/img/galerie/weitere/01.jpg" alt="" loading="lazy" width="1200" height="900"><span class="raum-anzahl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>5 Fotos</span></div>
+        <div class="raum-text"><h3>Weitere Räume</h3><p>Noch mehr zu entdecken</p></div>
+      </button>
+    </div>
+  </div>
+
+  <template id="galerie-aussen">
+    <figure><img src="assets/img/galerie/aussen/01.jpg" alt="Unser Kindergarten von außen"><figcaption>Unser Kindergarten von außen</figcaption></figure>
+    <figure><img src="assets/img/galerie/aussen/02.jpg" alt="Fenster mit Bildern der Kinder"><figcaption>Fenster mit Bildern der Kinder</figcaption></figure>
+    <figure><img src="assets/img/galerie/aussen/03.jpg" alt="Haupteingang mit Rampe"><figcaption>Haupteingang mit Rampe</figcaption></figure>
+  </template>
+  <template id="galerie-garten">
+    <figure><img src="assets/img/galerie/garten/01.jpg" alt="Sandkasten und Spielturm mit Rutsche"><figcaption>Sandkasten und Spielturm mit Rutsche</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/02.jpg" alt="Gartenweg unter großen Bäumen"><figcaption>Gartenweg unter großen Bäumen</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/03.jpg" alt="Terrasse mit Hochbeeten und Sitzgruppen"><figcaption>Terrasse mit Hochbeeten und Sitzgruppen</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/04.jpg" alt="Wiese mit Fußballtor, Spielturm und Kriechtunnel"><figcaption>Wiese mit Fußballtor, Spielturm und Kriechtunnel</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/05.jpg" alt="Fußballwiese"><figcaption>Fußballwiese</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/06.jpg" alt="Fahrzeuge zum Herumfahren"><figcaption>Fahrzeuge zum Herumfahren</figcaption></figure>
+    <figure><img src="assets/img/galerie/garten/07.jpg" alt="Nestschaukel"><figcaption>Nestschaukel</figcaption></figure>
+  </template>
+  <template id="galerie-turnraum">
+    <figure><img src="assets/img/galerie/turnraum/01.jpg" alt="Unser Turnraum"><figcaption>Unser Turnraum</figcaption></figure>
+    <figure><img src="assets/img/galerie/turnraum/02.jpg" alt="Sprossenwand, Kletterwand und Turnbank"><figcaption>Sprossenwand, Kletterwand und Turnbank</figcaption></figure>
+    <figure><img src="assets/img/galerie/turnraum/03.jpg" alt="Bälle, Matten und Schaumstoffbausteine"><figcaption>Bälle, Matten und Schaumstoffbausteine</figcaption></figure>
+    <figure><img src="assets/img/galerie/turnraum/04.jpg" alt="Igelbälle und Sitzkissen"><figcaption>Igelbälle und Sitzkissen</figcaption></figure>
+    <figure><img src="assets/img/galerie/turnraum/05.jpg" alt="Viel Platz zum Toben"><figcaption>Viel Platz zum Toben</figcaption></figure>
+  </template>
+  <template id="galerie-weitere">
+    <figure><img src="assets/img/galerie/weitere/01.jpg" alt="Im Eingang: „Man ist nie zu klein, um großartig zu sein!“"><figcaption>Im Eingang: „Man ist nie zu klein, um großartig zu sein!“</figcaption></figure>
+    <figure><img src="assets/img/galerie/weitere/02.jpg" alt="Flur mit Birkenstämmen und bunten Kugeln an der Decke"><figcaption>Flur mit Birkenstämmen und bunten Kugeln an der Decke</figcaption></figure>
+    <figure><img src="assets/img/galerie/weitere/03.jpg" alt="Kugelbahn im Flur"><figcaption>Kugelbahn im Flur</figcaption></figure>
+    <figure><img src="assets/img/galerie/weitere/04.jpg" alt="Infowand für Eltern"><figcaption>Infowand für Eltern</figcaption></figure>
+    <figure><img src="assets/img/galerie/weitere/05.jpg" alt="Küche mit Essplatz"><figcaption>Küche mit Essplatz</figcaption></figure>
+  </template>
+</section>
+
+<!-- =====================================================
      GRUPPEN
      Illustrationen: assets/img/illustrations/gruppe-*.webp
+     Fotos der Gruppenräume:
+       Knopf:  <button class="gruppe-fotos" data-raum="KEY" data-titel="…"> mit 3 Vorschaubildern
+       Fotos:  <template id="galerie-KEY"> mit <figure><img><figcaption> (unten im Abschnitt)
+       Bilder: assets/img/galerie/KEY/01.jpg, 02.jpg … (lange Kante 1600 px; erzeugt mit tools/galerie_aufbereiten.py aus bilder-roh/galerie/)
      ===================================================== -->
 <section class="section" id="gruppen">
   <div class="container">
@@ -366,6 +435,10 @@
         <h3>Edelsteingruppe</h3>
         <span class="age">Regelgruppe · 3–6 Jahre</span>
         <p>Wir sind eine Regelgruppe mit Kindern im Alter von 3 bis 6 Jahren. In unserer Gruppe arbeiten die Kita-Leitung als Gruppenleitung, eine Erzieherin und zwei pädagogische Zweitkräfte.</p>
+        <button class="gruppe-fotos" data-raum="edelsteine" data-titel="Edelsteingruppe">
+          <span class="gf-bilder"><img src="assets/img/galerie/edelsteine/01.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/edelsteine/02.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/edelsteine/03.jpg" alt="" loading="lazy" width="400" height="300"></span>
+          <span class="gf-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>Gruppenräume ansehen <small>5 Fotos</small></span>
+        </button>
       </article>
       <article class="group reveal">
         <div class="art bg-butter">
@@ -375,6 +448,10 @@
         <h3>Goldtalergruppe</h3>
         <span class="age">Regelgruppe · 3–6 Jahre</span>
         <p>Wir sind eine Regelgruppe mit Kindern im Alter von 3 bis 6 Jahren. In unserer Gruppe arbeiten eine Erzieherin als Gruppenleitung und zwei pädagogische Zweitkräfte.</p>
+        <button class="gruppe-fotos" data-raum="goldtaler" data-titel="Goldtalergruppe">
+          <span class="gf-bilder"><img src="assets/img/galerie/goldtaler/01.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/goldtaler/02.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/goldtaler/03.jpg" alt="" loading="lazy" width="400" height="300"></span>
+          <span class="gf-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>Gruppenräume ansehen <small>6 Fotos</small></span>
+        </button>
       </article>
       <article class="group reveal">
         <div class="art bg-sky">
@@ -384,9 +461,56 @@
         <h3>Perlengruppe</h3>
         <span class="age">Krippe · 1–3 Jahre</span>
         <p>In unserer Gruppe werden die Kleinsten hier im Haus betreut – wir sind die Krippengruppe. In unserer Gruppe arbeiten eine Erzieherin und Krippenpädagogin als Gruppenleitung sowie eine pädagogische Zweitkraft und Krippenpädagogin.</p>
+        <button class="gruppe-fotos" data-raum="perlen" data-titel="Perlengruppe">
+          <span class="gf-bilder"><img src="assets/img/galerie/perlen/01.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/perlen/02.jpg" alt="" loading="lazy" width="400" height="300"><img src="assets/img/galerie/perlen/03.jpg" alt="" loading="lazy" width="400" height="300"></span>
+          <span class="gf-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/></svg>Gruppenräume ansehen <small>10 Fotos</small></span>
+        </button>
       </article>
     </div>
   </div>
+
+  <template id="galerie-edelsteine">
+    <figure><img src="assets/img/galerie/edelsteine/01.jpg" alt="Gruppenraum mit Kinderküche"><figcaption>Gruppenraum mit Kinderküche</figcaption></figure>
+    <figure><img src="assets/img/galerie/edelsteine/02.jpg" alt="Namensschild der Edelsteingruppe"><figcaption>Namensschild der Edelsteingruppe</figcaption></figure>
+    <figure><img src="assets/img/galerie/edelsteine/03.jpg" alt="Spielebene mit Treppe"><figcaption>Spielebene mit Treppe</figcaption></figure>
+    <figure><img src="assets/img/galerie/edelsteine/04.jpg" alt="Tische unter der Spielebene"><figcaption>Tische unter der Spielebene</figcaption></figure>
+    <figure><img src="assets/img/galerie/edelsteine/05.jpg" alt="Mal- und Basteltisch"><figcaption>Mal- und Basteltisch</figcaption></figure>
+  </template>
+  <template id="galerie-goldtaler">
+    <figure><img src="assets/img/galerie/goldtaler/01.jpg" alt="Gruppenraum der Goldtaler"><figcaption>Gruppenraum der Goldtaler</figcaption></figure>
+    <figure><img src="assets/img/galerie/goldtaler/02.jpg" alt="Atelier mit Maltisch"><figcaption>Atelier mit Maltisch</figcaption></figure>
+    <figure><img src="assets/img/galerie/goldtaler/03.jpg" alt="Goldtaler an der Decke"><figcaption>Goldtaler an der Decke</figcaption></figure>
+    <figure><img src="assets/img/galerie/goldtaler/04.jpg" alt="Essplatz an der Kinderküche"><figcaption>Essplatz an der Kinderküche</figcaption></figure>
+    <figure><img src="assets/img/galerie/goldtaler/05.jpg" alt="Spielebene mit Regal voller Spiele"><figcaption>Spielebene mit Regal voller Spiele</figcaption></figure>
+    <figure><img src="assets/img/galerie/goldtaler/06.jpg" alt="Bauteppich mit Holzeisenbahn"><figcaption>Bauteppich mit Holzeisenbahn</figcaption></figure>
+  </template>
+  <template id="galerie-perlen">
+    <figure><img src="assets/img/galerie/perlen/01.jpg" alt="Spielhaus mit Rutsche und Bällebad"><figcaption>Spielhaus mit Rutsche und Bällebad</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/02.jpg" alt="Essplatz und Küche"><figcaption>Essplatz und Küche</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/03.jpg" alt="Kuschelecke mit Tüchern und Bauklötzen"><figcaption>Kuschelecke mit Tüchern und Bauklötzen</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/04.jpg" alt="Bauecke und Kuschelecke"><figcaption>Bauecke und Kuschelecke</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/05.jpg" alt="Weiche Bausteine und Regale"><figcaption>Weiche Bausteine und Regale</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/06.jpg" alt="Blick durch den Gruppenraum"><figcaption>Blick durch den Gruppenraum</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/07.jpg" alt="Spielhaus mit Bällebad"><figcaption>Spielhaus mit Bällebad</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/08.jpg" alt="Waschraum mit Wickeltisch"><figcaption>Waschraum mit Wickeltisch</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/09.jpg" alt="Wickeltisch"><figcaption>Wickeltisch</figcaption></figure>
+    <figure><img src="assets/img/galerie/perlen/10.jpg" alt="Türschild der Perlengruppe"><figcaption>Türschild der Perlengruppe</figcaption></figure>
+  </template>
+
+  <dialog class="galerie" id="galerie" aria-label="Fotogalerie">
+    <div class="galerie-inhalt">
+      <div class="galerie-kopf">
+        <div><h3 class="galerie-titel" style="display:inline"></h3><span class="zaehler"></span></div>
+        <button class="galerie-btn schliessen" aria-label="Galerie schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="galerie-buehne">
+        <button class="galerie-btn zurueck" aria-label="Vorheriges Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <figure></figure>
+        <button class="galerie-btn weiter" aria-label="Nächstes Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="galerie-leiste"></div>
+    </div>
+  </dialog>
 </section>
 
 <!-- =====================================================
@@ -625,6 +749,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=2026-10-13m" defer></script>
+<script src="assets/js/main.js?v=2026-10-13n" defer></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
-"""Bereitet die Fotos für die Galerie im Entwurf auf.
+"""Bereitet die Fotos für die Galerien auf (Unser Haus, Gruppenräume).
 
 Quelle:  bilder-roh/galerie/<Ordner>/*.jpg  (Kamera-Originale, nicht in Git)
-Ziel:    entwurf-rundgang/bilder/<key>/01.jpg, 02.jpg …
+Ziel:    assets/img/galerie/<key>/01.jpg, 02.jpg …
 
 Reihenfolge: das Bild mit dem Präfix "1_" wird 01.jpg (Titelbild der Kachel bzw. erstes
 Vorschaubild), danach die übrigen nach Dateinamen. Der Ordner "UnserKindergarten" wird
@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
 ROH = ROOT / "bilder-roh" / "galerie"
-ZIEL = ROOT / "entwurf-rundgang" / "bilder"
+ZIEL = ROOT / "assets" / "img" / "galerie"
 KANTE = 1600
 
 # key → (Rohordner, Filter auf den Dateinamen oder None, feste Reihenfolge oder None)
