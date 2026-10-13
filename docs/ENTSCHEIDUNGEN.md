@@ -208,3 +208,10 @@ Zuordnung der geplanten Inhalte:
 - Abschnitt steht in `index.html` zwischen Elternbeiträgen und Voranmeldung, ist aber mit `hidden data-entwurf` **ausgeblendet**. Ansehen mit `?entwurf` an der Adresse (z. B. `https://dev.kita-neufang.de/?entwurf#gut-zu-wissen`).
 - Die Fragen sind Vorschläge; Antworten liefert die Kita-Leitung (bis dahin Platzhalter „Antwort folgt“). Fragen ohne Antwort werden gestrichen.
 - Online gehen: `hidden data-entwurf` entfernen, Menüpunkt „Gut zu wissen“ ergänzen und „Zeiten“/„Beiträge“ zusammenlegen (siehe oben).
+
+---
+
+## 2026-10-13 – Nur ein Knopf im Titelbild
+
+- Der Knopf im Titelbild heißt **„Lernen Sie uns kennen“** und führt zu „Über uns“ (vorher „Unsere Angebote“ → sprang über „Über uns“ hinweg).
+- Der Knopf **„Zur Voranmeldung“ im Titelbild entfällt**: Die Voranmeldung ist über den hervorgehobenen Menüpunkt jederzeit erreichbar; doppelt wirkte sie zu aufdringlich.
