@@ -319,7 +319,7 @@ p { margin: 0 0 1em; }
   color: var(--green-600);
   margin-bottom: 0.7em;
 }
-.slogan .z1 { font-size: clamp(1.75rem, 3vw, 2.4rem); color: var(--ink); }
+.slogan .z1 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--ink-soft); }
 .slogan .z2 { font-size: clamp(2.1rem, 3.8vw, 3rem); padding-left: 0.9em; font-style: italic; color: var(--green-600); }
 .slogan .z3 { font-size: clamp(2.5rem, 4.8vw, 3.8rem); padding-left: 1.6em; color: var(--green-700); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
