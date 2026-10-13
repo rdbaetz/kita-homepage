@@ -247,7 +247,7 @@ p { margin: 0 0 1em; }
   left: 0;
   right: 0;
   bottom: 100%;
-  height: clamp(18px, 3vw, 44px);
+  height: clamp(24px, 4.5vw, 64px);
   margin-bottom: -1px;
   background: inherit;
   pointer-events: none;
