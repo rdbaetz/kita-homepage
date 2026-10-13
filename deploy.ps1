@@ -89,13 +89,19 @@ if ($Dev) {
       Where-Object { Test-Path $_ } | Select-Object -First 1
   }
   if (-not $openssl) { throw "openssl.exe nicht gefunden (wird für die .htpasswd gebraucht; kommt mit Git für Windows)" }
-  $hash = ($cfg.DEV_PASS | & $openssl passwd -apr1 -stdin)
-  if ($LASTEXITCODE -ne 0 -or -not $hash) { throw "Passwort-Hash konnte nicht erzeugt werden" }
 
   # Erzeugte Dateien ohne BOM schreiben (Apache verträgt kein BOM in .htaccess)
   $tmpDir = Join-Path ([IO.Path]::GetTempPath()) ("kita-dev-" + [guid]::NewGuid())
   New-Item -ItemType Directory $tmpDir | Out-Null
   $utf8 = New-Object System.Text.UTF8Encoding($false)
+
+  # Passwort per Datei übergeben, nicht per Pipe: PowerShell setzt beim Pipen an Programme ein BOM
+  # davor und ein Zeilenende dahinter – der Hash passte dann nicht zum Passwort.
+  $pwDatei = Join-Path $tmpDir "pw.txt"
+  [IO.File]::WriteAllText($pwDatei, $cfg.DEV_PASS, $utf8)
+  $hash = & $openssl passwd -apr1 -in $pwDatei
+  Remove-Item -Force $pwDatei
+  if ($LASTEXITCODE -ne 0 -or -not $hash) { throw "Passwort-Hash konnte nicht erzeugt werden" }
   $erzeugt = [ordered]@{
     ".htaccess"  = (Get-Content -Raw -Encoding UTF8 (Join-Path $root "tools\dev.htaccess")).Replace("{{HTPASSWD}}", $cfg.DEV_HTPASSWD)
     "robots.txt" = "User-agent: *`nDisallow: /`n"
