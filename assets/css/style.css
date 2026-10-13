@@ -123,7 +123,9 @@ p { margin: 0 0 1em; }
   opacity: 0.6;
 }
 
-.section { padding-block: clamp(64px, 9vw, 110px); position: relative; }
+.section { --abstand-oben: clamp(64px, 9vw, 110px); padding-block: var(--abstand-oben) clamp(64px, 9vw, 110px); position: relative; }
+/* Sprung per Menü: Abstand oben überspringen, damit die Überschrift direkt unter dem Menü landet */
+.section[id] { scroll-margin-top: calc(-1 * var(--abstand-oben)); }
 .section-head { max-width: 720px; margin-bottom: clamp(32px, 5vw, 56px); }
 .section-head.center { margin-inline: auto; text-align: center; }
 .lead { font-size: 1.15rem; color: var(--ink-soft); }
@@ -315,7 +317,7 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Über uns ---------- */
-.about { background: var(--green-100); padding-block: clamp(32px, 5vw, 60px) clamp(40px, 6vw, 72px); }
+.about { background: var(--green-100); --abstand-oben: clamp(32px, 5vw, 60px); padding-block: var(--abstand-oben) clamp(40px, 6vw, 72px); }
 .about-grid {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
