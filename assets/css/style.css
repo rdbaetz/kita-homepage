@@ -1066,6 +1066,8 @@ dialog.info .close svg { width: 18px; height: 18px; }
 
 /* Karten gleich hoch, Foto-Knopf immer unten */
 .group { display: flex; flex-direction: column; align-items: flex-start; }
+/* Kopf der Karte (Logo, Name, Alters-Schild) mittig, Beschreibung bleibt linksbündig */
+.group .art, .group h3, .group .age { align-self: center; text-align: center; }
 .group p { margin-bottom: 22px; }
 .gruppe-fotos {
   appearance: none;
