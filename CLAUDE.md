@@ -37,7 +37,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - **Beiträge**: Abschnitt ELTERNBEITRÄGE, zwei Tabellen.
 - **Fotos** (Abschnitte UNSER HAUS und GRUPPEN): Knopf/Kachel mit `data-raum="KEY"` öffnet die Galerie; die Bilder stehen in `<template id="galerie-KEY">` als `<figure><img><figcaption>`. Bildunterschriften und die Anzahl „N Fotos“ von Hand pflegen. Neue Fotos: in `bilder-roh/galerie/` ablegen, Skript laufen lassen – wegen Browser-Cache (30 Tage) bei geänderten Bildern das Ziel unter neuem Namen speichern bzw. Bild-URL mit `?v=` versehen.
 - **Gut zu wissen** (Abschnitt GUT ZU WISSEN): je Frage ein `<details class="frage" name="gut-zu-wissen">` mit `<summary>`; noch ausgeblendet (`hidden data-entwurf`), sichtbar mit `?entwurf` an der Adresse.
-- **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`.
+- **Neues Angebot**: `<button class="program" data-dialog="dlg-xyz">` + passender `<dialog class="info" id="dlg-xyz">`. Den farbigen Kreis im Dialog-Kopf (`<span class="dot bg-…"></span>`) leer lassen – `main.js` setzt beim Öffnen das Bild der Kachel ein.
 - **E-Mail** steht nie im Klartext: `<a class="js-mail" data-m="ofni.gnafuen#atik">kita [at] neufang.info</a>` (Adresse rückwärts, `#` statt `@`; `main.js` baut den Link).
 - **Telefon**: 09260 / 785 (kommt in index, impressum, datenschutz und JSON-LD im `<head>` vor – überall ändern).
 

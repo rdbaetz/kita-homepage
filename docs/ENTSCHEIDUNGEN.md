@@ -217,3 +217,5 @@ Zuordnung der geplanten Inhalte:
 - Der Knopf **„Zur Voranmeldung“ im Titelbild entfällt**: Die Voranmeldung ist über den hervorgehobenen Menüpunkt jederzeit erreichbar; doppelt wirkte sie zu aufdringlich.
 - Das **Titelbild ist mindestens bildschirmhoch** (abzüglich Menüleiste), Inhalt senkrecht mittig. Beim Öffnen ist so nur die Startseite zu sehen, auch auf großen Monitoren (vorher schaute dort schon „Über uns“ herein). Auf Handy und Laptop war das Titelbild ohnehin höher als der Bildschirm.
 - Der kurze **gelbe Unterstrich unter angesprungenen Überschriften entfällt**: Er verschwand nach gut einer Sekunde wieder und wirkte wie ein Darstellungsfehler. Wo man ist, zeigt die gleitende Menü-Markierung.
+- **Text im Titelbild:** mehr Abstand zwischen Slogan und Begrüßungstext, „Herzlich willkommen“ fett hervorgehoben, Zeilenumbruch ohne einzelnes Wort am Ende (`text-wrap: pretty`). „lernen,“ bleibt bewusst grau und am kleinsten – dunkel wirkte es zu dominant.
+- **Angebots-Dialoge:** Der farbige Kreis im Kopf zeigt jetzt das Bild der Kachel (war leer). `main.js` übernimmt es beim Öffnen, im HTML muss es nicht doppelt stehen.
