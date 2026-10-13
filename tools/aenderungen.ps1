@@ -17,6 +17,15 @@ try {
     & git -C $root rev-list "live..HEAD" | ForEach-Object { $nichtLive[$_] = $true }
   }
 
+  # GitHub-Adresse aus dem Remote "origin" (z. B. git@github.com:x/y.git -> https://github.com/x/y)
+  $repo = (& git -C $root remote get-url origin 2>$null) -replace '^git@github\.com:', 'https://github.com/' -replace '\.git$', ''
+  if ($repo -notmatch '^https://github\.com/') { $repo = $null }
+  # Commits, die noch nicht gepusht sind, gibt es auf GitHub noch nicht -> dort kein Link
+  $nichtGepusht = @{}
+  if ($repo -and (& git -C $root rev-parse --verify --quiet "origin/main^{commit}")) {
+    & git -C $root rev-list "origin/main..HEAD" | ForEach-Object { $nichtGepusht[$_] = $true }
+  }
+
   $roh = (& git -C $root -c core.quotepath=off log -n $Anzahl --date=format:"%d.%m.%y %H:%M" `
       --format="%x1e%H%x1f%h%x1f%ad%x1f%s%x1f%b%x1f" --name-status --no-renames) -join "`n"
 
@@ -42,8 +51,11 @@ try {
     $klasse = if ($neu) { "c neu" } else { "c" }
     $badge = if ($neu) { '<span class="badge">nicht live</span>' } else { "" }
     if ($dateien) { $dateien = '<ul class="dateien">' + $dateien + '</ul>' }
+    $commit = if (-not $repo) { '<code>' + $f[1] + '</code>' }
+              elseif ($nichtGepusht.ContainsKey($f[0])) { '<code>' + $f[1] + '</code> (noch nicht auf GitHub)' }
+              else { '<a href="' + $repo + '/commit/' + $f[0] + '" target="_blank" rel="noopener"><code>' + $f[1] + '</code> auf GitHub ansehen</a>' }
     '<details class="' + $klasse + '"><summary><time>' + $f[2] + '</time><span class="t">' + (E $f[3]) + '</span>' + $badge +
-    '</summary><div class="inhalt">' + $absaetze + $dateien + '<p class="meta">Commit <code>' + $f[1] + '</code></p></div></details>'
+    '</summary><div class="inhalt">' + $absaetze + $dateien + '<p class="meta">Commit ' + $commit + '</p></div></details>'
   }
 
   $offen = if ($NichtCommittet) {
@@ -54,6 +66,7 @@ try {
 
   $offenBlock = if ($offen) { '<div class="liste" style="margin-bottom:12px">' + $offen + '</div>' } else { "" }
   $stand = Get-Date -Format "dd.MM.yyyy, HH:mm 'Uhr'"
+  $repoLink = if ($repo) { ' · <a href="' + $repo + '/commits/main" target="_blank" rel="noopener">Alle Commits auf GitHub</a>' } else { "" }
   $html = @"
 <!doctype html>
 <html lang="de">
@@ -99,7 +112,7 @@ try {
 </head>
 <body>
 <main class="aend">
-  <p><a href="./">← Zur Testseite</a></p>
+  <p><a href="./">← Zur Testseite</a>$repoLink</p>
   <h1>Änderungen</h1>
   <p class="hinweis">Neueste zuerst, zum Aufklappen anklicken. Grün markiert: auf der Testseite, aber noch nicht live. Stand: $stand</p>
   $offenBlock
