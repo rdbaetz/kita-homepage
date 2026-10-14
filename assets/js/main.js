@@ -196,10 +196,15 @@ if (heroSzene && !reduceMotion) {
     const zufall = (a, b) => a + Math.random() * (b - a);
     for (let i = 0; i < anzahl; i++) {
       const teil = document.createElement("i");
-      const dauer = zufall(9, 16);
+      // Fallen + kurz auf der Wiese liegen + verblassen (Aufteilung in style.css, jz-fallen)
+      const dauer = zufall(13, 21);
+      const x = zufall(2, 95);
+      // Landehöhe auf der Wiese; an den Rändern läuft die Wiese früher ins Weiße aus
+      const y = zufall(74, x < 8 || x > 88 ? 88 : 93);
       teil.style.cssText =
-        `--x:${zufall(2, 95).toFixed(1)}%;--s:${(jahreszeit === "winter" ? zufall(1.6, 2.8) : zufall(3, 5)).toFixed(2)}%;` +
-        `--d:${dauer.toFixed(1)}s;--v:${(-zufall(0, dauer)).toFixed(1)}s;--p:${zufall(1.6, 3.2).toFixed(1)}s;--w:${zufall(10, 28).toFixed(0)}deg`;
+        `--x:${x.toFixed(1)}%;--y:${y.toFixed(1)}%;--s:${(jahreszeit === "winter" ? zufall(1.6, 2.8) : zufall(3, 5)).toFixed(2)}%;` +
+        `--d:${dauer.toFixed(1)}s;--v:${(-zufall(0, dauer)).toFixed(1)}s;--p:${zufall(1.6, 3.2).toFixed(1)}s;` +
+        `--w:${jahreszeit === "winter" ? 0 : zufall(10, 28).toFixed(0)}deg;--r:${zufall(-80, 80).toFixed(0)}deg`;
       teil.innerHTML = formen[i % formen.length];
       ebene.appendChild(teil);
     }

@@ -956,31 +956,40 @@ dialog.info .close svg { width: 18px; height: 18px; }
   60% { transform: scale(1.02) rotate(3deg); filter: drop-shadow(0 0 10px rgba(255, 210, 60, 0.5)); }
 }
 
-/* Jahreszeit im Hero (main.js): fallende Blütenblätter / Blätter / Schneeflocken.
-   Je Teil: --x Startposition, --s Größe, --d Falldauer, --v Verzögerung, --p Pendeldauer, --w Pendelwinkel */
+/* Jahreszeit im Hero (main.js): fallende Blütenblätter / Blätter / Schneeflocken, die kurz
+   auf der Wiese liegen bleiben und dann verblassen.
+   Je Teil: --x Startposition, --y Landehöhe, --s Größe, --d Dauer (Fallen + Liegen), --v Verzögerung,
+   --p Pendeldauer, --w Pendelwinkel, --r Lage am Boden.
+   --pendel (−1…1) schwingt hin und her, --schwung (1→0) lässt das Pendeln beim Landen auslaufen. */
+@property --pendel { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --schwung { syntax: "<number>"; inherits: true; initial-value: 1; }
 .hero-szene .jahreszeit { position: absolute; inset: 0; z-index: 3; overflow: hidden; pointer-events: none; }
 .jahreszeit i {
+  --amp: 140%;
   position: absolute; top: -6%; left: var(--x); width: var(--s);
   animation: jz-fallen var(--d) linear var(--v) infinite;
 }
+.jahreszeit.winter i { --amp: 60%; }
 .jahreszeit svg {
   display: block; width: 100%; height: auto;
+  transform:
+    translateX(calc(var(--amp) * var(--pendel) * var(--schwung)))
+    rotate(calc(var(--w) * var(--pendel) * var(--schwung) + var(--r) * (1 - var(--schwung))))
+    scaleY(calc(1 - 0.35 * (1 - var(--schwung))));
   animation: jz-pendeln var(--p) ease-in-out var(--v) infinite alternate;
 }
-.jahreszeit.winter svg { animation-name: jz-wehen; }
 .jahreszeit.pause i, .jahreszeit.pause svg { animation-play-state: paused; }
 @keyframes jz-fallen {
-  0% { top: -6%; opacity: 0; }
-  8%, 82% { opacity: 1; }
-  100% { top: 96%; opacity: 0; }
+  0% { top: -6%; opacity: 0; --schwung: 1; }
+  6% { opacity: 1; }
+  68% { top: var(--y); --schwung: 1; }
+  73% { --schwung: 0; }
+  86% { opacity: 1; }
+  100% { top: var(--y); opacity: 0; --schwung: 0; }
 }
 @keyframes jz-pendeln {
-  from { transform: translateX(-140%) rotate(calc(var(--w) * -1)); }
-  to { transform: translateX(140%) rotate(var(--w)); }
-}
-@keyframes jz-wehen {
-  from { transform: translateX(-60%); }
-  to { transform: translateX(60%); }
+  from { --pendel: -1; }
+  to { --pendel: 1; }
 }
 
 .hero-art, .hero-text { will-change: transform; }
