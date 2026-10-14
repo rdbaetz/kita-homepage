@@ -169,7 +169,7 @@ if (new URLSearchParams(location.search).has("entwurf")) {
   document.querySelectorAll("[data-entwurf]").forEach((el) => (el.hidden = false));
 }
 
-// Hero: Jahreszeit – im Frühling fallen Blütenblätter, im Herbst Blätter, im Winter Schnee
+// Hero: Jahreszeit – im Frühling gaukeln Schmetterlinge, im Herbst fallen Blätter, im Winter Schnee
 // (Sommer: nur die Sonne). Die Jahreszeit bestimmt das kleine Skript hinter dem Titelbild in index.html
 // (dort auch das Winterbild). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
 const heroSzene = document.querySelector(".hero-szene");
@@ -180,19 +180,32 @@ if (heroSzene && !reduceMotion) {
     herbst: ["#e8892c", "#c9532e", "#e9b52f", "#a8642f"].map(
       (c) => `<svg viewBox="0 0 24 24"><path d="M12 2C6 7 4 13 6 18c1.5 3 4 4 6 4s4.5-1 6-4c2-5 0-11-6-16z" fill="${c}"/><path d="M12 6v16" stroke="rgba(80,40,10,.45)" stroke-width="1.2" fill="none"/></svg>`
     ),
-    // Blütenblatt in Rosa (wie die Kastanienblüten im Bild)
-    fruehling: ["#f6c6d3", "#f2b0c3", "#fbe0e7"].map(
-      (c) => `<svg viewBox="0 0 24 24"><path d="M12 3c5 4 6 10 0 18C6 13 7 7 12 3z" fill="${c}"/></svg>`
-    ),
     // Schneeflocke mit zartem Rand, damit sie auch vor hellem Himmel sichtbar ist
     winter: [`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="#fff" stroke="#a9c3d6" stroke-width="3"/></svg>`],
   }[jahreszeit];
-  if (formen) {
-    const ebene = document.createElement("div");
-    ebene.className = "jahreszeit " + jahreszeit;
-    ebene.setAttribute("aria-hidden", "true");
+  const zufall = (a, b) => a + Math.random() * (b - a);
+  const ebene = document.createElement("div");
+  ebene.className = "jahreszeit " + jahreszeit;
+  ebene.setAttribute("aria-hidden", "true");
+  if (jahreszeit === "fruehling") {
+    // Schmetterlinge (von oben gesehen) fliegen quer durchs Bild, auf und ab gaukelnd.
+    // --y Flughöhe, --d Dauer für einmal quer, --v Verzögerung, --p Auf-und-ab-Dauer, --f Flügelschlag
+    ["#f2c230", "#9cc3e0", "#f4a98a"].forEach((farbe, i) => {
+      const falter = document.createElement("i");
+      falter.className = "falter" + (i % 2 ? " links" : "");
+      const dauer = zufall(18, 26);
+      falter.style.cssText =
+        `--y:${zufall(30, 72).toFixed(1)}%;--d:${dauer.toFixed(1)}s;--v:${(-dauer * (i / 3 + zufall(0, 0.25))).toFixed(1)}s;` +
+        `--p:${zufall(2, 3.4).toFixed(1)}s;--f:${zufall(0.16, 0.24).toFixed(2)}s`;
+      falter.innerHTML =
+        `<span><svg viewBox="0 0 24 24"><g fill="${farbe}" stroke="rgba(90,60,30,.35)" stroke-width=".6">` +
+        `<path d="M11.5 11C9 4 3 3 2.5 6.5S5 12 11.5 12.5z"/><path d="M12.5 11C15 4 21 3 21.5 6.5S19 12 12.5 12.5z"/>` +
+        `<path d="M11.5 13C7 13 4 16 5.5 18.5S10 18 11.5 14z"/><path d="M12.5 13c4.5 0 7.5 3 6 5.5S14 18 12.5 14z"/></g>` +
+        `<ellipse cx="12" cy="12.5" rx=".9" ry="4.5" fill="#6b4a2e"/></svg></span>`;
+      ebene.appendChild(falter);
+    });
+  } else if (formen) {
     const anzahl = jahreszeit === "winter" ? 26 : 12;
-    const zufall = (a, b) => a + Math.random() * (b - a);
     for (let i = 0; i < anzahl; i++) {
       const teil = document.createElement("i");
       // Fallen + kurz auf der Wiese liegen + verblassen (Aufteilung in style.css, jz-fallen)
@@ -207,6 +220,8 @@ if (heroSzene && !reduceMotion) {
       teil.innerHTML = formen[i % formen.length];
       ebene.appendChild(teil);
     }
+  }
+  if (ebene.childElementCount) {
     heroSzene.appendChild(ebene);
     // außerhalb des Bildschirms anhalten (spart Akku)
     if ("IntersectionObserver" in window) {

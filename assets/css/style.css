@@ -994,6 +994,30 @@ dialog.info .close svg { width: 18px; height: 18px; }
   from { --pendel: -1; }
   to { --pendel: 1; }
 }
+/* Frühling: Schmetterlinge fliegen quer durchs Bild (.links = von rechts nach links).
+   i fliegt quer, span gaukelt auf und ab und neigt sich in Flugrichtung, svg schlägt mit den Flügeln */
+.jahreszeit i.falter {
+  top: var(--y); left: -6%; width: 4.2%;
+  animation: jz-quer var(--d) linear var(--v) infinite;
+}
+.jahreszeit i.falter.links { animation-direction: reverse; }
+.jahreszeit .falter span {
+  display: block; rotate: 70deg;
+  animation: jz-gaukeln var(--p) ease-in-out var(--v) infinite alternate;
+}
+.jahreszeit .falter.links span { rotate: -70deg; }
+.jahreszeit .falter svg {
+  transform: none;
+  animation: jz-flattern var(--f) ease-in-out infinite alternate;
+}
+.jahreszeit.pause .falter span { animation-play-state: paused; }
+@keyframes jz-quer { to { left: 104%; } }
+@keyframes jz-gaukeln {
+  0% { translate: 0 0; }
+  50% { translate: 0 -120%; }
+  100% { translate: 0 60%; }
+}
+@keyframes jz-flattern { to { transform: scaleX(0.3); } }
 
 .hero-art, .hero-text { will-change: transform; }
 
