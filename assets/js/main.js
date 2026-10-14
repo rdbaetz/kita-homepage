@@ -170,12 +170,11 @@ if (new URLSearchParams(location.search).has("entwurf")) {
 }
 
 // Hero: Jahreszeit – im Frühling fallen Blütenblätter, im Herbst Blätter, im Winter Schnee
-// (Sommer: nur die Sonne). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
+// (Sommer: nur die Sonne). Die Jahreszeit bestimmt das kleine Skript hinter dem Titelbild in index.html
+// (dort auch das Winterbild). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
 const heroSzene = document.querySelector(".hero-szene");
 if (heroSzene && !reduceMotion) {
-  const monat = new Date().getMonth() + 1;
-  const ausUrl = new URLSearchParams(location.search).get("jahreszeit");
-  const jahreszeit = ausUrl || (monat <= 2 || monat === 12 ? "winter" : monat <= 5 ? "fruehling" : monat <= 8 ? "sommer" : "herbst");
+  const jahreszeit = document.documentElement.dataset.jahreszeit;
   const formen = {
     // Blatt mit Mittelrippe, Farben: Orange, Rot, Gelb, Braun
     herbst: ["#e8892c", "#c9532e", "#e9b52f", "#a8642f"].map(

@@ -27,6 +27,7 @@ BILDER = {
     "hero":   dict(mitte=(315, 215), scheibe=116, aussen=215, drache=True),
     "hero-2": dict(mitte=(221, 180), scheibe=92, aussen=165, drache=False),
     "hero-3": dict(mitte=(295, 174), scheibe=None, aussen=150, drache=False),
+    "hero-3-winter": dict(mitte=(295, 173), scheibe=92, aussen=195, drache=False),
 }
 DRACHE_PIVOT = (1129, 327) # nur "hero": Schnittstelle der Schnur unter der 1. Schleife = Drehpunkt
 

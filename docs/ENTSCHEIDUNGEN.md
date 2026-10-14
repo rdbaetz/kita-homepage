@@ -219,3 +219,12 @@ Zuordnung der geplanten Inhalte:
 - Der kurze **gelbe Unterstrich unter angesprungenen Überschriften entfällt**: Er verschwand nach gut einer Sekunde wieder und wirkte wie ein Darstellungsfehler. Wo man ist, zeigt die gleitende Menü-Markierung.
 - **Text im Titelbild:** mehr Abstand zwischen Slogan und Begrüßungstext, „Herzlich willkommen“ fett hervorgehoben, Zeilenumbruch ohne einzelnes Wort am Ende (`text-wrap: pretty`). „lernen,“ bleibt bewusst grau und am kleinsten – dunkel wirkte es zu dominant.
 - **Angebots-Dialoge:** Der farbige Kreis im Kopf zeigt jetzt das Bild der Kachel (war leer). `main.js` übernimmt es beim Öffnen, im HTML muss es nicht doppelt stehen.
+
+---
+
+## 2026-10-14 – Titelbild im Winter
+
+- Fallende **Blätter, Blüten und Schneeflocken bleiben kurz auf der Wiese liegen** (an zufälliger Stelle, etwa 3–5 Sekunden) und verblassen dann.
+- **Von Dezember bis Februar zeigt das Titelbild eine verschneite Fassung** (`hero-3-winter`): Schnee passte nicht zu Kindern in Sommerkleidung. Gleicher Bildaufbau, Kinder warm angezogen, Schneemann statt Sandburg, Schneeflocke statt Marienkäfer.
+- Der Tausch passiert in einem kleinen Skript direkt hinter dem Bild (nicht erst in `main.js`), damit nicht kurz das Sommerbild aufblitzt. Ganz verhindern lässt sich der Download des Sommerbilds im Winter so nicht; das wird bewusst in Kauf genommen.
+- Offen: Das Grundbild zeigt eigentlich Frühling (blühende Kastanie); eine Herbstfassung wäre auf dem gleichen Weg möglich.

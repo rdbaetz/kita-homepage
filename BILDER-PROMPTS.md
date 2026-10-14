@@ -69,6 +69,27 @@ Weiße Gänseblümchen im Gras. Der untere Rand läuft als weiche, wellige Wiese
 Sehr weiche, blasse Aquarellfarben, keine Konturlinien, gedeckte Sättigung, viel Luft, alle Ränder weich auslaufend.
 ```
 
+### Hero, Variante 3 im Winter – `hero-3-winter.png` (Dez.–Feb. im Einsatz)
+Format: wie die Vorlage (1374×1145)
+
+Erzeugt per Bild-zu-Bild: Codex bekommt `bilder-roh/hero-3.png` als Vorlage angehängt (`codex exec … -i bilder-roh/hero-3.png`, nicht über `tools/bilder_generieren.py`, das nur Text kann). Danach `python tools/hero_ebenen.py hero-3-winter` und die Positionen ins CSS (`[data-jahreszeit="winter"] .hero-szene`).
+
+```
+Das angehängte Bild ist die Vorlage. Erzeuge DIESELBE Szene als Winterversion: gleicher Bildausschnitt, gleiche Perspektive, gleiche Anordnung und Größe aller Gebäude, Geräte, Personen und Bäume, gleicher Malstil (sehr weiche, blasse Aquarellfarben, keine Konturlinien, weich auslaufende Ränder). Nur die Jahreszeit ändert sich:
+
+- Eine dünne, weiche Schneedecke liegt auf Wiese, Weg, Dach des Hauses, Turmdach, Picknicktisch, Holzrand des Sandplatzes und Holzpferd. Das Gras schaut stellenweise noch durch. Keine Gänseblümchen.
+- Alle Personen tragen warme Winterkleidung in gedeckten Pastellfarben: gefütterte Jacken, Strickmützen mit Bommel, Schals, Fäustlinge, lange Hosen, Winterstiefel. Die Erzieherin trägt Mantel, Mütze und Schal.
+- Die zwei Kinder links bauen statt der Sandburg einen kleinen Schneemann auf dem verschneiten Sandplatz.
+- Das Kind vorne in der Mitte betrachtet mit der Lupe eine Schneeflocke auf seinem Fäustling (statt Marienkäfer und Blume).
+- Die Kinder am Spielturm bleiben wie sie sind, nur winterlich angezogen.
+- Der Kastanienbaum rechts ist kahl (keine Blätter, keine Blüten), mit etwas Schnee auf den Ästen. Die Laubbüsche werden zu schneebedeckten, blattlosen Sträuchern; die Nadelbäume im Hintergrund bleiben grün mit Schnee.
+- Kein Sonnensegel (im Winter abgebaut), die Holzpfosten bleiben.
+- Die lachende Sonne oben links bleibt EXAKT an derselben Stelle, in derselben Größe und Form wie in der Vorlage, frei im Himmel. Die zwei Wolken rechts oben bleiben.
+- Himmel und Hintergrund außerhalb der Szene bleiben transparent bzw. weiß wie in der Vorlage, der untere Rand läuft als weiche, wellige verschneite Wiese aus.
+
+Niemand schaut den Betrachter an. Kein Text, keine Buchstaben, keine Logos.
+```
+
 ## 2. Über uns – `ueber-uns.png`
 Format: Querformat ca. 6:5
 

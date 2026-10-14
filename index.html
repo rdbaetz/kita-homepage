@@ -23,7 +23,7 @@
   <link rel="preload" href="assets/img/logo-gross.webp" as="image">
   <link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/nunito-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-14a">
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-10-14b">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -96,6 +96,22 @@
         <img class="ebene strahlen" src="assets/img/illustrations/hero-3-strahlen.webp" alt="" aria-hidden="true">
         <img class="ebene gesicht" src="assets/img/illustrations/hero-3-gesicht.webp" alt="" aria-hidden="true">
       </div>
+      <script>
+        /* Jahreszeit fürs Titelbild (main.js liest sie mit). Im Winter (Dez.–Feb.) die verschneite Fassung
+           zeigen – hier statt in main.js, damit nicht erst kurz das Sommerbild erscheint.
+           Zum Testen: ?jahreszeit=fruehling|sommer|herbst|winter */
+        (function () {
+          var m = new Date().getMonth() + 1;
+          var j = new URLSearchParams(location.search).get("jahreszeit") || (m <= 2 || m === 12 ? "winter" : m <= 5 ? "fruehling" : m <= 8 ? "sommer" : "herbst");
+          document.documentElement.dataset.jahreszeit = j;
+          if (j !== "winter") return;
+          document.querySelectorAll(".hero-szene img").forEach(function (img) {
+            img.src = img.src.replace("/hero-3-", "/hero-3-winter-");
+          });
+          var basis = document.querySelector(".hero-szene img.ill");
+          if (basis) basis.alt = "Der verschneite Garten der Kita mit dem gelben Kindergartengebäude: Eine Erzieherin hockt mit zwei warm eingepackten Kindern am Sandkasten, in dem sie einen kleinen Schneemann bauen, ein Kind betrachtet mit der Lupe eine Schneeflocke auf seinem Handschuh, ein größeres Kind hilft einem kleinen an der Kletterwand des Spielturms hinauf; darüber lacht die Sonne";
+        })();
+      </script>
       <svg class="fallback" viewBox="0 0 640 520" role="img" aria-label="Illustration: Kindergarten auf einem grünen Hügel mit Sonne und Bäumen">
         <!-- Sonne -->
         <g transform="translate(250 92)" stroke="#f2c230" stroke-width="6" stroke-linecap="round">
@@ -803,6 +819,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=2026-10-14a" defer></script>
+<script src="assets/js/main.js?v=2026-10-14b" defer></script>
 </body>
 </html>

@@ -945,6 +945,9 @@ dialog.info .close svg { width: 18px; height: 18px; }
   transform-origin: 49.73% 50%;
   animation: gesicht-strahlen 4s ease-in-out infinite;
 }
+/* Winterbild (Tausch per Skript in index.html), Werte aus `python tools/hero_ebenen.py hero-3-winter` */
+[data-jahreszeit="winter"] .hero-szene .strahlen { left: 9.243%; top: 0.786%; width: 24.09%; transform-origin: 50.76% 52.06%; }
+[data-jahreszeit="winter"] .hero-szene .gesicht { left: 14.702%; top: 6.987%; width: 13.683%; transform-origin: 49.47% 50.27%; }
 @keyframes strahlen-drehen { to { rotate: 360deg; } }
 @keyframes strahlen-pulsieren {
   0%, 100% { scale: 1; opacity: 1; }
