@@ -69,7 +69,7 @@ Weiße Gänseblümchen im Gras. Der untere Rand läuft als weiche, wellige Wiese
 Sehr weiche, blasse Aquarellfarben, keine Konturlinien, gedeckte Sättigung, viel Luft, alle Ränder weich auslaufend.
 ```
 
-### Hero, Variante 3 im Winter – `hero-3-winter.png` (Dez.–Feb. im Einsatz)
+### Hero, Variante 3 im Winter – `hero-3-winter.png` (im Winter 21.12.–19.3. im Einsatz)
 Format: wie die Vorlage (1374×1145)
 
 Erzeugt per Bild-zu-Bild: Codex bekommt `bilder-roh/hero-3.png` als Vorlage angehängt (`codex exec … -i bilder-roh/hero-3.png`, nicht über `tools/bilder_generieren.py`, das nur Text kann). Danach `python tools/hero_ebenen.py hero-3-winter` und die Positionen ins CSS (`[data-jahreszeit="winter"] .hero-szene`).

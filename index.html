@@ -97,12 +97,13 @@
         <img class="ebene gesicht" src="assets/img/illustrations/hero-3-gesicht.webp" alt="" aria-hidden="true">
       </div>
       <script>
-        /* Jahreszeit fürs Titelbild (main.js liest sie mit). Im Winter (Dez.–Feb.) die verschneite Fassung
-           zeigen – hier statt in main.js, damit nicht erst kurz das Sommerbild erscheint.
+        /* Jahreszeit fürs Titelbild (main.js liest sie mit), nach dem astronomischen Beginn:
+           Frühling ab 20.3., Sommer ab 21.6., Herbst ab 23.9., Winter ab 21.12. (je nach Jahr ±1 Tag).
+           Im Winter die verschneite Fassung zeigen – hier statt in main.js, damit nicht erst kurz das Sommerbild erscheint.
            Zum Testen: ?jahreszeit=fruehling|sommer|herbst|winter */
         (function () {
-          var m = new Date().getMonth() + 1;
-          var j = new URLSearchParams(location.search).get("jahreszeit") || (m <= 2 || m === 12 ? "winter" : m <= 5 ? "fruehling" : m <= 8 ? "sommer" : "herbst");
+          var d = new Date(), t = (d.getMonth() + 1) * 100 + d.getDate(); // z. B. 21. Juni = 621
+          var j = new URLSearchParams(location.search).get("jahreszeit") || (t >= 1221 || t < 320 ? "winter" : t < 621 ? "fruehling" : t < 923 ? "sommer" : "herbst");
           document.documentElement.dataset.jahreszeit = j;
           if (j !== "winter") return;
           document.querySelectorAll(".hero-szene img").forEach(function (img) {
