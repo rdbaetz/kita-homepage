@@ -1122,12 +1122,14 @@ dialog.info .close svg { width: 18px; height: 18px; }
   position: relative;
   transition: background 0.25s ease, box-shadow 0.25s ease;
 }
+/* minmax(0, …) und min-height: 0, damit ein Hochformat-Foto zugeschnitten wird statt die Vorschau zu strecken */
 .gf-bilder {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 4px;
   aspect-ratio: 16 / 9;
+  min-height: 0;
 }
 .gf-bilder img {
   width: 100%;
