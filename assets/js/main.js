@@ -169,8 +169,8 @@ if (new URLSearchParams(location.search).has("entwurf")) {
   document.querySelectorAll("[data-entwurf]").forEach((el) => (el.hidden = false));
 }
 
-// Hero: Jahreszeit – im Frühling gaukeln Schmetterlinge, im Herbst fallen Blätter, im Winter Schnee
-// (Sommer: nur die Sonne). Die Jahreszeit bestimmt das kleine Skript hinter dem Titelbild in index.html
+// Hero: Jahreszeit – im Frühling gaukeln Schmetterlinge, im Sommer schweben Pusteblumen-Samen,
+// im Herbst fallen Blätter, im Winter Schnee. Die Jahreszeit bestimmt das kleine Skript hinter dem Titelbild in index.html
 // (dort auch das Winterbild). Zum Testen: ?jahreszeit=fruehling|herbst|winter|sommer
 const heroSzene = document.querySelector(".hero-szene");
 if (heroSzene && !reduceMotion) {
@@ -204,6 +204,27 @@ if (heroSzene && !reduceMotion) {
         `<ellipse cx="12" cy="12.5" rx=".9" ry="4.5" fill="#6b4a2e"/></svg></span>`;
       ebene.appendChild(falter);
     });
+  } else if (jahreszeit === "sommer") {
+    // Pusteblumen-Samen steigen von der Wiese schräg nach rechts oben und verblassen.
+    // --x/--y Start, --dx/--dy Strecke, --d Dauer, --v Verzögerung, --p Schaukeldauer
+    const strahlen = [-88, -66, -44, -22, 0, 22, 44, 66, 88];
+    const samen =
+      `<span><svg viewBox="0 0 24 32"><g stroke="#8f9b8a" stroke-width="1" stroke-linecap="round" fill="none">` +
+      `<path d="M12 10v15"/>` +
+      strahlen.map((w) => `<path d="M12 10v-9" transform="rotate(${w} 12 10)"/>`).join("") +
+      `</g><g fill="#fff" stroke="#a7b2a2" stroke-width=".5">` +
+      strahlen.map((w) => `<circle cx="12" cy="1.2" r="1.3" transform="rotate(${w} 12 10)"/>`).join("") +
+      `</g><ellipse cx="12" cy="27.5" rx="1" ry="2.6" fill="#9a7b55"/></svg></span>`;
+    for (let i = 0; i < 7; i++) {
+      const teil = document.createElement("i");
+      teil.className = "samen";
+      const dauer = zufall(16, 24);
+      teil.style.cssText =
+        `--x:${zufall(0, 60).toFixed(1)}%;--y:${zufall(62, 88).toFixed(1)}%;--dx:${zufall(30, 45).toFixed(1)}%;--dy:${zufall(30, 50).toFixed(1)}%;` +
+        `--s:${zufall(3.6, 4.6).toFixed(2)}%;--d:${dauer.toFixed(1)}s;--v:${(-dauer * (i / 7 + zufall(0, 0.1))).toFixed(1)}s;--p:${zufall(2.5, 4).toFixed(1)}s`;
+      teil.innerHTML = samen;
+      ebene.appendChild(teil);
+    }
   } else if (formen) {
     const anzahl = jahreszeit === "winter" ? 26 : 12;
     for (let i = 0; i < anzahl; i++) {

@@ -10,7 +10,7 @@ Reines HTML/CSS/JS, **kein Build-Schritt, keine Abhängigkeiten**. Sprache der I
 - `impressum.html`, `datenschutz.html` – Rechtstexte (enthalten `TODO`-Kommentare für fehlende Angaben)
 - `404.html` – Fehlerseite für falsche Adressen (`ErrorDocument` in `.htaccess` und `tools/dev.htaccess`); nutzt als einzige Seite **absolute** Pfade (`/assets/…`), weil sie unter beliebigen Adressen ausgeliefert wird
 - `assets/css/style.css` – gesamtes Design; Farben/Schriften als CSS-Variablen in `:root`
-- `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Nach-oben-Knopf, Jahreszeit im Hero: im Frühling Schmetterlinge, im Herbst Blätter, im Winter Schnee, die kurz auf der Wiese liegen bleiben; Test mit `?jahreszeit=fruehling|sommer|herbst|winter`), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
+- `assets/js/main.js` – Menü, Dialoge, Team-Filter, Scroll-Effekte (gleitende Menü-Markierung, Hero-Tiefeneffekt, Hochzählen der Zahlen, Nach-oben-Knopf, Jahreszeit im Hero: im Frühling Schmetterlinge, im Sommer Pusteblumen-Samen, im Herbst Blätter und im Winter Schnee, die kurz auf der Wiese liegen bleiben; Test mit `?jahreszeit=fruehling|sommer|herbst|winter`), Ausgrauen vergangener Schließtage. Alle Animationen respektieren "Bewegung reduzieren" (prefers-reduced-motion).
 - `assets/img/team/vorname-nachname.jpg` – Teamfotos, quadratisch 600×600 (Originale in `bilder-roh/team/`)
 - `assets/img/illustrations/*.webp` – aufbereitete Illustrationen (Prompts in `BILDER-PROMPTS.md`)
 - `bilder-roh/` – Original-PNGs aus ChatGPT/Codex (nicht in Git, liegt nur lokal/OneDrive)

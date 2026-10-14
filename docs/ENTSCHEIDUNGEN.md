@@ -228,4 +228,5 @@ Zuordnung der geplanten Inhalte:
 - **Von Dezember bis Februar zeigt das Titelbild eine verschneite Fassung** (`hero-3-winter`): Schnee passte nicht zu Kindern in Sommerkleidung. Gleicher Bildaufbau, Kinder warm angezogen, Schneemann statt Sandburg, Schneeflocke statt Marienkäfer.
 - Der Tausch passiert in einem kleinen Skript direkt hinter dem Bild (nicht erst in `main.js`), damit nicht kurz das Sommerbild aufblitzt. Ganz verhindern lässt sich der Download des Sommerbilds im Winter so nicht; das wird bewusst in Kauf genommen.
 - **Im Frühling fliegen drei Schmetterlinge** quer durchs Bild statt fallender Blütenblätter (die wirkten unpassend).
+- **Im Sommer schweben Pusteblumen-Samen** von der Wiese schräg nach oben (vorher nur die Sonne). Seifenblasen und Hummeln wurden verworfen.
 - Offen: Das Grundbild zeigt eigentlich Frühling (blühende Kastanie); eine Herbstfassung wäre auf dem gleichen Weg möglich.
