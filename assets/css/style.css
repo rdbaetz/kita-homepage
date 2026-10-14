@@ -1028,7 +1028,7 @@ dialog.info .close svg { width: 18px; height: 18px; }
   animation: jz-schaukeln var(--p) ease-in-out var(--v) infinite alternate;
 }
 /* zarter Schatten als Kontur, sonst gehen die weißen Schirmchen vor dem hellen Bild unter */
-.jahreszeit .samen svg { transform: none; animation: none; filter: drop-shadow(0 0 1.5px rgba(40, 60, 40, 0.55)); }
+.jahreszeit .samen svg { transform: none; animation: none; filter: drop-shadow(0 0 1.5px rgba(40, 60, 40, 0.3)); }
 .jahreszeit.pause .samen span { animation-play-state: paused; }
 @keyframes jz-schweben {
   0% { opacity: 0; }

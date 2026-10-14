@@ -209,10 +209,10 @@ if (heroSzene && !reduceMotion) {
     // --x/--y Start, --dx/--dy Strecke, --d Dauer, --v Verzögerung, --p Schaukeldauer
     const strahlen = [-88, -66, -44, -22, 0, 22, 44, 66, 88];
     const samen =
-      `<span><svg viewBox="0 0 24 32"><g stroke="#8f9b8a" stroke-width="1" stroke-linecap="round" fill="none">` +
+      `<span><svg viewBox="0 0 24 32"><g stroke="#b1bbac" stroke-width="1" stroke-linecap="round" fill="none">` +
       `<path d="M12 10v15"/>` +
       strahlen.map((w) => `<path d="M12 10v-9" transform="rotate(${w} 12 10)"/>`).join("") +
-      `</g><g fill="#fff" stroke="#a7b2a2" stroke-width=".5">` +
+      `</g><g fill="#fff" stroke="#c6cec2" stroke-width=".5">` +
       strahlen.map((w) => `<circle cx="12" cy="1.2" r="1.3" transform="rotate(${w} 12 10)"/>`).join("") +
       `</g><ellipse cx="12" cy="27.5" rx="1" ry="2.6" fill="#9a7b55"/></svg></span>`;
     for (let i = 0; i < 7; i++) {
